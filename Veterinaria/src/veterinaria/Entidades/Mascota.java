@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class Mascota {
 
-    public int idCliente;
+    public int idMascota;
+    public Cliente idCliente;
     public String alias;
     public String sexo;
     public String especie;
