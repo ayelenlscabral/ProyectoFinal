@@ -19,7 +19,7 @@ public class Mascota {
     public Mascota() {
     }
 
-    public Mascota(int idCliente, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, boolean estado) {
+    public Mascota(Cliente idCliente, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, boolean estado) {
         this.idCliente = idCliente;
         this.alias = alias;
         this.sexo = sexo;
@@ -32,7 +32,9 @@ public class Mascota {
         this.estado = estado;
     }
 
-    public Mascota(String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, boolean estado) {
+    public Mascota(int idMascota, Cliente idCliente, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, boolean estado) {
+        this.idMascota = idMascota;
+        this.idCliente = idCliente;
         this.alias = alias;
         this.sexo = sexo;
         this.especie = especie;
@@ -44,11 +46,19 @@ public class Mascota {
         this.estado = estado;
     }
 
-    public int getIdCliente() {
+    public int getIdMascota() {
+        return idMascota;
+    }
+
+    public void setIdMascota(int idMascota) {
+        this.idMascota = idMascota;
+    }
+
+    public Cliente getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Cliente idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -126,7 +136,7 @@ public class Mascota {
 
     @Override
     public String toString() {
-        return "Mascota{" + "idCliente=" + idCliente + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", estado=" + estado + '}';
+        return "Mascota{" + "idMascota=" + idMascota + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", estado=" + estado + '}';
     }
 
 }
