@@ -4,22 +4,22 @@ import java.time.LocalDate;
 
 public class Mascota {
 
-    public int idMascota;
-    public Cliente idCliente;
-    public String alias;
-    public String sexo;
-    public String especie;
-    public String raza;
-    public String colorPelo;
-    public LocalDate fechaNac;
-    public double pesoPromedio;
-    public double pesoActual;
-    public boolean estado;
+    private int idMascota;
+    private Cliente idCliente;
+    private String alias;
+    private String sexo;
+    private String especie;
+    private String raza;
+    private String colorPelo;
+    private LocalDate fechaNac;
+    private double pesoPromedio;
+    private double pesoActual;
+    private Boolean estado;
 
     public Mascota() {
     }
 
-    public Mascota(Cliente idCliente, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, boolean estado) {
+    public Mascota(Cliente idCliente, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, Boolean estado) {
         this.idCliente = idCliente;
         this.alias = alias;
         this.sexo = sexo;
@@ -32,7 +32,7 @@ public class Mascota {
         this.estado = estado;
     }
 
-    public Mascota(int idMascota, Cliente idCliente, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, boolean estado) {
+    public Mascota(int idMascota, Cliente idCliente, String alias, String sexo, String especie, String raza, String colorPelo, LocalDate fechaNac, double pesoPromedio, double pesoActual, Boolean estado) {
         this.idMascota = idMascota;
         this.idCliente = idCliente;
         this.alias = alias;
@@ -126,17 +126,25 @@ public class Mascota {
         this.pesoActual = pesoActual;
     }
 
-    public boolean isEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Mascota{" + "idMascota=" + idMascota + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", estado=" + estado + '}';
+        return "Mascota{" + "idMascota=" + idMascota + ", idCliente=" + idCliente + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", colorPelo=" + colorPelo + ", fechaNac=" + fechaNac + ", pesoPromedio=" + pesoPromedio + ", pesoActual=" + pesoActual + ", estado=" + estado + '}';
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
 }
