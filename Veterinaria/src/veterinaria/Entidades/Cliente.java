@@ -2,19 +2,19 @@ package veterinaria.Entidades;
 
 public class Cliente {
 
-    public int idCliente;
-    public int dni;
-    public String apellido;
-    public String nombre;
-    public String direccion;
-    public int telefono;
-    public String personaAlternativa;
-    public boolean estado;
+    private int idCliente;
+    private int dni;
+    private String apellido;
+    private String nombre;
+    private String direccion;
+    private long telefono;
+    private String personaAlternativa;
+    private boolean estado;
 
     public Cliente() {
     }
 
-    public Cliente(int dni, String apellido, String nombre, String direccion, int telefono, String personaAlternativa, boolean estado) {
+    public Cliente(int dni, String apellido, String nombre, String direccion, long telefono, String personaAlternativa, boolean estado) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -24,7 +24,7 @@ public class Cliente {
         this.estado = estado;
     }
 
-    public Cliente(int idCliente, int dni, String apellido, String nombre, String direccion, int telefono, String personaAlternativa, boolean estado) {
+    public Cliente(int idCliente, int dni, String apellido, String nombre, String direccion, long telefono, String personaAlternativa, boolean estado) {
         this.idCliente = idCliente;
         this.dni = dni;
         this.apellido = apellido;
@@ -75,11 +75,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
@@ -101,7 +101,9 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return idCliente + dni + apellido + nombre + direccion + telefono + personaAlternativa + estado;
+        return "Cliente{" + "idCliente=" + idCliente + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + ", personaAlternativa=" + personaAlternativa + ", estado=" + estado + '}';
     }
+
+    
 
 }
