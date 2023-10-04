@@ -14,7 +14,7 @@ public class Mascota {
     private LocalDate fechaNac;
     private double pesoPromedio;
     private double pesoActual;
-    private Boolean estado;
+    private boolean estado;
 
     public Mascota() {
     }
@@ -126,19 +126,21 @@ public class Mascota {
         this.pesoActual = pesoActual;
     }
 
-    public Boolean getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
+    
     @Override
     public String toString() {
         return "Mascota{" + "idMascota=" + idMascota + ", idCliente=" + idCliente + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", colorPelo=" + colorPelo + ", fechaNac=" + fechaNac + ", pesoPromedio=" + pesoPromedio + ", pesoActual=" + pesoActual + ", estado=" + estado + '}';
     }
 
+   
     
     
     
