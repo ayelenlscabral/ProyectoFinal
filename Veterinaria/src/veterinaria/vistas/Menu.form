@@ -37,6 +37,7 @@
                       <Component id="jHistorial" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="465" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,6 +54,7 @@
                   <Component id="jAgregarVisita" min="-2" pref="200" max="-2" attributes="0"/>
                   <Component id="jHistorial" min="-2" pref="200" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="71" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
