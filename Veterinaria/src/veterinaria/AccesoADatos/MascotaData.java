@@ -3,7 +3,12 @@ package veterinaria.AccesoADatos;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import veterinaria.Entidades.Mascota;
 
@@ -71,8 +76,8 @@ public class MascotaData {
             if (exito >= 1) {
                 JOptionPane.showMessageDialog(null, "Se ha modificado exitosamente.");
 
-            }else{
-            JOptionPane.showMessageDialog(null, "La mascota no existe");
+            } else {
+                JOptionPane.showMessageDialog(null, "La mascota no existe");
             }
 
         } catch (SQLException ex) {
@@ -98,6 +103,83 @@ public class MascotaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota");
         }
+    }
+
+    public Mascota buscarMascota(int idMascota) {
+
+        Mascota mascota = null;
+
+        String sql = "SELECT * FROM mascota WHERE idMascota = ?";
+
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, idMascota);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                mascota = new Mascota();
+                mascota.setIdMascota(rs.getInt("idMascota"));
+                mascota.setAlias(rs.getString("alias"));
+                mascota.setSexo(rs.getString("sexo"));
+                mascota.setEspecie(rs.getString("especie"));
+                mascota.setRaza(rs.getString("raza"));
+                mascota.setColorPelo(rs.getString("colorPelo"));
+                mascota.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
+                mascota.setPesoActual(rs.getDouble("pesoActual"));
+                mascota.setEstado(rs.getBoolean("estado"));
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "no existe la mascota");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota" + ex.getMessage());
+        }
+
+        return mascota;
+    }
+
+    public List<Mascota> listarMascotas() {
+
+        List<Mascota> mascota = new ArrayList<>();
+
+        String sql = "SELECT * FROM mascota";
+
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Mascota mas = new Mascota();
+
+                mas.setIdMascota(rs.getInt("idMascota"));
+                mas.setAlias(rs.getString("alias"));
+                mas.setSexo(rs.getString("sexo"));
+                mas.setEspecie(rs.getString("especie"));
+                mas.setRaza(rs.getString("raza"));
+                mas.setColorPelo(rs.getString("colorPelo"));
+                mas.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
+                mas.setPesoActual(rs.getDouble("pesoActual"));
+                mas.setEstado(rs.getBoolean("estado"));
+                mascota.add(mas);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota");
+        }
+
+        return mascota;
     }
 
 }
