@@ -72,7 +72,7 @@ public class MascotaData {
                 JOptionPane.showMessageDialog(null, "Se ha modificado exitosamente.");
 
             }else{
-            JOptionPane.showMessageDialog(null, "No se puede modificadar.");
+            JOptionPane.showMessageDialog(null, "La mascota no existe");
             }
 
         } catch (SQLException ex) {
