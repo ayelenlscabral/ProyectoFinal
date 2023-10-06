@@ -1,38 +1,103 @@
 package veterinaria.AccesoADatos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import veterinaria.Entidades.Visita;
 
 public class VisitaData {
-    
-    private Connection con = null;
 
+    private Connection con = null;
 
     public VisitaData() {
 
         con = Conexion.getConexion();
 
     }
-    
-    
-    public void guardarVisita(Visita visita) throws SQLException{
-        
-        String sql = "INSERT INTO visita(idVisita, idMascota, idTratamiento, fechaTratamiento, observaciones, pesoPromedio, pesoActual) "
+
+    public void guardarVisita(Visita visita) throws SQLException {
+
+        String sql = "INSERT INTO visita( idMascota, idTratamiento, fechaTratamiento, observaciones, pesoPromedio, pesoActual) "
                 + "VALUES ( ?, ?, ?, ?, ?, ?, ? )";
-        
-        
-        PreparedStatement ps = con.prepareStatement(sql);
-        
-        ps.setInt(1, visita.getIdVisita() );
-        
-          //  ps.setInt(1, alumno.getDni());
-          //  ps.setString(2, alumno.getApellido());
-          //  ps.setString(3, alumno.getNombre());
-           // ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
-           // ps.setBoolean(5, alumno.isEstado());
-        
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, visita.getMascota().getIdMascota());
+            ps.setInt(2, visita.getTratamiento().getIdTratamiento());
+            ps.setDate(3, Date.valueOf(visita.getFechaTratamiento()));
+            ps.setString(4, visita.getObservaciones());
+            ps.setDouble(5, visita.getPesoActual());
+
+            ps.executeUpdate();
+
+            ps.close();
+
+            JOptionPane.showMessageDialog(null, " visita guardada ");
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, " error al acceder a la tabla visita ");
+        }
     }
-    
+
+    public void medificarVisita(Visita visita) {
+
+        String sql = " UPDATE visita SET idVisita = ?, idMascota = ?,idTratamiento = ?,fechaVisita = ?,observaciones = ?,pesoActual = ? WHERE idVisita = ? ";
+
+        try {
+
+            PreparedStatement ps = null;
+
+            ps.setInt(1, visita.getMascota().getIdMascota());
+            ps.setInt(2, visita.getTratamiento().getIdTratamiento());
+            ps.setDate(3, Date.valueOf(visita.getFechaTratamiento()));
+            ps.setString(4, visita.getObservaciones());
+            ps.setDouble(5, visita.getPesoActual());
+
+            int bienAhi = ps.executeUpdate();
+
+            if (bienAhi == 1) {
+
+                JOptionPane.showMessageDialog(null, " modificado exitosamente ");
+            } else {
+
+                JOptionPane.showMessageDialog(null, " la cagaste pa' ");
+            }
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, " error al acceder a la tabla visita ");
+        }
+
+    }
+
+    public void eliminarVisita(Visita visita) {
+
+        String sql = " DELETE FROM `visita` WHERE idVisita = ? ";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, visita.getIdVisita());
+
+            int borrado = ps.executeUpdate();
+
+            if (borrado == 1) {
+
+                JOptionPane.showMessageDialog(null, " visita borrada ");
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, " error al acceder a la tabla visita ");
+        }
+    }
 }
+
