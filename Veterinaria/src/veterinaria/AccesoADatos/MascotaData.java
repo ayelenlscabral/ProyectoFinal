@@ -71,6 +71,8 @@ public class MascotaData {
             if (exito >= 1) {
                 JOptionPane.showMessageDialog(null, "Se ha modificado exitosamente.");
 
+            }else{
+            JOptionPane.showMessageDialog(null, "No se puede modificadar.");
             }
 
         } catch (SQLException ex) {
