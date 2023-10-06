@@ -134,19 +134,9 @@ public class Mascota {
         this.estado = estado;
     }
 
-    
     @Override
     public String toString() {
-        return "Mascota{" + "idMascota=" + idMascota + ", idCliente=" + idCliente + ", alias=" + alias + ", sexo=" + sexo + ", especie=" + especie + ", raza=" + raza + ", colorPelo=" + colorPelo + ", fechaNac=" + fechaNac + ", pesoPromedio=" + pesoPromedio + ", pesoActual=" + pesoActual + ", estado=" + estado + '}';
+        return "'" + alias + "', " + especie + ", " + raza;
     }
 
-   
-    
-    
-    
-    
-    
-    
-    
-    
 }
