@@ -45,7 +45,7 @@ public class Menu extends javax.swing.JFrame {
         jAgenda = new javax.swing.JButton();
         jAgregarVisita = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jGestionTratamiento = new javax.swing.JButton();
         jTratamiento = new javax.swing.JButton();
         jModo = new javax.swing.JButton();
         jLogOut = new javax.swing.JButton();
@@ -219,13 +219,13 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 0);
         jMenuPanel.add(jButton2, gridBagConstraints);
 
-        jButton5.setBackground(new java.awt.Color(204, 153, 0));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton5.setText("jButton5");
-        jButton5.setMinimumSize(new java.awt.Dimension(10, 10));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jGestionTratamiento.setBackground(new java.awt.Color(204, 153, 0));
+        jGestionTratamiento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jGestionTratamiento.setText("AGREGAR TRATAMIENTO");
+        jGestionTratamiento.setMinimumSize(new java.awt.Dimension(10, 10));
+        jGestionTratamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jGestionTratamientoActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -238,7 +238,7 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 6, 0, 0);
-        jMenuPanel.add(jButton5, gridBagConstraints);
+        jMenuPanel.add(jGestionTratamiento, gridBagConstraints);
 
         jTratamiento.setBackground(new java.awt.Color(255, 204, 51));
         jTratamiento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -476,9 +476,15 @@ public class Menu extends javax.swing.JFrame {
         jPanelAlternativo.setVisible(true);
     }//GEN-LAST:event_jHistorialActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jGestionTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGestionTratamientoActionPerformed
+        jPanelAlternativo.removeAll();
+        jPanelAlternativo.repaint();
+        GestionTratamiento nuevo = new GestionTratamiento();
+        jMenuPanel.setVisible(false);
+        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
+        nuevo.setVisible(true);
+        jPanelAlternativo.setVisible(true);
+    }//GEN-LAST:event_jGestionTratamientoActionPerformed
 
     private void jLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogOutActionPerformed
         this.removeAll();
@@ -513,7 +519,8 @@ public class Menu extends javax.swing.JFrame {
                         javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
                         Color fondo = new Color(0, 133, 94);
                         jMenuPanel.setBackground(fondo);
-
+                        jAgregarCliente.setBackground(fondo);
+                        jAgregarMascota.setBackground(fondo);
 //                        condicion = true;
                         jModo.setText("MODO OSCURO");
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
@@ -567,8 +574,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jAgregarVisita;
     private javax.swing.JPanel jBienvenida;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jFecha;
+    private javax.swing.JButton jGestionTratamiento;
     private javax.swing.JButton jHistorial;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
