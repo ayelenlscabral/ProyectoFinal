@@ -54,13 +54,11 @@ public class GestionMascota extends javax.swing.JPanel {
         jTEspecie = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTPesoActual = new javax.swing.JTextField();
-        jTPesoPromedio = new javax.swing.JTextField();
         jTAlias = new javax.swing.JTextField();
         jTColordePelo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -117,9 +115,6 @@ public class GestionMascota extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Alias");
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel6.setText("Peso Promedio");
-
         jLabel7.setForeground(new java.awt.Color(0, 0, 153));
         jLabel7.setText("Color de Pelo");
 
@@ -135,14 +130,6 @@ public class GestionMascota extends javax.swing.JPanel {
         jTPesoActual.setBackground(new java.awt.Color(255, 255, 255));
         jTPesoActual.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTPesoPromedio.setBackground(new java.awt.Color(255, 255, 255));
-        jTPesoPromedio.setForeground(new java.awt.Color(0, 0, 0));
-        jTPesoPromedio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPesoPromedioActionPerformed(evt);
-            }
-        });
-
         jTAlias.setBackground(new java.awt.Color(255, 255, 255));
         jTAlias.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -156,10 +143,17 @@ public class GestionMascota extends javax.swing.JPanel {
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 51));
 
         jCheckBoxH.setBackground(new java.awt.Color(51, 204, 255));
+        buttonGroup1.add(jCheckBoxH);
         jCheckBoxH.setForeground(new java.awt.Color(0, 51, 204));
         jCheckBoxH.setText("hembra");
+        jCheckBoxH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxHActionPerformed(evt);
+            }
+        });
 
         jCheckBoxM.setBackground(new java.awt.Color(0, 204, 255));
+        buttonGroup1.add(jCheckBoxM);
         jCheckBoxM.setForeground(new java.awt.Color(0, 51, 204));
         jCheckBoxM.setText("macho");
 
@@ -193,86 +187,96 @@ public class GestionMascota extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTidMascota, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                             .addComponent(jTAlias, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTRaza, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTEspecie, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTColordePelo))
+                            .addComponent(jTColordePelo)
+                            .addComponent(jTPesoActual))
                         .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBuscar)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel8)))
+                                .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTPesoActual, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                    .addComponent(jTPesoPromedio, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
+                                        .addComponent(jLabel8)
+                                        .addGap(26, 26, 26)
                                         .addComponent(jRadioButton1))
-                                    .addComponent(jCheckBoxH)
-                                    .addComponent(jCheckBoxM)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jBuscar)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jCheckBoxM)
+                                            .addComponent(jCheckBoxH)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
-                        .addGap(50, 50, 50)
-                        .addComponent(jComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(jComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
                 .addGap(109, 118, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTidMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jBuscar))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel10))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTPesoPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jTColordePelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTRaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBoxH)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBoxM)))
-                .addGap(18, 18, 18)
+                            .addComponent(jLabel10)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jTColordePelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel8)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jTEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTRaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3))
+                            .addGap(2, 2, 2)
+                            .addComponent(jLabel1)
+                            .addGap(72, 72, 72))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCheckBoxH)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jCheckBoxM)
+                            .addGap(45, 45, 45)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -397,7 +401,7 @@ public class GestionMascota extends javax.swing.JPanel {
         );
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel13.setText("  Cliente");
+        jLabel13.setText("  Cliente DNI:");
 
         jTClienteTable.setBackground(new java.awt.Color(255, 255, 255));
         jTClienteTable.setForeground(new java.awt.Color(0, 0, 0));
@@ -434,7 +438,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 .addGap(196, 196, 196)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTClienteTable, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTClienteTable, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -447,7 +451,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTClienteTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTClienteTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -472,7 +476,6 @@ public class GestionMascota extends javax.swing.JPanel {
         jTEspecie.setText("");
         jTRaza.setText("");
         jTColordePelo.setText("");
-        jTPesoPromedio.setText("");
         jTPesoActual.setText("");
         jRadioButton1.setSelected(false);
 
@@ -497,12 +500,12 @@ public class GestionMascota extends javax.swing.JPanel {
             String razaT = jTRaza.getText();
             String colordePeloT = jTColordePelo.getText();
             LocalDate fechadeNacT = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String pesoPromedioT = jTPesoPromedio.getText();
+          
             String pesoActualT = jTPesoActual.getText();
             Cliente clienteSeleccionado = (Cliente) jComboBoxCliente.getSelectedItem();
 
             if (aliasT.isEmpty() || sexoT.isEmpty() || especieT.isEmpty() || razaT.isEmpty()
-                    || colordePeloT.isEmpty() || pesoPromedioT.isEmpty() || pesoActualT.isEmpty() || clienteSeleccionado == null) {
+                    || colordePeloT.isEmpty() || pesoActualT.isEmpty() || clienteSeleccionado == null) {
                 JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacíos.");
             } else {
                 String ali = aliasT;
@@ -510,7 +513,6 @@ public class GestionMascota extends javax.swing.JPanel {
                 String raza = razaT;
                 String colorP = colordePeloT;
                 LocalDate naci = fechadeNacT;
-                Double pesoP = Double.parseDouble(pesoPromedioT);
                 Double pesoA = Double.parseDouble(pesoActualT);
 
                 if (!ali.matches("^[a-zA-Z\\s]+$")) {
@@ -525,9 +527,6 @@ public class GestionMascota extends javax.swing.JPanel {
                 } else if (!colorP.matches("^[a-zA-Z\\s]+$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
 
-                } else if (!pesoP.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'Peso Promedio' solo debe contener numeros.");
-
                 } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
 
@@ -540,7 +539,6 @@ public class GestionMascota extends javax.swing.JPanel {
                     mascotaActual.setRaza(raza);
                     mascotaActual.setColorPelo(colorP);
                     mascotaActual.setFechaNac(naci);
-                    mascotaActual.setPesoPromedio(pesoP);
                     mascotaActual.setPesoActual(pesoA);
                     mascotaActual.setIdCliente(clienteSeleccionado);
                     mascotaActual.setEstado(jRadioButton1.isSelected());
@@ -552,7 +550,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 }
 
             }
-       
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingresa valores válidos en los campos de números");
         } catch (Exception e) {
@@ -581,7 +579,6 @@ public class GestionMascota extends javax.swing.JPanel {
                 jTEspecie.setText("");
                 jTRaza.setText("");
                 jTColordePelo.setText("");
-                jTPesoPromedio.setText("");
                 jTPesoActual.setText("");
                 jRadioButton1.setSelected(false);
                 jComboBoxCliente.setSelectedIndex(0);
@@ -605,10 +602,6 @@ public class GestionMascota extends javax.swing.JPanel {
     }//GEN-LAST:event_jBSalirActionPerformed
 
 
-    private void jTPesoPromedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPesoPromedioActionPerformed
-
-    }//GEN-LAST:event_jTPesoPromedioActionPerformed
-
     private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
 
         String codigoText = jTidMascota.getText();
@@ -623,7 +616,7 @@ public class GestionMascota extends javax.swing.JPanel {
                     jTColordePelo.setText(mascotaActual.getColorPelo());
                     jTEspecie.setText(mascotaActual.getEspecie());
                     jTRaza.setText(mascotaActual.getRaza());
-                    jTPesoPromedio.setText(Double.toString(mascotaActual.getPesoPromedio()));
+                    
                     jTPesoActual.setText(Double.toString(mascotaActual.getPesoActual()));
                     jRadioButton1.setSelected(mascotaActual.isEstado());
                     LocalDate fechaNacimiento = mascotaActual.getFechaNac();
@@ -650,6 +643,10 @@ public class GestionMascota extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jBuscarActionPerformed
 
+    private void jCheckBoxHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxHActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -673,7 +670,6 @@ public class GestionMascota extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -687,7 +683,6 @@ public class GestionMascota extends javax.swing.JPanel {
     private javax.swing.JTextField jTColordePelo;
     private javax.swing.JTextField jTEspecie;
     private javax.swing.JTextField jTPesoActual;
-    private javax.swing.JTextField jTPesoPromedio;
     private javax.swing.JTextField jTRaza;
     private javax.swing.JTable jTabla;
     private javax.swing.JTextField jTidMascota;
