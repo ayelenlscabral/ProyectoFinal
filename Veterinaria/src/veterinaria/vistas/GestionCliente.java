@@ -10,23 +10,16 @@ package veterinaria.vistas;
 
 //import java.awt.Color;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
+//import java.awt.Color;
 //import java.awt.GradientPaint;
 //import java.awt.Graphics;
 //import java.awt.Graphics2D;
 //import java.awt.geom.Point2D;
 //import javax.swing.JFrame;
-//import javax.swing.JLabel;
 //import javax.swing.JPanel;
 //import javax.swing.SwingUtilities;
+
+
 
 
 public class GestionCliente extends javax.swing.JPanel {
@@ -35,44 +28,44 @@ public class GestionCliente extends javax.swing.JPanel {
         
         initComponents();
         
-        SwingUtilities.invokeLater(() -> {
-
-            // pantalla completa
-            JFrame frame = new JFrame(" Clientes ");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-            JPanel panel = new JPanel() {
-
-                @Override
-                protected void paintComponent(Graphics g) {
-
-                    super.paintComponent(g);
-                    Graphics2D g2d = (Graphics2D) g;
-                    
-                    // 2 colores degradado
-                    Color color1 = Color.BLACK;
-                    Color color2 = Color.MAGENTA;
-                    
-                    // direccion en vertical
-                    Point2D start = new Point2D.Float(0, 0);
-                    Point2D end = new Point2D.Float(0, getHeight());
-                    
-                    //objeto gradientPaint para degradado
-                    GradientPaint gradient = new GradientPaint(start, color1, end, color2);
-                    
-                    //Establece el degradado como fondo del JPanel
-                    g2d.setPaint(gradient);
-                    g2d.fillRect(0, 0, getWidth(), getHeight());
-                }
-
-            };
-            
-            frame.add(panel);
-            frame.setVisible(true);
-            
-        });
-//        
+//        SwingUtilities.invokeLater(() -> {
+//
+//            // pantalla completa
+//            JFrame frame = new JFrame(" Clientes ");
+//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//
+//            JPanel panel = new JPanel() {
+//
+//                @Override
+//                protected void paintComponent(Graphics g) {
+//
+//                    super.paintComponent(g);
+//                    Graphics2D g2d = (Graphics2D) g;
+//                    
+//                    // 2 colores degradado
+//                    Color color1 = Color.BLACK;
+//                    Color color2 = Color.MAGENTA;
+//                    
+//                    // direccion en vertical
+//                    Point2D start = new Point2D.Float(0, 0);
+//                    Point2D end = new Point2D.Float(0, getHeight());
+//                    
+//                    //objeto gradientPaint para degradado
+//                    GradientPaint gradient = new GradientPaint(start, color1, end, color2);
+//                    
+//                    //Establece el degradado como fondo del JPanel
+//                    g2d.setPaint(gradient);
+//                    g2d.fillRect(0, 0, getWidth(), getHeight());
+//                }
+//
+//            };
+//            
+//            frame.add(panel);
+//            frame.setVisible(true);
+//            
+//        });
+       
     }
     
      
