@@ -1,5 +1,7 @@
 package veterinaria.Entidades;
 
+// FEDE
+
 public class Cliente {
 
     private int idCliente;
