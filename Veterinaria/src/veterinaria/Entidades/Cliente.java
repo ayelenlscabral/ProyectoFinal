@@ -101,12 +101,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-<<<<<<< Updated upstream
         return idCliente + " " + dni + " " + apellido + " " + nombre + " " 
             + direccion + " " + telefono + " " + personaAlternativa + " " + estado;
-=======
-        return  apellido + "," + nombre;
->>>>>>> Stashed changes
     }
 
     

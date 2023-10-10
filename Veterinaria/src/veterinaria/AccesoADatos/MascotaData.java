@@ -181,9 +181,7 @@ public class MascotaData {
 
         return mascota;
     }
-public List<Mascota> listarMascotasXCliente(int id) {
 
-<<<<<<< Updated upstream
    public List<Mascota> MascotasporClienteDNI(int dniCliente) {
     List<Mascota> mascotas = new ArrayList<>();
     PreparedStatement ps = null;
@@ -236,40 +234,4 @@ public List<Mascota> listarMascotasXCliente(int id) {
 
     return mascotas;
 }
-=======
-        List<Mascota> mascota = new ArrayList<>();
-
-        String sql = "SELECT * FROM mascota WHERE idCliente="+id;
-
-        PreparedStatement ps;
-        try {
-            ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                Mascota mas = new Mascota();
-
-                mas.setIdMascota(rs.getInt("idMascota"));
-                mas.setAlias(rs.getString("alias"));
-                mas.setSexo(rs.getString("sexo"));
-                mas.setEspecie(rs.getString("especie"));
-                mas.setRaza(rs.getString("raza"));
-                mas.setColorPelo(rs.getString("colorPelo"));
-                mas.setFechaNac(rs.getDate("fechaNac").toLocalDate());
-                mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
-                mas.setPesoActual(rs.getDouble("pesoActual"));
-                mas.setEstado(rs.getBoolean("estado"));
-                mascota.add(mas);
-            }
-
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota");
-        }
-
-        return mascota;
-    }
->>>>>>> Stashed changes
 }
