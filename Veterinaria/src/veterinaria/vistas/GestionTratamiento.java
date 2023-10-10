@@ -68,7 +68,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
 
         jPanel1.setMinimumSize(new java.awt.Dimension(100, 100));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 700));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane1.setMinimumSize(new java.awt.Dimension(100, 100));
 
@@ -96,7 +96,18 @@ public class GestionTratamiento extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 1000, 190));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 900;
+        gridBagConstraints.ipady = 90;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(40, 0, 0, 0);
+        jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jGuardar.setText("GUARDAR");
@@ -107,7 +118,14 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 jGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 180, 60));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 170;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 10, 0, 0);
+        jPanel1.add(jGuardar, gridBagConstraints);
 
         jSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jSalir.setText("SALIR");
@@ -117,7 +135,14 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 jSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 190, 60));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 180;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 220, 0, 0);
+        jPanel1.add(jSalir, gridBagConstraints);
 
         jEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jEliminar.setText("ELIMINAR");
@@ -127,7 +152,14 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 jEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 160, 60));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 150;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(17, 230, 0, 0);
+        jPanel1.add(jEliminar, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 0));
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -257,7 +289,15 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 0, 0);
         jPanel2.add(jLabel4, gridBagConstraints);
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 3, 580, 390));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 480;
+        gridBagConstraints.ipady = 290;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 0, 0);
+        jPanel1.add(jPanel2, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -293,8 +333,8 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jTipoTratamiento.setText( String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),1)));
         jDescripcion.setText( String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),2)));
         jImporte.setText( String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),3)));
-//        jCheckBox1.setSelected(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),4)));
-        System.out.println(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),4)));
+        Boolean estado = (boolean)modelo.getValueAt(jTabla.getSelectedRow(),4);
+        jCheckBox1.setSelected(estado);
     }//GEN-LAST:event_jTablaMouseClicked
 
 
