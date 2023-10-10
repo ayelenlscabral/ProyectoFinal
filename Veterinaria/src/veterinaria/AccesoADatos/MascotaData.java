@@ -5,9 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import veterinaria.Entidades.Cliente;
 import veterinaria.Entidades.Mascota;
 
 public class MascotaData {
@@ -50,7 +52,7 @@ public class MascotaData {
 
     public void modificarMascota(Mascota mascota) {
 
-        String sql = "UPDATE mascota SET idCliente=?,alias=?,sexo=?,especie=?,raza=?,colorPelo=?,fechaNac=?,pesoPromedio=?,pesoActual=?,estado=? WHERE idMascota = ?";
+        String sql = "UPDATE mascota SET idCliente=?,alias=?,sexo=?,especie=?,raza=?,colorPelo=?,fechaNacimiento=?,pesoPromedio=?,pesoActual=?,estado=? WHERE idMascota = ?";
 
         PreparedStatement ps = null;
 
@@ -126,7 +128,7 @@ public class MascotaData {
                 mascota.setEspecie(rs.getString("especie"));
                 mascota.setRaza(rs.getString("raza"));
                 mascota.setColorPelo(rs.getString("colorPelo"));
-                mascota.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                mascota.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
                 mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
                 mascota.setPesoActual(rs.getDouble("pesoActual"));
                 mascota.setEstado(rs.getBoolean("estado"));
@@ -164,7 +166,7 @@ public class MascotaData {
                 mas.setEspecie(rs.getString("especie"));
                 mas.setRaza(rs.getString("raza"));
                 mas.setColorPelo(rs.getString("colorPelo"));
-                mas.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                mas.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
                 mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
                 mas.setPesoActual(rs.getDouble("pesoActual"));
                 mas.setEstado(rs.getBoolean("estado"));
@@ -179,5 +181,57 @@ public class MascotaData {
 
         return mascota;
     }
-    
+
+   public List<Mascota> MascotasporClienteDNI(int dniCliente) {
+    List<Mascota> mascotas = new ArrayList<>();
+    PreparedStatement ps = null;
+    ResultSet resultSet = null;
+
+    try {
+        String sql = "SELECT * FROM mascota WHERE id_cliente IN (SELECT id_cliente FROM cliente WHERE dni = ?)";
+        ps = con.prepareStatement(sql);
+
+        ps.setInt(1, dniCliente);
+        resultSet = ps.executeQuery();
+
+        while (resultSet.next()) {
+            int idMascota = resultSet.getInt("idMascota");
+            String alias = resultSet.getString("alias");
+            String sexo = resultSet.getString("sexo");
+            String especie = resultSet.getString("especie");
+            String raza = resultSet.getString("raza");
+            String colorPelo = resultSet.getString("colorPelo");
+            LocalDate fechaNac = resultSet.getDate("fechaNacimiento").toLocalDate();
+            double pesoPromedio = resultSet.getDouble("pesoPromedio");
+            double pesoActual = resultSet.getDouble("pesoActual");
+            boolean estado = resultSet.getBoolean("estado");
+
+            Cliente cliente = new Cliente();
+            cliente.setIdCliente(resultSet.getInt("id_cliente"));
+
+            Mascota mascota = new Mascota(idMascota, cliente, alias, sexo, especie, raza, colorPelo, fechaNac, pesoPromedio, pesoActual, estado);
+            mascotas.add(mascota);
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al buscar mascotas por DNI de cliente: " + e.getMessage());
+    } finally {
+        // Cierra recursos
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
+    return mascotas;
+}
+}
