@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import veterinaria.Entidades.Cliente;
 import veterinaria.Entidades.Mascota;
 
 public class MascotaData {
@@ -51,7 +50,8 @@ public class MascotaData {
 
     public void modificarMascota(Mascota mascota) {
 
-        String sql = "UPDATE mascota SET idCliente=?,alias=?,sexo=?,especie=?,raza=?,colorPelo=?,fechaNacimiento=?,pesoPromedio=?,pesoActual=?,estado=? WHERE idMascota = ?";
+        String sql = "UPDATE mascota SET idCliente=?,alias=?,sexo=?,especie=?,"
+                + "raza=?,colorPelo=?,fechaNacimiento=?,pesoPromedio=?,pesoActual=?,estado=? WHERE idMascota = ?";
 
         PreparedStatement ps = null;
 
@@ -81,9 +81,21 @@ public class MascotaData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: " + ex.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+
+                    ps.close();
+
+                } catch (SQLException e) {
+
+                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexion: " + e.getMessage());
+                }
+            }
         }
 
     }
+    
 
     public void eliminarMascota(int idMascota) {
 
@@ -182,29 +194,29 @@ public class MascotaData {
     }
 
     public List<Mascota> MascotasporClienteDNI(int dniCliente) {
-    List<Mascota> mascotas = new ArrayList<>();
+        List<Mascota> mascotas = new ArrayList<>();
 
-    String sql = "SELECT * FROM mascota WHERE idCliente IN (SELECT idCliente FROM cliente WHERE dni = ?)";
+        String sql = "SELECT * FROM mascota WHERE idCliente IN (SELECT idCliente FROM cliente WHERE dni = ?)";
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, dniCliente);
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dniCliente);
 
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                Mascota mas = new Mascota();
-                mas.setIdMascota(rs.getInt("idMascota"));
-                mas.setAlias(rs.getString("alias"));
-                mas.setSexo(rs.getString("sexo"));
-                mas.setEspecie(rs.getString("especie"));
-                mas.setRaza(rs.getString("raza"));
-                mas.setColorPelo(rs.getString("colorPelo"));
-                mas.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
-                mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
-                mas.setPesoActual(rs.getDouble("pesoActual"));
-                mas.setEstado(rs.getBoolean("estado"));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Mascota mas = new Mascota();
+                    mas.setIdMascota(rs.getInt("idMascota"));
+                    mas.setAlias(rs.getString("alias"));
+                    mas.setSexo(rs.getString("sexo"));
+                    mas.setEspecie(rs.getString("especie"));
+                    mas.setRaza(rs.getString("raza"));
+                    mas.setColorPelo(rs.getString("colorPelo"));
+                    mas.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                    mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
+                    mas.setPesoActual(rs.getDouble("pesoActual"));
+                    mas.setEstado(rs.getBoolean("estado"));
 
-                mascotas.add(mas);   
+                    mascotas.add(mas);
                 }
             }
         } catch (SQLException e) {
@@ -215,7 +227,7 @@ public class MascotaData {
         return mascotas;
     }
 
-    public List<Mascota> listarMascotasXCliente(int id) {
+    public List<Mascota> listarMascotasXClienteID(int id) {
 
         List<Mascota> mascota = new ArrayList<>();
 

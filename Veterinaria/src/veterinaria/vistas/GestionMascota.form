@@ -38,38 +38,33 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel3" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jPanel1" min="-2" pref="858" max="-2" attributes="0"/>
-                              </Group>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel3" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="jLabel12" min="-2" pref="80" max="-2" attributes="0"/>
-                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="jPanel1" min="-2" pref="858" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="95" max="32767" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="901" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
+                      <Component id="jLabel13" min="-2" pref="78" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTClienteDNI" min="-2" pref="124" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
-              <Component id="jLabel13" min="-2" pref="78" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jTClienteDNI" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,18 +73,16 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="401" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel13" alignment="3" max="32767" attributes="0"/>
                   <Component id="jTClienteDNI" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel13" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Component id="jLabel12" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="184" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="102" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -466,6 +459,9 @@
               <ComponentRef name="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxClienteActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Cliente&gt;"/>
           </AuxValues>
@@ -495,7 +491,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="899" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -505,14 +501,6 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel12">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value=" Seleccionar:"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -523,7 +511,10 @@
         <Component class="javax.swing.JTable" name="jTabla">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="99" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="0" red="ff" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="10" rowCount="4">
@@ -597,6 +588,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTablaMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -623,9 +617,9 @@
                   <Component id="jBNuevo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   <Component id="jBGuardar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   <Component id="jBModificar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                   <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="97" max="32767" attributes="0"/>
                   <Component id="jBSalir" min="-2" max="-2" attributes="0"/>
@@ -636,15 +630,15 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jBModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -675,20 +669,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBGuardarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jBModificar">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBModificarActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="jBEliminar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -717,6 +697,20 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSalirActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="jBModificar">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBModificarActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel13">
@@ -738,6 +732,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTClienteDNIActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTClienteDNIKeyTyped"/>
       </Events>
     </Component>
   </SubComponents>
