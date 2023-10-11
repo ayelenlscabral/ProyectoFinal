@@ -68,12 +68,12 @@ public class GestionMascota extends javax.swing.JPanel {
         jTAlias = new javax.swing.JTextField();
         jTColordePelo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioBEstado = new javax.swing.JRadioButton();
         jCheckBoxH = new javax.swing.JCheckBox();
         jCheckBoxM = new javax.swing.JCheckBox();
         jBuscar = new javax.swing.JButton();
         jComboBoxCliente = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateFechaNac = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabla = new javax.swing.JTable();
@@ -144,8 +144,8 @@ public class GestionMascota extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(0, 0, 153));
         jLabel11.setText("Cliente");
 
-        jRadioButton1.setBackground(new java.awt.Color(0, 153, 255));
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 51));
+        jRadioBEstado.setBackground(new java.awt.Color(0, 153, 255));
+        jRadioBEstado.setForeground(new java.awt.Color(255, 255, 51));
 
         jCheckBoxH.setBackground(new java.awt.Color(51, 204, 255));
         buttonGroup1.add(jCheckBoxH);
@@ -181,8 +181,8 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         });
 
-        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser1.setForeground(new java.awt.Color(255, 255, 255));
+        jDateFechaNac.setBackground(new java.awt.Color(255, 255, 255));
+        jDateFechaNac.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,14 +213,14 @@ public class GestionMascota extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jDateFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(26, 26, 26)
-                                        .addComponent(jRadioButton1))
+                                        .addComponent(jRadioBEstado))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(18, 18, 18)
@@ -247,9 +247,9 @@ public class GestionMascota extends javax.swing.JPanel {
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton1))
+                        .addComponent(jRadioBEstado))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -505,8 +505,7 @@ public class GestionMascota extends javax.swing.JPanel {
                         mascota.getFechaNac(),
                         mascota.getPesoPromedio(),
                         mascota.getPesoActual(),
-                        mascota.isEstado(),
-                    };
+                        mascota.isEstado(),};
                     model.addRow(rowData);
                 }
             }
@@ -531,7 +530,7 @@ public class GestionMascota extends javax.swing.JPanel {
         jTRaza.setText("");
         jTColordePelo.setText("");
         jTPesoActual.setText("");
-        jRadioButton1.setSelected(false);
+        jRadioBEstado.setSelected(false);
 
     }//GEN-LAST:event_jBNuevoActionPerformed
 
@@ -552,20 +551,20 @@ public class GestionMascota extends javax.swing.JPanel {
             String especieT = jTEspecie.getText();
             String razaT = jTRaza.getText();
             String colordePeloT = jTColordePelo.getText();
-            LocalDate fechadeNacT = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaNac = jDateFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            String pesoActualT = jTPesoActual.getText();
+            String pesoActualT = (jTPesoActual.getText());
             Cliente clienteSeleccionado = (Cliente) jComboBoxCliente.getSelectedItem();
 
             if (aliasT.isEmpty() || sexoT.isEmpty() || especieT.isEmpty() || razaT.isEmpty()
-                    || colordePeloT.isEmpty() || pesoActualT.isEmpty() || clienteSeleccionado == null) {
+                    || colordePeloT.isEmpty() || pesoActualT.isEmpty() || fechaNac == null || clienteSeleccionado == null) {
                 JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacíos.");
             } else {
                 String ali = aliasT;
                 String espe = especieT;
                 String raza = razaT;
                 String colorP = colordePeloT;
-                LocalDate naci = fechadeNacT;
+                LocalDate naci = fechaNac;
                 Double pesoA = Double.parseDouble(pesoActualT);
 
                 if (!ali.matches("^[a-zA-Z\\s]+$")) {
@@ -595,7 +594,7 @@ public class GestionMascota extends javax.swing.JPanel {
                     mascotaActual.setPesoActual(pesoA);
                     mascotaActual.setPesoPromedio(pesoA);
                     mascotaActual.setIdCliente(clienteSeleccionado);
-                    mascotaActual.setEstado(jRadioButton1.isSelected());
+                    mascotaActual.setEstado(jRadioBEstado.isSelected());
 
                     mascotaData.agregarMascota(mascotaActual);
 
@@ -616,7 +615,87 @@ public class GestionMascota extends javax.swing.JPanel {
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
 
+        try {
+
+            if (mascotaActual != null) {
+
+                String alias = jTAlias.getText();
+                String colordePelo = jTColordePelo.getText();
+                String especie = jTEspecie.getText();
+                String raza = jTRaza.getText();
+                String pesoActual = jTPesoActual.getText();
+                LocalDate fechaNac = jDateFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                String sexo = "";
+                if (jCheckBoxH.isSelected()) {
+                    sexo = "hembra";
+                } else if (jCheckBoxM.isSelected()) {
+                    sexo = "macho";
+                }
+                boolean estado = jRadioBEstado.isSelected();
+
+                Cliente clienteSeleccionado = (Cliente) jComboBoxCliente.getSelectedItem();
+
+                if (alias.isEmpty() || colordePelo.isEmpty() || especie.isEmpty()
+                        || raza.isEmpty() || pesoActual.isEmpty()
+                        || fechaNac == null || sexo.isEmpty() || clienteSeleccionado == null) {
+                    JOptionPane.showMessageDialog(this, "Ningun campo puede estar vacio");
+
+                } else {
+                    String ali = alias;
+                    String col = colordePelo;
+                    String esp = especie;
+                    String raz = raza;
+                    double pes = Double.parseDouble(pesoActual);
+                    LocalDate fec = fechaNac;
+                    String sex = sexo;
+                    boolean est = estado;
+
+                    if (!ali.matches("^[a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
+
+                    } else if (!col.matches("^[a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
+
+                    } else if (!esp.matches("^[a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
+
+                    } else if (!raz.matches("^[a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
+
+                    } else {
+
+                        mascotaActual.setAlias(ali);
+                        mascotaActual.setColorPelo(col);
+                        mascotaActual.setEspecie(esp);
+                        mascotaActual.setRaza(raz);
+                        mascotaActual.setPesoActual(pes);
+                        mascotaActual.setFechaNac(fec);
+                        mascotaActual.setSexo(sex);
+                        mascotaActual.setEstado(jRadioBEstado.isSelected());
+                        mascotaActual.setIdCliente(clienteSeleccionado);
+
+                        mascotaData.modificarMascota(mascotaActual);
+                        JOptionPane.showMessageDialog(this, "mascota modificada exitosamente");
+
+                    }
+
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "No hay mascota para modificar");
+            }
+
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(this, "Ingrese numeros validos"); 
+    
+        } catch (NullPointerException npe) {
         
+        JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+        
+        }   
+            
     }//GEN-LAST:event_jBModificarActionPerformed
 
 
@@ -635,7 +714,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 jTRaza.setText("");
                 jTColordePelo.setText("");
                 jTPesoActual.setText("");
-                jRadioButton1.setSelected(false);
+                jRadioBEstado.setSelected(false);
                 jComboBoxCliente.setSelectedIndex(0);
                 mascotaActual = null;
 
@@ -674,8 +753,8 @@ public class GestionMascota extends javax.swing.JPanel {
                     jTPesoActual.setText(Double.toString(mascotaActual.getPesoActual()));
                     LocalDate fechaNacimiento = mascotaActual.getFechaNac();
                     Date fechaNacimientoDate = Date.from(fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                    jDateChooser1.setDate(fechaNacimientoDate);
-                    jRadioButton1.setSelected(mascotaActual.isEstado());
+                    jDateFechaNac.setDate(fechaNacimientoDate);
+                    jRadioBEstado.setSelected(mascotaActual.isEstado());
                     if (jCheckBoxH.isSelected()) {
                         jCheckBoxM.setSelected(false);
                     } else if (!jCheckBoxH.isSelected()) {
@@ -775,17 +854,17 @@ public class GestionMascota extends javax.swing.JPanel {
             SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 
             try {
-                jDateChooser1.setDate(formatoFecha.parse(fecha));
+                jDateFechaNac.setDate(formatoFecha.parse(fecha));
             } catch (ParseException ex) {
                 Logger.getLogger(GestionMascota.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             jTPesoActual.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 8)));
 
-            boolean est = (boolean)modelo.getValueAt(jTabla.getSelectedRow(), 9);
+            boolean est = (boolean) modelo.getValueAt(jTabla.getSelectedRow(), 9);
             System.out.println(est);
-            jRadioButton1.setSelected(est);
-            
+            jRadioBEstado.setSelected(est);
+
             Cliente clienteSeleccionado = mascotaActual.getIdCliente();
 
             jComboBoxCliente.setSelectedItem(clienteSeleccionado);
@@ -808,7 +887,7 @@ public class GestionMascota extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBoxH;
     private javax.swing.JCheckBox jCheckBoxM;
     private javax.swing.JComboBox<Cliente> jComboBoxCliente;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateFechaNac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -823,7 +902,7 @@ public class GestionMascota extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioBEstado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTAlias;
     private javax.swing.JTextField jTClienteDNI;
