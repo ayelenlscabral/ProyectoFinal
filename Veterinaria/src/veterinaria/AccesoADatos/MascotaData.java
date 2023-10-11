@@ -227,7 +227,7 @@ public class MascotaData {
         return mascotas;
     }
 
-    public List<Mascota> listarMascotasXClienteID(int id) {
+    public List<Mascota> listarMascotasXCliente(int id) {
 
         List<Mascota> mascota = new ArrayList<>();
 
