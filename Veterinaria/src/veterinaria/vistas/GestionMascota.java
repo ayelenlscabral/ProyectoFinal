@@ -624,7 +624,7 @@ public class GestionMascota extends javax.swing.JPanel {
             if (mascotaActual != null) {
 
                 String alias = jTAlias.getText();
-                String colordePelo = jTColordePelo.getText();
+                String colorPelo = jTColordePelo.getText();
                 String especie = jTEspecie.getText();
                 String raza = jTRaza.getText();
                 String pesoActual = jTPesoActual.getText();
@@ -639,14 +639,14 @@ public class GestionMascota extends javax.swing.JPanel {
 
                 Cliente clienteSeleccionado = (Cliente) jComboBoxCliente.getSelectedItem();
 
-                if (alias.isEmpty() || colordePelo.isEmpty() || especie.isEmpty()
+                if (alias.isEmpty() || colorPelo.isEmpty() || especie.isEmpty()
                         || raza.isEmpty() || pesoActual.isEmpty()
                         || fechaNac == null || sexo.isEmpty() || clienteSeleccionado == null) {
                     JOptionPane.showMessageDialog(this, "Ningun campo puede estar vacio");
 
                 } else {
                     String ali = alias;
-                    String col = colordePelo;
+                    String col = colorPelo;
                     String esp = especie;
                     String raz = raza;
                     double pes = Double.parseDouble(pesoActual);
