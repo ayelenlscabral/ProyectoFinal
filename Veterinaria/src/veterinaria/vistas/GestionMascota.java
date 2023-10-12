@@ -162,7 +162,7 @@ public class GestionMascota extends javax.swing.JPanel {
         jCheckBoxM.setForeground(new java.awt.Color(0, 51, 204));
         jCheckBoxM.setText("macho");
 
-        jBuscar.setBackground(new java.awt.Color(0, 0, 0));
+        jBuscar.setBackground(new java.awt.Color(0, 0, 153));
         jBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jBuscar.setText("BUSCAR");
         jBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +172,7 @@ public class GestionMascota extends javax.swing.JPanel {
         });
 
         jComboBoxCliente.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxCliente.setForeground(new java.awt.Color(0, 0, 153));
         jComboBoxCliente.setModel(jComboBoxCliente.getModel());
         jComboBoxCliente.setSelectedItem(jComboBoxCliente);
         jComboBoxCliente.setEditor(null);
@@ -232,7 +233,7 @@ public class GestionMascota extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(jComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)))
-                .addGap(109, 118, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,6 +329,9 @@ public class GestionMascota extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTabla.setGridColor(new java.awt.Color(0, 0, 153));
+        jTabla.setSelectionBackground(new java.awt.Color(0, 0, 153));
+        jTabla.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTablaMouseClicked(evt);
@@ -339,6 +343,7 @@ public class GestionMascota extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
+        jBNuevo.setBackground(new java.awt.Color(0, 0, 153));
         jBNuevo.setForeground(new java.awt.Color(255, 255, 255));
         jBNuevo.setText("NUEVO");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -347,7 +352,7 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         });
 
-        jBGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        jBGuardar.setBackground(new java.awt.Color(0, 0, 153));
         jBGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jBGuardar.setText("GUARDAR");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -356,7 +361,7 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         });
 
-        jBEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        jBEliminar.setBackground(new java.awt.Color(0, 0, 153));
         jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBEliminar.setText("ELIMINAR");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -365,7 +370,7 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         });
 
-        jBSalir.setBackground(new java.awt.Color(0, 0, 0));
+        jBSalir.setBackground(new java.awt.Color(0, 0, 153));
         jBSalir.setForeground(new java.awt.Color(255, 255, 255));
         jBSalir.setText("SALIR");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -374,7 +379,7 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         });
 
-        jBModificar.setBackground(new java.awt.Color(0, 0, 0));
+        jBModificar.setBackground(new java.awt.Color(0, 0, 153));
         jBModificar.setForeground(new java.awt.Color(255, 255, 255));
         jBModificar.setText("MODIFICAR");
         jBModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -396,7 +401,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 .addComponent(jBModificar)
                 .addGap(106, 106, 106)
                 .addComponent(jBEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(jBSalir)
                 .addGap(58, 58, 58))
         );
@@ -414,7 +419,7 @@ public class GestionMascota extends javax.swing.JPanel {
         );
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel13.setText("  Cliente DNI:");
+        jLabel13.setText("Busqueda de mascota por DNI de Cliente:");
 
         jTClienteDNI.setBackground(new java.awt.Color(255, 255, 255));
         jTClienteDNI.setForeground(new java.awt.Color(0, 0, 0));
@@ -435,39 +440,38 @@ public class GestionMascota extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(88, 88, 88)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(112, 112, 112))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -661,6 +665,8 @@ public class GestionMascota extends javax.swing.JPanel {
 
                     } else if (!raz.matches("^[a-zA-Z\\s]+$")) {
                         JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
+                    } else if (pes > 300) {
+                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
 
                     } else {
 
@@ -688,14 +694,14 @@ public class GestionMascota extends javax.swing.JPanel {
 
         } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(this, "Ingrese numeros validos"); 
-    
+            JOptionPane.showMessageDialog(this, "Ingrese numeros validos");
+
         } catch (NullPointerException npe) {
-        
-        JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
-        
-        }   
-            
+
+            JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+
+        }
+
     }//GEN-LAST:event_jBModificarActionPerformed
 
 

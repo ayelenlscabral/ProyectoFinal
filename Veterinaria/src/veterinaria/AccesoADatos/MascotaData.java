@@ -51,13 +51,11 @@ public class MascotaData {
     public void modificarMascota(Mascota mascota) {
 
         String sql = "UPDATE mascota SET idCliente=?,alias=?,sexo=?,especie=?,"
-                + "raza=?,colorPelo=?,fechaNacimiento=?,pesoPromedio=?,pesoActual=?,estado=? WHERE idMascota = ?";
-
-        PreparedStatement ps = null;
+                + "raza=?,colorPelo=?,fechaNacimiento=?,pesoActual=?,estado=? WHERE idMascota = ?";
 
         try {
-            ps = con.prepareStatement(sql);
-
+            PreparedStatement ps = con.prepareStatement(sql);
+                        
             ps.setInt(1, mascota.getIdCliente().getIdCliente());
             ps.setString(2, mascota.getAlias());
             ps.setString(3, mascota.getSexo());
@@ -65,39 +63,21 @@ public class MascotaData {
             ps.setString(5, mascota.getRaza());
             ps.setString(6, mascota.getColorPelo());
             ps.setDate(7, Date.valueOf(mascota.getFechaNac()));
-            ps.setDouble(8, mascota.getPesoPromedio());
-            ps.setDouble(9, mascota.getPesoActual());
-            ps.setBoolean(10, mascota.isEstado());
-            ps.setInt(11, mascota.getIdMascota());
+            ps.setDouble(8, mascota.getPesoActual());
+            ps.setBoolean(9, mascota.isEstado());
+            ps.setInt(10, mascota.getIdMascota());
 
-            int exito = ps.executeUpdate();
-
-            if (exito >= 1) {
-                JOptionPane.showMessageDialog(null, "Se ha modificado exitosamente.");
-
-            } else {
-                JOptionPane.showMessageDialog(null, "La mascota no existe");
-            }
-
+            ps.executeUpdate();
+            ps.close();   
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: " + ex.getMessage());
-        } finally {
-            if (ps != null) {
-                try {
-
-                    ps.close();
-
-                } catch (SQLException e) {
-
-                    JOptionPane.showMessageDialog(null, "Error al cerrar la conexion: " + e.getMessage());
-                }
-            }
         }
-
+        
     }
-    
 
-    public void eliminarMascota(int idMascota) {
+
+public void eliminarMascota(int idMascota) {
 
         String sql = "UPDATE mascota SET estado = 0 WHERE idMascota=?";
 
