@@ -2,6 +2,8 @@ package veterinaria.Entidades;
 
 import java.time.LocalDate;
 
+// Fede
+
 public class Mascota {
 
     private int idMascota;

@@ -1,6 +1,5 @@
 package veterinaria.Entidades;
 
-// FEDE
 
 public class Cliente {
 
