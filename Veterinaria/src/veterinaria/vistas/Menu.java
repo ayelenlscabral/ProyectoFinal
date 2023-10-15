@@ -44,17 +44,18 @@ public class Menu extends javax.swing.JFrame {
         jHistorial = new javax.swing.JButton();
         jAgenda = new javax.swing.JButton();
         jAgregarVisita = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jGestionTratamiento = new javax.swing.JButton();
-        jTratamiento = new javax.swing.JButton();
         jModo = new javax.swing.JButton();
+        jGestionTratamiento = new javax.swing.JButton();
+        jBalance = new javax.swing.JButton();
+        jAbout = new javax.swing.JButton();
         jLogOut = new javax.swing.JButton();
         jBienvenida = new javax.swing.JPanel();
         jPanelAdmin = new javax.swing.JPanel();
         jPublicidad = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        wsp = new javax.swing.JLabel();
+        insta = new javax.swing.JLabel();
+        fb = new javax.swing.JLabel();
         jPanelAlternativo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,17 +67,17 @@ public class Menu extends javax.swing.JFrame {
         jMenuPanel.setPreferredSize(new java.awt.Dimension(1000, 700));
         jMenuPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanelHorario.setBackground(new java.awt.Color(0, 255, 204));
+        jPanelHorario.setBackground(new java.awt.Color(120, 168, 255));
         jPanelHorario.setLayout(new java.awt.BorderLayout());
 
-        jReloj.setBackground(new java.awt.Color(255, 0, 255));
+        jReloj.setBackground(new java.awt.Color(255, 255, 255));
         jReloj.setFont(new java.awt.Font("Tahoma", 1, 95)); // NOI18N
         jReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jReloj.setText("RELOJ");
         jReloj.setMinimumSize(new java.awt.Dimension(10, 10));
         jPanelHorario.add(jReloj, java.awt.BorderLayout.CENTER);
 
-        jFecha.setBackground(new java.awt.Color(255, 0, 255));
+        jFecha.setBackground(new java.awt.Color(255, 255, 255));
         jFecha.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jFecha.setText("FECHA");
@@ -92,9 +93,10 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
         jMenuPanel.add(jPanelHorario, gridBagConstraints);
 
-        jAgregarCliente.setBackground(new java.awt.Color(51, 255, 0));
+        jAgregarCliente.setBackground(new java.awt.Color(0, 120, 215));
         jAgregarCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jAgregarCliente.setText("AgregarCliente");
+        jAgregarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/addCliente.png"))); // NOI18N
+        jAgregarCliente.setToolTipText("AGREGAR CLIENTE");
         jAgregarCliente.setMinimumSize(new java.awt.Dimension(10, 10));
         jAgregarCliente.setPreferredSize(new java.awt.Dimension(100, 160));
         jAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -115,9 +117,10 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jMenuPanel.add(jAgregarCliente, gridBagConstraints);
 
-        jAgregarMascota.setBackground(new java.awt.Color(51, 204, 0));
+        jAgregarMascota.setBackground(new java.awt.Color(57, 230, 100));
         jAgregarMascota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jAgregarMascota.setText("AgregarMascota");
+        jAgregarMascota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/addMascota.png"))); // NOI18N
+        jAgregarMascota.setToolTipText("AGREGAR MASCOTA");
         jAgregarMascota.setMinimumSize(new java.awt.Dimension(10, 10));
         jAgregarMascota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,9 +139,10 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(7, 10, 0, 0);
         jMenuPanel.add(jAgregarMascota, gridBagConstraints);
 
-        jHistorial.setBackground(new java.awt.Color(255, 51, 51));
+        jHistorial.setBackground(new java.awt.Color(209, 17, 65));
         jHistorial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jHistorial.setText("HistorialMedico");
+        jHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/historial.png"))); // NOI18N
+        jHistorial.setToolTipText("HISTORIAL MEDICO");
         jHistorial.setMinimumSize(new java.awt.Dimension(10, 10));
         jHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,9 +160,10 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(7, 6, 0, 0);
         jMenuPanel.add(jHistorial, gridBagConstraints);
 
-        jAgenda.setBackground(new java.awt.Color(255, 204, 51));
+        jAgenda.setBackground(new java.awt.Color(136, 223, 153));
         jAgenda.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jAgenda.setText("Agenda");
+        jAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/agenda.png"))); // NOI18N
+        jAgenda.setToolTipText("AGENDA");
         jAgenda.setMinimumSize(new java.awt.Dimension(10, 10));
         jAgenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,9 +183,10 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jMenuPanel.add(jAgenda, gridBagConstraints);
 
-        jAgregarVisita.setBackground(new java.awt.Color(51, 204, 0));
+        jAgregarVisita.setBackground(new java.awt.Color(125, 60, 152));
         jAgregarVisita.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jAgregarVisita.setText("AGREGAR VISITA");
+        jAgregarVisita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/visita.png"))); // NOI18N
+        jAgregarVisita.setToolTipText("REGISTRAR VISITA");
         jAgregarVisita.setMinimumSize(new java.awt.Dimension(10, 10));
         jAgregarVisita.setPreferredSize(new java.awt.Dimension(20, 300));
         jAgregarVisita.addActionListener(new java.awt.event.ActionListener() {
@@ -201,10 +207,16 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jMenuPanel.add(jAgregarVisita, gridBagConstraints);
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 204));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("REPORTE MENSUAL");
-        jButton2.setMinimumSize(new java.awt.Dimension(10, 10));
+        jModo.setBackground(new java.awt.Color(85, 85, 85));
+        jModo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jModo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/modoOscuro.png"))); // NOI18N
+        jModo.setToolTipText("MODO OSCURO/CLARO");
+        jModo.setMinimumSize(new java.awt.Dimension(10, 10));
+        jModo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jModoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
@@ -217,11 +229,12 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 0);
-        jMenuPanel.add(jButton2, gridBagConstraints);
+        jMenuPanel.add(jModo, gridBagConstraints);
 
-        jGestionTratamiento.setBackground(new java.awt.Color(204, 153, 0));
+        jGestionTratamiento.setBackground(new java.awt.Color(255, 105, 180));
         jGestionTratamiento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jGestionTratamiento.setText("AGREGAR TRATAMIENTO");
+        jGestionTratamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/addTratamiento.png"))); // NOI18N
+        jGestionTratamiento.setToolTipText("AGREGAR TRATAMIENTO");
         jGestionTratamiento.setMinimumSize(new java.awt.Dimension(10, 10));
         jGestionTratamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,10 +253,16 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 6, 0, 0);
         jMenuPanel.add(jGestionTratamiento, gridBagConstraints);
 
-        jTratamiento.setBackground(new java.awt.Color(255, 204, 51));
-        jTratamiento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTratamiento.setText("jButton3");
-        jTratamiento.setMinimumSize(new java.awt.Dimension(10, 10));
+        jBalance.setBackground(new java.awt.Color(240, 150, 50));
+        jBalance.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jBalance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/balance.png"))); // NOI18N
+        jBalance.setToolTipText("BALANCE MENSUAL");
+        jBalance.setMinimumSize(new java.awt.Dimension(10, 10));
+        jBalance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBalanceActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
@@ -255,16 +274,16 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
-        jMenuPanel.add(jTratamiento, gridBagConstraints);
+        jMenuPanel.add(jBalance, gridBagConstraints);
 
-        jModo.setBackground(new java.awt.Color(0, 204, 204));
-        jModo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jModo.setText("MODO");
-        jModo.setToolTipText("");
-        jModo.setMinimumSize(new java.awt.Dimension(10, 10));
-        jModo.addActionListener(new java.awt.event.ActionListener() {
+        jAbout.setBackground(new java.awt.Color(22, 141, 79));
+        jAbout.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/About.png"))); // NOI18N
+        jAbout.setToolTipText("ABOUT");
+        jAbout.setMinimumSize(new java.awt.Dimension(10, 10));
+        jAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jModoActionPerformed(evt);
+                jAboutActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -276,12 +295,12 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
-        jMenuPanel.add(jModo, gridBagConstraints);
+        jMenuPanel.add(jAbout, gridBagConstraints);
 
-        jLogOut.setBackground(new java.awt.Color(204, 0, 0));
+        jLogOut.setBackground(new java.awt.Color(128, 0, 32));
         jLogOut.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLogOut.setText("Logout");
-        jLogOut.setToolTipText("");
+        jLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/cerrarSesion.png"))); // NOI18N
+        jLogOut.setToolTipText("CERRAR SESION");
         jLogOut.setMinimumSize(new java.awt.Dimension(10, 10));
         jLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,17 +320,17 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jMenuPanel.add(jLogOut, gridBagConstraints);
 
-        jBienvenida.setBackground(new java.awt.Color(255, 51, 102));
+        jBienvenida.setBackground(new java.awt.Color(0, 99, 177));
 
         javax.swing.GroupLayout jBienvenidaLayout = new javax.swing.GroupLayout(jBienvenida);
         jBienvenida.setLayout(jBienvenidaLayout);
         jBienvenidaLayout.setHorizontalGroup(
             jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
         jBienvenidaLayout.setVerticalGroup(
             jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 307, Short.MAX_VALUE)
+            .addGap(0, 543, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -328,17 +347,17 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jMenuPanel.add(jBienvenida, gridBagConstraints);
 
-        jPanelAdmin.setBackground(new java.awt.Color(51, 51, 255));
+        jPanelAdmin.setBackground(new java.awt.Color(240, 150, 50));
 
         javax.swing.GroupLayout jPanelAdminLayout = new javax.swing.GroupLayout(jPanelAdmin);
         jPanelAdmin.setLayout(jPanelAdminLayout);
         jPanelAdminLayout.setHorizontalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
         jPanelAdminLayout.setVerticalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGap(0, 341, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -354,18 +373,16 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jMenuPanel.add(jPanelAdmin, gridBagConstraints);
 
-        jPublicidad.setBackground(new java.awt.Color(255, 204, 51));
+        jPublicidad.setBackground(new java.awt.Color(179, 158, 181));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel2.setText("VETERINARIA !LAYOUT");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nose ni que hago,");
+        wsp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/wsp.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("pero algo hago.");
+        insta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/instagram.png"))); // NOI18N
+
+        fb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/facebook.png"))); // NOI18N
 
         javax.swing.GroupLayout jPublicidadLayout = new javax.swing.GroupLayout(jPublicidad);
         jPublicidad.setLayout(jPublicidadLayout);
@@ -373,26 +390,27 @@ public class Menu extends javax.swing.JFrame {
             jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPublicidadLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1166, Short.MAX_VALUE)
-                .addGap(40, 40, 40)
-                .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPublicidadLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1469, Short.MAX_VALUE)
+                .addGap(672, 672, 672)
+                .addComponent(fb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(insta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(wsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPublicidadLayout.setVerticalGroup(
             jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPublicidadLayout.createSequentialGroup()
                 .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                     .addGroup(jPublicidadLayout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(insta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fb, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(wsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -456,16 +474,6 @@ public class Menu extends javax.swing.JFrame {
         jPanelAlternativo.setVisible(true);
     }//GEN-LAST:event_jAgregarClienteActionPerformed
 
-    private void jAgregarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarMascotaActionPerformed
-        jPanelAlternativo.removeAll();
-        jPanelAlternativo.repaint();
-        GestionMascota nuevo = new GestionMascota();
-        jMenuPanel.setVisible(false);
-        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
-        nuevo.setVisible(true);
-        jPanelAlternativo.setVisible(true);
-    }//GEN-LAST:event_jAgregarMascotaActionPerformed
-
     private void jHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHistorialActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
@@ -493,16 +501,55 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jLogOutActionPerformed
 
+    private void jAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAboutActionPerformed
+                
+    }//GEN-LAST:event_jAboutActionPerformed
+
+    private void jAgregarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarVisitaActionPerformed
+        jPanelAlternativo.removeAll();
+        jPanelAlternativo.repaint();
+        GestionVisita nuevo = new GestionVisita();
+        jMenuPanel.setVisible(false);
+        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
+        nuevo.setVisible(true);
+        jPanelAlternativo.setVisible(true);
+    }//GEN-LAST:event_jAgregarVisitaActionPerformed
+
+    private void jAgregarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarMascotaActionPerformed
+        jPanelAlternativo.removeAll();
+        jPanelAlternativo.repaint();
+        GestionMascota nuevo = new GestionMascota();
+        jMenuPanel.setVisible(false);
+        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
+        nuevo.setVisible(true);
+        jPanelAlternativo.setVisible(true);
+    }//GEN-LAST:event_jAgregarMascotaActionPerformed
+
     private void jModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModoActionPerformed
-                condicion = !condicion;
+       condicion = !condicion;
                 if (condicion) {
                     try {
                         javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
                         javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
                         Color color = new Color(52, 55, 59);
-                        jMenuPanel.setBackground(color);
-                        jModo.setText("MODO CLARO");
-
+                          jMenuPanel.setBackground(color);
+                          jAgenda.setBackground(color);
+                          jAbout.setBackground(color);        
+                          jAgregarCliente.setBackground(color);
+                          jAgregarMascota.setBackground(color);
+                          jAgregarVisita.setBackground(color);
+                          jBalance.setBackground(color);
+                          jBienvenida.setBackground(color);
+                          jFecha.setBackground(color);
+                          jGestionTratamiento.setBackground(color);
+                          jHistorial.setBackground(color);
+                          jLogOut.setBackground(color);
+                          jModo.setBackground(color);
+                          jPanelAdmin.setBackground(color);
+                          jPanelAlternativo.setBackground(color);
+                          jPanelHorario.setBackground(color);
+                          jReloj.setBackground(color);
+                          jPublicidad.setBackground(color);
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -514,24 +561,45 @@ public class Menu extends javax.swing.JFrame {
                         javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
                         Color fondo = new Color(0, 133, 94);
                         jMenuPanel.setBackground(fondo);
-                        jAgregarCliente.setBackground(fondo);
-                        jAgregarMascota.setBackground(fondo);
-                        jModo.setText("MODO OSCURO");
-                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                        Color fondoAgenda = new Color(136,223,153);
+                        jAgenda.setBackground(fondoAgenda);
+                        Color fondoAbout = new Color(22,141,79);
+                        jAbout.setBackground(fondoAbout);  
+                        Color fondoCliente = new Color(0,120,215);
+                        jAgregarCliente.setBackground(fondoCliente);
+                        Color fondoMascota = new Color(57,230,100);
+                        jAgregarMascota.setBackground(fondoMascota);
+                        Color fondoVisita = new Color(125,60,152);
+                        jAgregarVisita.setBackground(fondoVisita);
+                        Color fondoBalance = new Color(240,150,50);
+                         jBalance.setBackground(fondoBalance);
+                        Color fondoBienvenida = new Color(0,99,177);
+                        jBienvenida.setBackground(fondoBienvenida);
+                        Color fondoTratamiento = new Color(255,105,180);
+                        jGestionTratamiento.setBackground(fondoTratamiento);
+                        Color fondoHistorial = new Color(209,17,65);
+                        jHistorial.setBackground(fondoHistorial);
+                        Color fondoLogout = new Color(128,0,32);
+                        jLogOut.setBackground(fondoLogout);
+                        Color fondoModo = new Color(85,85,85);
+                        jModo.setBackground(fondoModo);
+                        Color fondoAdmin = new Color(240,150,50);
+                        jPanelAdmin.setBackground(fondoAdmin);
+                        Color fondoAlternativo = new Color(255,255,51);
+                        jPanelAlternativo.setBackground(fondoAlternativo);
+                        Color fondoHorario = new Color(120,168,255);
+                        jPanelHorario.setBackground(fondoHorario);
+                        Color fondoPublicidad = new Color(179,158,181);
+                        jPublicidad.setBackground(fondoPublicidad);
+                       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
     }//GEN-LAST:event_jModoActionPerformed
 
-    private void jAgregarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarVisitaActionPerformed
-        jPanelAlternativo.removeAll();
-        jPanelAlternativo.repaint();
-        GestionVisita nuevo = new GestionVisita();
-        jMenuPanel.setVisible(false);
-        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
-        nuevo.setVisible(true);
-        jPanelAlternativo.setVisible(true);
-    }//GEN-LAST:event_jAgregarVisitaActionPerformed
+    private void jBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalanceActionPerformed
+        
+    }//GEN-LAST:event_jBalanceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -563,18 +631,19 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fb;
+    private javax.swing.JLabel insta;
+    private javax.swing.JButton jAbout;
     private javax.swing.JButton jAgenda;
     private javax.swing.JButton jAgregarCliente;
     private javax.swing.JButton jAgregarMascota;
     private javax.swing.JButton jAgregarVisita;
+    private javax.swing.JButton jBalance;
     private javax.swing.JPanel jBienvenida;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jFecha;
     private javax.swing.JButton jGestionTratamiento;
     private javax.swing.JButton jHistorial;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jLogOut;
     private javax.swing.JPanel jMenuPanel;
     private javax.swing.JButton jModo;
@@ -583,7 +652,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelHorario;
     private javax.swing.JPanel jPublicidad;
     private javax.swing.JLabel jReloj;
-    private javax.swing.JButton jTratamiento;
+    private javax.swing.JLabel wsp;
     // End of variables declaration//GEN-END:variables
 private void mostrarHoraActual() {
 
