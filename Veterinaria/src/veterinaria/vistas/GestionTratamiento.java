@@ -164,10 +164,17 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jLabel5.setText("Filtrar por tipo:");
 
         jTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Accesorio", "Alimentos", "Varios" }));
+        jTipo.setSelectedIndex(-1);
         jTipo.setSelectedItem(-1);
 
         jFiltroTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Accesorio", "Alimentos", "Varios" }));
+        jFiltroTipo.setSelectedIndex(-1);
         jFiltroTipo.setToolTipText("");
+        jFiltroTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFiltroTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,7 +205,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(190, 190, 190)
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,12 +237,13 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,10 +262,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jEliminarActionPerformed
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
     Menu menu = new Menu();
@@ -280,13 +284,24 @@ public class GestionTratamiento extends javax.swing.JPanel {
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaMouseClicked
-
-        jTipo.addItem(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),1)));
-        jDescripcion.setText( String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),2)));
-        jImporte.setText( String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),3)));
+        jTipo.setSelectedItem(modelo.getValueAt(jTabla.getSelectedRow(),1));
+//        jTipo.addItem(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),1)));
+        jDescripcion.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),2)));
+        jImporte.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),3)));
         Boolean estado = (boolean)modelo.getValueAt(jTabla.getSelectedRow(),4);
         jCheckBox1.setSelected(estado);
     }//GEN-LAST:event_jTablaMouseClicked
+
+    private void jFiltroTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFiltroTipoActionPerformed
+        LimpiarTabla();
+        cargarTabla();
+    }//GEN-LAST:event_jFiltroTipoActionPerformed
+
+    private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
+            int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),0))) ;
+            trataData.eliminarTratamiento(id); 
+            cargarTabla();
+    }//GEN-LAST:event_jEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -316,7 +331,21 @@ modelo.addColumn("ESTADO");
 jTabla.setModel(modelo);
 }
 private void cargarTabla(){
+    System.out.println("lista: " + trataData.listarTratamientoActivos());
     for (Tratamiento tratamiento : trataData.listarTratamientoActivos()) {
+        
+        if (jFiltroTipo.getSelectedIndex() != -1) {
+            if (jFiltroTipo.getSelectedItem().equals(tratamiento.getTipoTratamiento())) {
+                System.out.println("entreeeeeeeeeeeeeeee");
+                    modelo.addRow(new Object[]{
+                    tratamiento.getIdTratamiento(),
+                    tratamiento.getTipoTratamiento(),
+                    tratamiento.getDescripcion(), 
+                    tratamiento.getImporte(),
+                    tratamiento.isEstado()
+        });
+            } 
+        }else{
       modelo.addRow(new Object[]{
                     tratamiento.getIdTratamiento(),
                     tratamiento.getTipoTratamiento(),
@@ -324,7 +353,16 @@ private void cargarTabla(){
                     tratamiento.getImporte(),
                     tratamiento.isEstado()
       });
-                
+        }    
     }
 }
+    private void LimpiarTabla() {
+//     A la tabla ya creada, le volvemos a setear el modelo por defecto que le pusimos y en el for hacemos que elimine todas las filas para vaciarla.   
+        DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
+        int filas = jTabla.getRowCount();
+        for (int a = 0; filas > a; a++) {
+//            remueve la fila con indice 0 hasta que no queden mas filas.
+            modelo.removeRow(0);
+        }
+    }
 }

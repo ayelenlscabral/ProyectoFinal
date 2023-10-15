@@ -1,18 +1,29 @@
 package veterinaria.vistas;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
 import javax.swing.JOptionPane;
 import veterinaria.AccesoADatos.EmpleadoData;
+import veterinaria.Entidades.Empleado;
+import veterinaria.Entidades.validadorUsuario;
 
 public class Login extends javax.swing.JFrame {
- EmpleadoData empleadoData = new EmpleadoData();
- 
-    public Login() {
+
+    EmpleadoData empleadoData = new EmpleadoData();
+    private static Menu menu ;
+    private Empleado empleado;
+    private CountDownLatch loginLatch;
+
+    public Login(Menu menu) {
         initComponents();
         this.setLocationRelativeTo(null);
+        loginLatch = new CountDownLatch(1);
+        this.menu = menu;
     }
 
 
-    @SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -26,6 +37,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -126,18 +138,19 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIniciarActionPerformed
-       try{
+       validadorUsuario comprobador;
+        try{
         String usuario = jUsuario.getText();
         String contrasenia =jContrasenia.getText();
-           System.out.println("contra: " +contrasenia);
-           System.out.println("user: " +usuario);
-        boolean comprobador = empleadoData.buscarEmpleado(usuario, contrasenia);
+            comprobador = empleadoData.buscarEmpleado(usuario, contrasenia);
            System.out.println("comprobador : " + comprobador);
-        if (comprobador) {
-            Menu nuevo = new Menu();
-            nuevo.repaint();
-            nuevo.setVisible(true);
-            this.dispose();
+        if (comprobador.isComprobacion()) {
+                menu.getUsuario(comprobador.getEmpleado());
+                this.dispose();
+                loginLatch.countDown();
+            if (menu != null) {
+                menu.setVisible(true);
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos, vuelva a intentarlo ");
         }
@@ -165,23 +178,36 @@ public class Login extends javax.swing.JFrame {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+//                new Login().setVisible(true);
+                Login login = new Login(menu);
             }
         });
     }
@@ -196,4 +222,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jSalir;
     private javax.swing.JTextField jUsuario;
     // End of variables declaration//GEN-END:variables
+    public void esperaDeLogin() {
+        try {
+            loginLatch.await();  // Esperar hasta que se inicie sesión
+        } catch (InterruptedException e) {
+            JOptionPane.showMessageDialog(null, "nose que poner");
+        }
+    }
+ 
 }

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import veterinaria.Entidades.Empleado;
+import veterinaria.Entidades.validadorUsuario;
 
 public class EmpleadoData {
     private Connection con = null;
@@ -14,8 +15,9 @@ public class EmpleadoData {
         con = Conexion.getConexion();
     }
     
-    public boolean buscarEmpleado(String usuario , String contrasenia){
+    public validadorUsuario buscarEmpleado(String usuario , String contrasenia){
     Empleado empleado = new Empleado();
+    boolean comprobado = false;
         try{
         String sql = "SELECT idEmpleado, usuario,contrasenia,acceso FROM empleado WHERE usuario = ? AND contrasenia = ? ";
 
@@ -29,7 +31,7 @@ public class EmpleadoData {
                 empleado.setContrasenia(rs.getString("contrasenia"));
                 empleado.setAcceso(rs.getInt("acceso"));
             } else{
-            return false;
+            comprobado = false;
         }
                ps.close();
          } catch (SQLException ex) {
@@ -37,11 +39,10 @@ public class EmpleadoData {
         }
 
         if (empleado.getUsuario().equalsIgnoreCase(usuario) && empleado.getContrasenia().equals(contrasenia)) {
-            System.out.println("entre al if true");
-            return true;
+            comprobado = true;
             }
-         
-        return false;
+         validadorUsuario nuevo = new validadorUsuario(empleado,comprobado);
+        return nuevo;
 
         }
     }

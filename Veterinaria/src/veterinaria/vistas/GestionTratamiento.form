@@ -81,8 +81,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" pref="70" max="-2" attributes="0"/>
-                  <EmptySpace min="190" pref="190" max="-2" attributes="0"/>
-                  <Component id="jCheckBox1" min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
+                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -123,15 +123,17 @@
                       <Component id="jLabel3" min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="jImporte" min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jGuardar" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="jEliminar" min="-2" pref="60" max="-2" attributes="0"/>
@@ -358,6 +360,7 @@
                 <StringItem index="6" value="Varios"/>
               </StringArray>
             </Property>
+            <Property name="selectedIndex" type="int" value="-1"/>
             <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="-1" type="code"/>
             </Property>
@@ -379,8 +382,12 @@
                 <StringItem index="6" value="Varios"/>
               </StringArray>
             </Property>
+            <Property name="selectedIndex" type="int" value="-1"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFiltroTipoActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

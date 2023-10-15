@@ -15,19 +15,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
 import javax.swing.UnsupportedLookAndFeelException;
+import jdk.nashorn.internal.codegen.CompilerConstants;
+import veterinaria.Entidades.Empleado;
 
 public class Menu extends javax.swing.JFrame {
-
+    private Empleado empleado;
+    private static Menu menu;
     public boolean condicion = false;
 
     public Menu() {
         initComponents();
         mostrarHoraActual();
         this.setLocationRelativeTo(null);
-
         this.setExtendedState(this.MAXIMIZED_BOTH);
-//       this.setExtendedState(MAXIMIZED_BOTH);
-//       getContentPane().setLayout(new BorderLayout(0,0));   
     }
 
     @SuppressWarnings("unchecked")
@@ -307,11 +307,11 @@ public class Menu extends javax.swing.JFrame {
         jBienvenida.setLayout(jBienvenidaLayout);
         jBienvenidaLayout.setHorizontalGroup(
             jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGap(0, 356, Short.MAX_VALUE)
         );
         jBienvenidaLayout.setVerticalGroup(
             jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
+            .addGap(0, 307, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -334,11 +334,11 @@ public class Menu extends javax.swing.JFrame {
         jPanelAdmin.setLayout(jPanelAdminLayout);
         jPanelAdminLayout.setHorizontalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 264, Short.MAX_VALUE)
+            .addGap(0, 356, Short.MAX_VALUE)
         );
         jPanelAdminLayout.setVerticalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 191, Short.MAX_VALUE)
+            .addGap(0, 223, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -373,7 +373,7 @@ public class Menu extends javax.swing.JFrame {
             jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPublicidadLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1166, Short.MAX_VALUE)
                 .addGap(40, 40, 40)
                 .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -487,17 +487,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jGestionTratamientoActionPerformed
 
     private void jLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogOutActionPerformed
-        this.removeAll();
-        Login nuevo = new Login();
-        nuevo.repaint();
-        nuevo.setVisible(true);
-        this.dispose();
+        Login login = new Login(menu);
+        login.repaint();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLogOutActionPerformed
 
     private void jModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModoActionPerformed
-////        jModo.addActionListener(new ActionListener() {
-////            @Override
-////            public void actionPerformed(ActionEvent e) {
                 condicion = !condicion;
                 if (condicion) {
                     try {
@@ -505,7 +501,6 @@ public class Menu extends javax.swing.JFrame {
                         javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
                         Color color = new Color(52, 55, 59);
                         jMenuPanel.setBackground(color);
-//                        condicion = false;
                         jModo.setText("MODO CLARO");
 
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
@@ -521,14 +516,11 @@ public class Menu extends javax.swing.JFrame {
                         jMenuPanel.setBackground(fondo);
                         jAgregarCliente.setBackground(fondo);
                         jAgregarMascota.setBackground(fondo);
-//                        condicion = true;
                         jModo.setText("MODO OSCURO");
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-////            }
-////        });
     }//GEN-LAST:event_jModoActionPerformed
 
     private void jAgregarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarVisitaActionPerformed
@@ -551,8 +543,11 @@ public class Menu extends javax.swing.JFrame {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new Menu().setVisible(true);
-                }
-            });
+                    //DECOMENTAR AL FINAL PARA QUE FUNCIONE EL LOGIN
+//                Login login = new Login(Menu.getInstancia());
+//               login.setVisible(true);
+            }
+        });
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -597,25 +592,26 @@ private void mostrarHoraActual() {
             public void actionPerformed(ActionEvent e) {
                 LocalDateTime now = LocalDateTime.now();
                 DateTimeFormatter horario = DateTimeFormatter.ofPattern("HH:mm");
-//            DateTimeFormatter hora = DateTimeFormatter.ofPattern("HH");
-//            DateTimeFormatter minutos =   DateTimeFormatter.ofPattern("mm");  
-//            DateTimeFormatter segundos =   DateTimeFormatter.ofPattern("ss");
                 LocalDate fechaSinHora = LocalDate.now();
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("es", "ES"));
                 String fechaFormateada = fechaSinHora.format(formato);
                 jFecha.setText(fechaFormateada.toUpperCase());
-//            String horaActual = now.format(hora);
-//            String minutosActual = now.format(minutos);
-//            String segundosActual = now.format(segundos);
                 String horarioTotal = now.format(horario);
-//            jHora.setText(horaActual);
-//            jMinutos.setText(minutosActual); 
-//            jSegundos.setText(segundosActual);
                 jReloj.setText(horarioTotal);
             }
         });
 
         timer.start();
     }
+public static Menu getInstancia() {
+        if (menu == null) {
+            menu = new Menu();
+        }
+        return menu;
+    }
+    public void getUsuario(Empleado empleado2){ 
+       this.empleado = empleado2;
+    }  
+
 
 }
