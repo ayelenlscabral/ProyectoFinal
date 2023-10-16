@@ -211,12 +211,11 @@ public void eliminarMascota(int idMascota) {
 
         List<Mascota> mascota = new ArrayList<>();
 
-        String sql = "SELECT * FROM mascota WHERE idCliente=?" ;
+        String sql = "SELECT * FROM mascota WHERE idCliente=" + id;
 
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -228,7 +227,7 @@ public void eliminarMascota(int idMascota) {
                 mas.setEspecie(rs.getString("especie"));
                 mas.setRaza(rs.getString("raza"));
                 mas.setColorPelo(rs.getString("colorPelo"));
-                mas.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                mas.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
                 mas.setPesoActual(rs.getDouble("pesoActual"));
                 mas.setEstado(rs.getBoolean("estado"));
