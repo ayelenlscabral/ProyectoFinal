@@ -1,5 +1,10 @@
 package veterinaria.vistas;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -28,9 +33,12 @@ public class GestionVisita extends javax.swing.JPanel {
         cabecera();
         llenarTratamiento();
         llenarMascota2();
-        jnombre.setOpaque(true);
+        jCoincidencias.setVisible(false);
+        jCoincidencias.setOpaque(true);
+        jidCliente.setOpaque(true);
         jDatos.setOpaque(true);
         jimporte.setOpaque(true);
+        jcontado.setSelected(true);
     }
     private DefaultTableModel modelo = new DefaultTableModel() {
         @Override
@@ -40,8 +48,9 @@ public class GestionVisita extends javax.swing.JPanel {
     };
 
     private void llenarMascota() {
-        if (!jnombre.getText().isEmpty()) {
-            for (Mascota listar : maData.listarMascotasXCliente((int) Integer.parseInt(jnombre.getText()))) {
+        if (!jidCliente.getText().isEmpty()) {
+            int n = Integer.parseInt(jidCliente.getText());
+            for (Mascota listar : maData.listarMascotasXCliente(n)) {
                 jMascota1.addItem(listar);
             }
         }
@@ -67,6 +76,7 @@ public class GestionVisita extends javax.swing.JPanel {
         modelo.addColumn("Fecha");
         modelo.addColumn("Alias Mascota");
         modelo.addColumn("Peso actual");
+        modelo.addColumn("Peso Promedio");
         modelo.addColumn("Tratamiento");
         modelo.addColumn("observacion");
         jTable1.setModel(modelo);
@@ -100,15 +110,15 @@ public class GestionVisita extends javax.swing.JPanel {
         jMascota1 = new javax.swing.JComboBox<>();
         jTratamiento = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jObservacion = new javax.swing.JTextArea();
         jcontado = new javax.swing.JRadioButton();
         jtarjeta = new javax.swing.JRadioButton();
         jimporte = new javax.swing.JLabel();
         jDatos = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField1 = new javax.swing.JTextField();
+        jDate = new com.toedter.calendar.JDateChooser();
+        jpeso = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jMascota2 = new javax.swing.JComboBox<>();
@@ -116,80 +126,121 @@ public class GestionVisita extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jSeparator4 = new javax.swing.JSeparator();
         jdni = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jnombre = new javax.swing.JLabel();
+        jBuscar = new javax.swing.JButton();
+        jidCliente = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jCoincidencias = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("REGISTRAR VISITA");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 17, -1, 41));
 
         jLabel2.setText("Buscar Cliente por DNI:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 82, -1, -1));
 
         jLabel3.setText("Elegir Mascota:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 80, -1, -1));
 
         jLabel4.setText("Datos Mascota:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 151, -1, -1));
 
         jLabel5.setText("Tratamiento a realizar:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, -1, -1));
 
         jLabel6.setText("Importe:    $");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 245, 68, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 652, -1, -1));
 
         jLabel8.setText("Peso Actual");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 196, -1, -1));
 
         jLabel9.setText("Fecha de visita");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 196, -1, -1));
 
         jLabel10.setText("Observacion:");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 295, -1, -1));
 
         jMascota1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMascota1ActionPerformed(evt);
             }
         });
+        add(jMascota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(708, 75, 200, -1));
 
         jTratamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTratamientoActionPerformed(evt);
             }
         });
+        add(jTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(706, 195, 202, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jObservacion.setColumns(20);
+        jObservacion.setRows(5);
+        jScrollPane1.setViewportView(jObservacion);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 294, 445, 24));
 
         jcontado.setText("Contado");
+        jcontado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcontadoActionPerformed(evt);
+            }
+        });
+        add(jcontado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 239, -1, -1));
 
         jtarjeta.setText("Tarjeta");
+        jtarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtarjetaActionPerformed(evt);
+            }
+        });
+        add(jtarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 239, -1, -1));
 
         jimporte.setBackground(java.awt.SystemColor.controlShadow);
-        jimporte.setText("6666");
+        add(jimporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 245, 49, 16));
 
         jDatos.setBackground(java.awt.SystemColor.controlShadow);
         jDatos.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        jDatos.setText("124124");
+        add(jDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 142, 782, 30));
+        add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
-        jLabel12.setText("kg");
-
-        jButton1.setText("GUARDAR VISITA");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jpeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jpesoActionPerformed(evt);
             }
         });
+        add(jpeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 192, 72, -1));
 
-        jButton2.setText("Salir");
+        jLabel12.setText("kg");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 190, -1, 29));
+
+        jGuardar.setText("GUARDAR VISITA");
+        jGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jGuardarActionPerformed(evt);
+            }
+        });
+        add(jGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(708, 258, -1, 90));
+
+        jButton2.setText("Volver al Menu");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 629, 125, 56));
 
         jLabel11.setText("MOSTRAR VISITAS POR MASCOTA");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 396, 218, 50));
 
         jMascota2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMascota2ActionPerformed(evt);
             }
         });
+        add(jMascota2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 452, 196, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,208 +255,86 @@ public class GestionVisita extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jButton3.setText("buscar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 496, 900, 115));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 366, 988, 12));
+
+        jdni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jdniKeyReleased(evt);
             }
         });
+        add(jdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 78, 131, -1));
 
-        jnombre.setBackground(java.awt.SystemColor.controlShadow);
-        jnombre.setText("1234124");
+        jBuscar.setText("buscar");
+        jBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBuscarActionPerformed(evt);
+            }
+        });
+        add(jBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(293, 74, 94, -1));
+
+        jidCliente.setBackground(java.awt.SystemColor.controlShadow);
+        add(jidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 75, 90, 27));
 
         jLabel13.setText("Codigo:");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 79, -1, 22));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jimporte, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jcontado)
-                                        .addGap(47, 47, 47)
-                                        .addComponent(jtarjeta))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(3, 3, 3)
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(153, 153, 153)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(373, 373, 373)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(80, 80, 80)
-                                .addComponent(jLabel7))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jdni, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jMascota1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel12)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(jLabel9)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(102, 102, 102)
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTratamiento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(320, 320, 320)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jMascota2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 66, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(374, 374, 374)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jMascota1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel4))
-                    .addComponent(jDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcontado)
-                            .addComponent(jtarjeta)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jimporte))))
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jMascota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29))
-        );
+        jCoincidencias.setBackground(new java.awt.Color(255, 255, 255));
+        jCoincidencias.setForeground(new java.awt.Color(0, 51, 204));
+        jCoincidencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCoincidenciasMouseClicked(evt);
+            }
+        });
+        add(jCoincidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 131, 24));
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int dni = Integer.parseInt(jdni.getText());
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+        jCoincidencias.setVisible(false);
+        jDatos.setText("");
+        jMascota1.removeAllItems();
+        jpeso.setText("");
+        jDate.setDate(null);
+        int dni = (int) Integer.parseInt(jdni.getText());
         client = clData.buscarCliente(dni);
         if (!(client == null)) {
-            jnombre.setText(Integer.toString(client.getIdCliente()));
-            llenarMascota();
+            jidCliente.setText(Integer.toString(client.getIdCliente()));
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+        llenarMascota();
+    }//GEN-LAST:event_jBuscarActionPerformed
 
     private void jMascota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota1ActionPerformed
-        if (jMascota1.getSelectedIndex() != -1) {
+        if (jMascota1.getSelectedIndex() == -1) {
+            jDatos.setText("");
+        } else {
             mascota = (Mascota) jMascota1.getSelectedItem();
-            jDatos.setText(mascota.getSexo() + ", " + mascota.getColorPelo() + ", peso%:" + mascota.getPesoPromedio() + "kg, nacido: " + mascota.getFechaNac());
+            jDatos.setText(mascota.toString() + ",  " + mascota.getSexo() + "  , " + mascota.getColorPelo() + "  ,Peso Promedio:" + mascota.getPesoPromedio() + "kg  ,  Nacio el: " + mascota.getFechaNac());
         }
     }//GEN-LAST:event_jMascota1ActionPerformed
 
     private void jMascota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota2ActionPerformed
         borrarFilas();
-        if (jMascota2.getSelectedIndex() != -1) {
+        if (jMascota2.getSelectedIndex() == -1) {
+        } else {
+            mascota = new Mascota();
             mascota = (Mascota) jMascota2.getSelectedItem();
-            for (Visita aux : viData.listarVisitaXMascota(mascota.getIdMascota())) {
+            int id = mascota.getIdMascota();
+
+            for (Visita aux : viData.listarVisitaXMascota(id)) {
+                Mascota aux2 = maData.buscarMascota(aux.getMascota().getIdMascota());
+                Tratamiento aux3 = trData.buscarTratamiento(aux.getTratamiento().getIdTratamiento());
+                
                 modelo.addRow(new Object[]{
                     aux.getIdVisita(),
-                    aux.getFechaTratamiento(),
-                    aux.getMascota().getAlias(),
+                    aux.getFechaTratamiento().toString(),
+                    aux2.getAlias(),
                     aux.getPesoActual(),
-                    aux.getTratamiento(),
+                    aux2.getPesoPromedio(),
+                    aux3.getTipoTratamiento(),
                     aux.getObservaciones()});
             }
+
         }
     }//GEN-LAST:event_jMascota2ActionPerformed
 
@@ -416,25 +345,76 @@ public class GestionVisita extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTratamientoActionPerformed
-        if (jTratamiento.getSelectedItem() != null) {
+        if (jTratamiento.getSelectedIndex() == -1) {
+            jimporte.setText("");
+        } else {
             Tratamiento tr = new Tratamiento();
             tr = (Tratamiento) jTratamiento.getSelectedItem();
             jimporte.setText(Double.toString(tr.getImporte()));
         }
     }//GEN-LAST:event_jTratamientoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
+        double peso = Double.parseDouble(jpeso.getText());
+        mascota = (Mascota) jMascota1.getSelectedItem();
+//        double promedio=(mascota.getPesoActual()+peso)/2;
+//        mascota.setPesoPromedio(promedio);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+        tr = (Tratamiento) jTratamiento.getSelectedItem();
+        LocalDate fecha = (jDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        String obs = jObservacion.getText();
+
+        visit.setMascota(mascota);
+        visit.setFechaTratamiento(fecha);
+        visit.setPesoActual(peso);
+        visit.setObservaciones(obs);
+        visit.setTratamiento(tr);
+
+        viData.guardarVisita(visit);
+        JOptionPane.showMessageDialog(null, "se guardo visita");
+        viData.sacarPesoPromedio(mascota);
+    }//GEN-LAST:event_jGuardarActionPerformed
+
+    private void jtarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtarjetaActionPerformed
+        jcontado.setSelected(false);
+        jtarjeta.setSelected(true);
+    }//GEN-LAST:event_jtarjetaActionPerformed
+
+    private void jcontadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcontadoActionPerformed
+        jcontado.setSelected(true);
+        jtarjeta.setSelected(false);
+    }//GEN-LAST:event_jcontadoActionPerformed
+
+    private void jpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpesoActionPerformed
+
+    private void jdniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdniKeyReleased
+        jCoincidencias.setVisible(false);
+        for (Cliente aux : clData.listarClientes()) {
+            String n = Integer.toString(aux.getDni());
+            if (n.startsWith(jdni.getText())) {
+                jCoincidencias.setVisible(true);
+                jCoincidencias.setText(n);
+            }
+        }
+
+    }//GEN-LAST:event_jdniKeyReleased
+
+    private void jCoincidenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCoincidenciasMouseClicked
+        jCoincidencias.setVisible(false);
+        jdni.setText(jCoincidencias.getText());
+    }//GEN-LAST:event_jCoincidenciasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBuscar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jCoincidencias;
+    private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jDatos;
+    private javax.swing.JButton jGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -450,6 +430,7 @@ public class GestionVisita extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<Mascota> jMascota1;
     private javax.swing.JComboBox<Mascota> jMascota2;
+    private javax.swing.JTextArea jObservacion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -457,13 +438,12 @@ public class GestionVisita extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<Tratamiento> jTratamiento;
     private javax.swing.JRadioButton jcontado;
     private javax.swing.JTextField jdni;
+    private javax.swing.JLabel jidCliente;
     private javax.swing.JLabel jimporte;
-    private javax.swing.JLabel jnombre;
+    private javax.swing.JTextField jpeso;
     private javax.swing.JRadioButton jtarjeta;
     // End of variables declaration//GEN-END:variables
 }
