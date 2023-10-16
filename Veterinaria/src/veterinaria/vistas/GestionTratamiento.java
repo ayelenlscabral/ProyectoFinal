@@ -58,7 +58,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jEliminar = new javax.swing.JButton();
         jDescripcion = new javax.swing.JTextField();
         jImporte = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jEstado = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,6 +66,8 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jTipo = new javax.swing.JComboBox<>();
         jFiltroTipo = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jId = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 255, 51));
         setMinimumSize(new java.awt.Dimension(100, 70));
@@ -140,9 +142,9 @@ public class GestionTratamiento extends javax.swing.JPanel {
 
         jImporte.setMinimumSize(new java.awt.Dimension(10, 10));
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jCheckBox1.setMaximumSize(new java.awt.Dimension(32000, 32000));
-        jCheckBox1.setMinimumSize(new java.awt.Dimension(10, 10));
+        jEstado.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jEstado.setMaximumSize(new java.awt.Dimension(32000, 32000));
+        jEstado.setMinimumSize(new java.awt.Dimension(10, 10));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Tipo de tratamiento:");
@@ -163,12 +165,10 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Filtrar por tipo:");
 
-        jTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Accesorio", "Alimentos", "Varios" }));
-        jTipo.setSelectedIndex(-1);
+        jTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Peluqueria", "Accesorio", "Alimentos", "Varios" }));
         jTipo.setSelectedItem(-1);
 
-        jFiltroTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Accesorio", "Alimentos", "Varios" }));
-        jFiltroTipo.setSelectedIndex(-1);
+        jFiltroTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Peluqueria", "Accesorio", "Alimentos", "Varios" }));
         jFiltroTipo.setToolTipText("");
         jFiltroTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,21 +176,16 @@ public class GestionTratamiento extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("ID:");
+
+        jId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(720, 720, 720)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jFiltroTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,7 +200,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(190, 190, 190)
-                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,6 +208,23 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 .addComponent(jEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(225, 225, 225)
                 .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(445, 445, 445)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jFiltroTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jId, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,12 +236,15 @@ public class GestionTratamiento extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jFiltroTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,12 +258,13 @@ public class GestionTratamiento extends javax.swing.JPanel {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50)
+                        .addComponent(jEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -274,22 +290,38 @@ public class GestionTratamiento extends javax.swing.JPanel {
     }//GEN-LAST:event_jDescripcionActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
+
+     //   System.out.println("valor de id: " +id);
+        if (jId == null) {
             trata.setTipoTratamiento(jTipo.getSelectedItem().toString());
             trata.setDescripcion(jDescripcion.getText());
             double importe = Double.parseDouble(jImporte.getText());
             trata.setImporte(importe);
-            trata.setEstado(jCheckBox1.isSelected());
+            trata.setEstado(jEstado.isSelected());
             trataData.guardarNuevoTratamiento(trata);
             cargarTabla();
+            jTipo.setSelectedIndex(-1);
+            jFiltroTipo.setSelectedIndex(-1);
+            jDescripcion.setText("");
+            jImporte.setText("");
+            jEstado.setSelected(false);
+            
+        }else{
+        
+        
+        
+        
+        }
+
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaMouseClicked
+        jId.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),0)));
         jTipo.setSelectedItem(modelo.getValueAt(jTabla.getSelectedRow(),1));
-//        jTipo.addItem(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),1)));
         jDescripcion.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),2)));
         jImporte.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),3)));
         Boolean estado = (boolean)modelo.getValueAt(jTabla.getSelectedRow(),4);
-        jCheckBox1.setSelected(estado);
+        jEstado.setSelected(estado);
     }//GEN-LAST:event_jTablaMouseClicked
 
     private void jFiltroTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFiltroTipoActionPerformed
@@ -305,17 +337,19 @@ public class GestionTratamiento extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JTextField jDescripcion;
     private javax.swing.JButton jEliminar;
+    private javax.swing.JCheckBox jEstado;
     private javax.swing.JComboBox<String> jFiltroTipo;
     private javax.swing.JButton jGuardar;
+    private javax.swing.JLabel jId;
     private javax.swing.JTextField jImporte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jSalir;
     private javax.swing.JScrollPane jScrollPane1;
@@ -331,12 +365,10 @@ modelo.addColumn("ESTADO");
 jTabla.setModel(modelo);
 }
 private void cargarTabla(){
-    System.out.println("lista: " + trataData.listarTratamientoActivos());
     for (Tratamiento tratamiento : trataData.listarTratamientoActivos()) {
         
         if (jFiltroTipo.getSelectedIndex() != -1) {
             if (jFiltroTipo.getSelectedItem().equals(tratamiento.getTipoTratamiento())) {
-                System.out.println("entreeeeeeeeeeeeeeee");
                     modelo.addRow(new Object[]{
                     tratamiento.getIdTratamiento(),
                     tratamiento.getTipoTratamiento(),

@@ -55,18 +55,6 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jScrollPane1" min="-2" pref="1000" max="-2" attributes="0"/>
               <Group type="102" attributes="0">
-                  <EmptySpace min="720" pref="720" max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" pref="120" max="-2" attributes="0"/>
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="jFiltroTipo" min="-2" pref="140" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="265" max="-2" attributes="0"/>
-                  <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                  <Component id="jTipo" min="-2" pref="290" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="265" max="-2" attributes="0"/>
                   <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
@@ -82,7 +70,7 @@
                   <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" pref="70" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
-                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jEstado" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -91,6 +79,29 @@
                   <Component id="jEliminar" min="-2" pref="165" max="-2" attributes="0"/>
                   <EmptySpace min="225" pref="225" max="-2" attributes="0"/>
                   <Component id="jSalir" min="-2" pref="190" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="265" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="445" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <Component id="jFiltroTipo" min="-2" pref="140" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jId" min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="jTipo" min="-2" pref="290" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,14 +117,17 @@
                           <Component id="jFiltroTipo" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="52" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="jTipo" min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel6" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="jId" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jTipo" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="jDescripcion" min="-2" pref="52" max="-2" attributes="0"/>
@@ -124,21 +138,22 @@
                       <Component id="jImporte" min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jEstado" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jGuardar" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="jEliminar" min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="jSalir" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -282,7 +297,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+        <Component class="javax.swing.JCheckBox" name="jEstado">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="48" style="1"/>
@@ -350,17 +365,17 @@
         <Component class="javax.swing.JComboBox" name="jTipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
+              <StringArray count="8">
                 <StringItem index="0" value="Vacunacion"/>
                 <StringItem index="1" value="Medicamentos"/>
                 <StringItem index="2" value="Internacion"/>
                 <StringItem index="3" value="Cirujia"/>
-                <StringItem index="4" value="Accesorio"/>
-                <StringItem index="5" value="Alimentos"/>
-                <StringItem index="6" value="Varios"/>
+                <StringItem index="4" value="Peluqueria"/>
+                <StringItem index="5" value="Accesorio"/>
+                <StringItem index="6" value="Alimentos"/>
+                <StringItem index="7" value="Varios"/>
               </StringArray>
             </Property>
-            <Property name="selectedIndex" type="int" value="-1"/>
             <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="-1" type="code"/>
             </Property>
@@ -372,17 +387,17 @@
         <Component class="javax.swing.JComboBox" name="jFiltroTipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
+              <StringArray count="8">
                 <StringItem index="0" value="Vacunacion"/>
                 <StringItem index="1" value="Medicamentos"/>
                 <StringItem index="2" value="Internacion"/>
                 <StringItem index="3" value="Cirujia"/>
-                <StringItem index="4" value="Accesorio"/>
-                <StringItem index="5" value="Alimentos"/>
-                <StringItem index="6" value="Varios"/>
+                <StringItem index="4" value="Peluqueria"/>
+                <StringItem index="5" value="Accesorio"/>
+                <StringItem index="6" value="Alimentos"/>
+                <StringItem index="7" value="Varios"/>
               </StringArray>
             </Property>
-            <Property name="selectedIndex" type="int" value="-1"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
@@ -391,6 +406,21 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ID:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jId">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
