@@ -458,7 +458,7 @@ public class GestionCliente extends javax.swing.JPanel {
                         String apellido = textApellido;
                         String nombre = textNombre;
                         String direccion = textDireccion;
-                        String tel = textTel;
+                        long tel = Long.parseLong(textTel);
                         String personaAlt = textPersonaAlt;
 
                         cli.setDni(dni);
@@ -469,7 +469,9 @@ public class GestionCliente extends javax.swing.JPanel {
                         cli.setEstado(jrEstado.isSelected());
                         cli.setPersonaAlternativa(personaAlt);
 
+                        System.out.println(" 1 ");
                         cliente.guardarCliente(cli);
+                        System.out.println(" 2 ");
                     } else {
                         JOptionPane.showMessageDialog(null, " Falta una persona alternativa ");
                     }

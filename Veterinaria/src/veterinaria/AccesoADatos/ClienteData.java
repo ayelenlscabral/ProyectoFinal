@@ -33,6 +33,8 @@ public class ClienteData {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
+                
+                System.out.println(" 3 ");
                 cliente.setIdCliente(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Cliente agregado con exito");
             }
