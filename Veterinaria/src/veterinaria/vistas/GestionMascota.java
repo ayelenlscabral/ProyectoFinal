@@ -461,10 +461,11 @@ public class GestionMascota extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBotonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBotonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -509,9 +510,9 @@ public class GestionMascota extends javax.swing.JPanel {
                 }
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de cliente válido.");
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de cliente válido.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "Error al buscar las mascotas: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al buscar las mascotas: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
 
@@ -604,9 +605,9 @@ public class GestionMascota extends javax.swing.JPanel {
             }
 
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingresa valores válidos en los campos de números");
+            JOptionPane.showMessageDialog(this, "Ingresa valores válidos en los campos de números", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar la mascota: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al guardar la mascota: " , "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -689,11 +690,11 @@ public class GestionMascota extends javax.swing.JPanel {
 
         } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(this, "Ingrese numeros validos");
+            JOptionPane.showMessageDialog(this, "Ingrese numeros validos", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         } catch (NullPointerException npe) {
 
-            JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+            JOptionPane.showMessageDialog(this, "Debe completar todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -723,9 +724,9 @@ public class GestionMascota extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "No hay mascota para eliminar");
             }
         } catch (NullPointerException np) {
-
+            JOptionPane.showMessageDialog(this, "Debe completar todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(null, " No se permiten letras, simbolos y espacios en este campo ");
+            JOptionPane.showMessageDialog(null, " No se permiten letras, simbolos y espacios en este campo ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
@@ -733,7 +734,7 @@ public class GestionMascota extends javax.swing.JPanel {
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         Menu menu = new Menu();
         menu.setVisible(true);
-        SwingUtilities.getWindowAncestor(this).dispose(); // Cierra el panel actual
+        SwingUtilities.getWindowAncestor(this).dispose(); 
     }//GEN-LAST:event_jBSalirActionPerformed
 
 
@@ -768,7 +769,7 @@ public class GestionMascota extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Mascota no encontrada");
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido en el campo id Mascota.");
+                JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido en el campo id Mascota.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "El campo id Mascota no puede estar vacío.");
@@ -871,7 +872,7 @@ public class GestionMascota extends javax.swing.JPanel {
             jComboBoxCliente.setSelectedItem(clienteSeleccionado);
 
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar la información de la mascota: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al cargar la información de la mascota ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jTablaMouseClicked
 
@@ -879,7 +880,7 @@ public class GestionMascota extends javax.swing.JPanel {
         String dniCliente = jTClienteDNI.getText();
 
         if (dniCliente.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de cliente.");
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un DNI de un cliente.");
             return;
         }
 
@@ -909,9 +910,9 @@ public class GestionMascota extends javax.swing.JPanel {
                 }
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de cliente válido.");
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de cliente válido.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "Error al buscar las mascotas: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al buscar las mascotas: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBotonOkMouseClicked
 
