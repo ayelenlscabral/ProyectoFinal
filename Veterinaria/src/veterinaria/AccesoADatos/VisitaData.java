@@ -25,10 +25,10 @@ public class VisitaData {
 
     }
 
-    public void guardarVisita(Visita visita) throws SQLException {
+    public void guardarVisita(Visita visita) {
 
-        String sql = "INSERT INTO visita( idMascota, idTratamiento, fechaTratamiento, observaciones, pesoPromedio, pesoActual) "
-                + "VALUES ( ?, ?, ?, ?, ?, ?, ? )";
+        String sql = "INSERT INTO visita( idMascota, idTratamiento, fechaVisita,"
+                + " observaciones, pesoActual) VALUES (?,?,?,?,?)";
 
         try {
 
@@ -48,7 +48,7 @@ public class VisitaData {
 
         } catch (SQLException ex) {
 
-            JOptionPane.showMessageDialog(null, " error al acceder a la tabla visita ");
+            JOptionPane.showMessageDialog(null, " error al acceder a la tabla visita " + ex);
         }
     }
 
@@ -109,34 +109,92 @@ public class VisitaData {
     }
 
     public List<Visita> listarVisitaXMascota(int id) {
-        ArrayList<Visita> visita = new ArrayList();
-        String sql = "SELECT * FROM visita WHERE idMascota=" + id;
+        List<Visita> visita = new ArrayList();
+        String sql = "SELECT * FROM `visita` WHERE idMascota=?";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                Visita tr = new Visita();
+            while (rs.next()) {
+                Visita visit = new Visita();
                 Mascota mascota = new Mascota();
                 Tratamiento tratamiento = new Tratamiento();
+
+                visit.setIdVisita(rs.getInt("idVisita"));
+
                 mascota.setIdMascota(rs.getInt("idMascota"));
                 tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
-                
-                tr.setIdVisita(rs.getInt("idVisita"));
-                tr.setMascota(mascota);
-                tr.setTratamiento(tratamiento);
-                
-                Date fecha = rs.getDate("fechaTratamiento");
-                tr.setFechaTratamiento(fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                tr.setObservaciones(rs.getString("observacion"));
-                tr.setPesoActual(rs.getDouble("pesoActual"));
-                visita.add(tr);
-            } else {
-                ps.close();
+
+                visit.setMascota(mascota);
+                visit.setTratamiento(tratamiento);
+
+                visit.setFechaTratamiento(rs.getDate("fechaVisita").toLocalDate());
+                visit.setObservaciones(rs.getString("observaciones"));
+                visit.setPesoActual(rs.getDouble("pesoActual"));
+                visita.add(visit);
             }
+
+            ps.close();
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la lista Visita");
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
         }
         return visita;
+    }
+
+    public void sacarPesoPromedio(Mascota mascota) {
+        List<Visita> visita = new ArrayList();
+        String sql = "SELECT * FROM `visita` WHERE idMascota=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mascota.getIdMascota());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Visita visit = new Visita();
+                Tratamiento tratamiento = new Tratamiento();
+
+                visit.setIdVisita(rs.getInt("idVisita"));
+
+                mascota.setIdMascota(rs.getInt("idMascota"));
+                tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
+
+                visit.setMascota(mascota);
+                visit.setTratamiento(tratamiento);
+
+                visit.setFechaTratamiento(rs.getDate("fechaVisita").toLocalDate());
+                visit.setObservaciones(rs.getString("observaciones"));
+                visit.setPesoActual(rs.getDouble("pesoActual"));
+                visita.add(visit);
+            }
+            int contador = 0;
+            double peso = 0;
+            
+            if (visita.size() >= 10) {
+                for (int i = visita.size(); i > (i - 10); i--) {                
+                    contador++;
+                    peso = visita.get(i).getPesoActual() + peso;
+                }
+            }else{
+                 for (int i = 0; i < visita.size(); i++) {                  
+                    contador++;
+                    peso = visita.get(i).getPesoActual() + peso;
+                }
+            }
+            
+            double pesoPromedio = peso / contador;
+ 
+            mascota.setPesoPromedio(pesoPromedio);
+            MascotaData maData = new MascotaData();
+            maData.modificarMascota(mascota);
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+        }
     }
 }
