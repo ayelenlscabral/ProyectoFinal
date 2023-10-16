@@ -411,25 +411,37 @@ public class GestionCliente extends javax.swing.JPanel {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
 
-        int dni = Integer.parseInt(jtDni2.getText());
-        Cliente cliente2 = cliente.buscarCliente(dni);
+        try {
 
-        if (cliente != null) {
-            jtIdCliente.setText(Integer.toString(cliente2.getIdCliente()));
-            jtDni.setText(Integer.toString(cliente2.getDni()));
-            jtDni2.setText(Integer.toString(cliente2.getDni()));
-            jtApellido.setText(cliente2.getApellido());
-            jtNombre.setText(cliente2.getNombre());
-            jtDireccion.setText(cliente2.getDireccion());
-            jtTel.setText(Integer.toString((int) cliente2.getTelefono()));
-            jrEstado.setSelected(cliente2.isEstado());
-            jtPersonaAlt.setText(cliente2.getPersonaAlternativa());
+            int dni = Integer.parseInt(jtDni2.getText());
+            Cliente cliente2 = cliente.buscarCliente(dni);
+
+            if (cliente != null) {
+                jtIdCliente.setText(Integer.toString(cliente2.getIdCliente()));
+                jtDni.setText(Integer.toString(cliente2.getDni()));
+                jtDni2.setText(Integer.toString(cliente2.getDni()));
+                jtApellido.setText(cliente2.getApellido());
+                jtNombre.setText(cliente2.getNombre());
+                jtDireccion.setText(cliente2.getDireccion());
+                jtTel.setText(Integer.toString((int) cliente2.getTelefono()));
+                jrEstado.setSelected(cliente2.isEstado());
+                jtPersonaAlt.setText(cliente2.getPersonaAlternativa());
+
+            }
+
+        } catch (NumberFormatException nf) {
+
+            JOptionPane.showMessageDialog(null, " No se permiten letras, simbolos y espacios en este campo ");
+        } catch (NullPointerException np) {
 
         }
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
 
+        try{
+          
         String textDni = (jtDni.getText());
         String textApellido = (jtApellido.getText());
         String textNombre = (jtNombre.getText());
@@ -453,7 +465,7 @@ public class GestionCliente extends javax.swing.JPanel {
                         cli.setApellido(apellido);
                         cli.setNombre(nombre);
                         cli.setDireccion(direccion);
-                        cli.setTelefono(ERROR);
+                        cli.setTelefono(tel);
                         cli.setEstado(jrEstado.isSelected());
                         cli.setPersonaAlternativa(personaAlt);
 
@@ -474,6 +486,15 @@ public class GestionCliente extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(null, " Falta dni ");
         }
+        
+        } catch(NullPointerException np){
+            
+            JOptionPane.showMessageDialog(null, " Falta completar algun campo ");
+        } catch(NumberFormatException nf){
+            
+            JOptionPane.showMessageDialog(null, " Verificar solo poner numeros y letras en los campos que corresponda ");
+        }
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -500,6 +521,8 @@ public class GestionCliente extends javax.swing.JPanel {
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
 
+        try{
+        
         String textDni = (jtDni2.getText());
 
         if (!textDni.isEmpty()) {
@@ -517,6 +540,10 @@ public class GestionCliente extends javax.swing.JPanel {
             jtTel.setText("");
             jrEstado.setSelected(false);
             jtPersonaAlt.setText("");
+        }
+        
+        }catch(NullPointerException | NumberFormatException np){
+            
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
