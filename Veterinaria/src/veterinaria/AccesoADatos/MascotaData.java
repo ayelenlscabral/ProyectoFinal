@@ -227,7 +227,7 @@ public void eliminarMascota(int idMascota) {
                 mas.setEspecie(rs.getString("especie"));
                 mas.setRaza(rs.getString("raza"));
                 mas.setColorPelo(rs.getString("colorPelo"));
-                mas.setFechaNac(rs.getDate("fechaNac").toLocalDate());
+                mas.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
                 mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
                 mas.setPesoActual(rs.getDouble("pesoActual"));
                 mas.setEstado(rs.getBoolean("estado"));
