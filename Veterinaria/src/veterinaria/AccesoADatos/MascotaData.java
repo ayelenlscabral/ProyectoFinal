@@ -211,11 +211,12 @@ public void eliminarMascota(int idMascota) {
 
         List<Mascota> mascota = new ArrayList<>();
 
-        String sql = "SELECT * FROM mascota WHERE idCliente=" + id;
+        String sql = "SELECT * FROM mascota WHERE idCliente=?" ;
 
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
