@@ -2,7 +2,6 @@
 package veterinaria.vistas;
 
 //FEDE
-
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import veterinaria.AccesoADatos.ClienteData;
@@ -438,65 +437,178 @@ public class GestionCliente extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jbBuscarActionPerformed
 
+    private boolean laValidacionEnPersona() {
+
+        boolean validar = true;
+        int dni = Integer.parseInt(jtDni.getText());
+
+        for (Cliente cliente : cliente.listarClientes()) {
+
+            if (dni == cliente.getDni()) {
+                validar = false;
+
+            }
+        }
+        return validar;
+    }
+
+    private int obtenerId() {
+
+        String textDni = (jtDni.getText());
+        int dni = Integer.parseInt(textDni);
+        int id = 0;
+
+        for (Cliente nomb : cliente.listarClientes()) {
+
+            if (nomb.getDni() == dni) {
+
+                id = nomb.getIdCliente();
+
+            }
+        }
+
+        return id;
+    }
+
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
 
-        try{
-          
-        String textDni = (jtDni.getText());
-        String textApellido = (jtApellido.getText());
-        String textNombre = (jtNombre.getText());
-        String textDireccion = (jtDireccion.getText());
-        String textTel = (jtTel.getText());
-        String textPersonaAlt = (jtPersonaAlt.getText());
+        try {
 
-        if (!textDni.isEmpty()) {
-            if (!textApellido.isEmpty() && !textNombre.isEmpty()) {
-                if (!textDireccion.isEmpty() && !textTel.isEmpty()) {
-                    if (!textPersonaAlt.isEmpty()) {
+            String textDni = (jtDni.getText());
+            String textApellido = (jtApellido.getText());
+            String textNombre = (jtNombre.getText());
+            String textDireccion = (jtDireccion.getText());
+            String textTel = (jtTel.getText());
+            String textPersonaAlt = (jtPersonaAlt.getText());
 
-                        int dni = Integer.parseInt(textDni);
-                        String apellido = textApellido;
-                        String nombre = textNombre;
-                        String direccion = textDireccion;
-                        long tel = Long.parseLong(textTel);
-                        String personaAlt = textPersonaAlt;
+            if (!textDni.isEmpty()) {
+                if (laValidacionEnPersona()) {
+                    if (!textApellido.isEmpty() && !textNombre.isEmpty()) {
+                        if (!textDireccion.isEmpty() && !textTel.isEmpty()) {
+                            if (!textPersonaAlt.isEmpty()) {
 
-                        cli.setDni(dni);
-                        cli.setApellido(apellido);
-                        cli.setNombre(nombre);
-                        cli.setDireccion(direccion);
-                        cli.setTelefono(tel);
-                        cli.setEstado(jrEstado.isSelected());
-                        cli.setPersonaAlternativa(personaAlt);
+                                int dni = Integer.parseInt(textDni);
+                                String apellido = textApellido;
+                                String nombre = textNombre;
+                                String direccion = textDireccion;
+                                long tel = Long.parseLong(textTel);
+                                String personaAlt = textPersonaAlt;
 
-                        System.out.println(" 1 ");
-                        cliente.guardarCliente(cli);
-                        System.out.println(" 2 ");
+                                cli.setDni(dni);
+                                cli.setApellido(apellido);
+                                cli.setNombre(nombre);
+                                cli.setDireccion(direccion);
+                                cli.setTelefono(tel);
+                                cli.setEstado(jrEstado.isSelected());
+                                cli.setPersonaAlternativa(personaAlt);
+
+                                if (apellido.matches("^[a-zA-Z\\s]+$")) {
+                                    if (nombre.matches("^[a-zA-Z\\s]+$")) {
+                                        if (personaAlt.matches("^[a-zA-Z\\s]+$")) {
+
+                                            cliente.guardarCliente(cli);
+
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, " Solo letras en nombre de persona alternativa ");
+
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, " Solo letras en nombre ");
+
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, " solo letras en apellido ");
+
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, " Falta una persona alternativa ");
+
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, " Direccion y Telefono deben estar completos ");
+
+                        }
+
                     } else {
-                        JOptionPane.showMessageDialog(null, " Falta una persona alternativa ");
+                        JOptionPane.showMessageDialog(null, " Nombre y Apellido deben estar completos ");
+
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, " Direccion y Telefono deben estar completos ");
+
+                    System.out.println(laValidacionEnPersona());
+
+                    if (!laValidacionEnPersona()) {
+                        if (!textApellido.isEmpty() && !textNombre.isEmpty()) {
+                            if (!textDireccion.isEmpty() && !textTel.isEmpty()) {
+                                if (!textPersonaAlt.isEmpty()) {
+
+                                    int dni = Integer.parseInt(textDni);
+                                    String apellido = textApellido;
+                                    String nombre = textNombre;
+                                    String direccion = textDireccion;
+                                    long tel = Long.parseLong(textTel);
+                                    String personaAlt = textPersonaAlt;
+
+                                    cli.setIdCliente(obtenerId());
+                                    cli.setDni(dni);
+                                    cli.setApellido(apellido);
+                                    cli.setNombre(nombre);
+                                    cli.setDireccion(direccion);
+                                    cli.setTelefono(tel);
+                                    cli.setEstado(jrEstado.isSelected());
+                                    cli.setPersonaAlternativa(personaAlt);
+
+                                    if (apellido.matches("^[a-zA-Z\\s]+$")) {
+                                        if (nombre.matches("^[a-zA-Z\\s]+$")) {
+                                            if (personaAlt.matches("^[a-zA-Z\\s]+$")) {
+
+                                                cliente.modificarCliente(cli);
+
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, " Solo letras en nombre de persona alternativa ");
+
+                                            }
+
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, " Solo letras en nombre ");
+
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, " solo letras en apellido ");
+
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, " Falta una persona alternativa ");
+
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, " Direccion y Telefono deben estar completos ");
+
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, " Nombre y Apellido deben estar completos ");
+
+                        }
+                    }
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, " Nombre y Apellido deben estar completos ");
+                JOptionPane.showMessageDialog(null, " Falta dni ");
+
             }
 
-        } else {
+        } catch (NullPointerException np) {
 
-            JOptionPane.showMessageDialog(null, " Falta dni ");
-        }
-        
-        } catch(NullPointerException np){
-            
             JOptionPane.showMessageDialog(null, " Falta completar algun campo ");
-        } catch(NumberFormatException nf){
-            
+
+        } catch (NumberFormatException nf) {
+
             JOptionPane.showMessageDialog(null, " Verificar solo poner numeros y letras en los campos que corresponda ");
+
         }
-        
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -505,6 +617,7 @@ public class GestionCliente extends javax.swing.JPanel {
         Menu menu = new Menu();
         menu.setVisible(true);
         SwingUtilities.getWindowAncestor(this).dispose();
+
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
@@ -523,29 +636,29 @@ public class GestionCliente extends javax.swing.JPanel {
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
 
-        try{
-        
-        String textDni = (jtDni2.getText());
+        try {
 
-        if (!textDni.isEmpty()) {
+            String textDni = (jtDni2.getText());
 
-            int dni = Integer.parseInt(textDni);
+            if (!textDni.isEmpty()) {
 
-            cliente.borrarCliente(dni);
+                int dni = Integer.parseInt(textDni);
 
-            jtIdCliente.setText("");
-            jtDni.setText("");
-            jtDni2.setText("");
-            jtApellido.setText("");
-            jtNombre.setText("");
-            jtDireccion.setText("");
-            jtTel.setText("");
-            jrEstado.setSelected(false);
-            jtPersonaAlt.setText("");
-        }
-        
-        }catch(NullPointerException | NumberFormatException np){
-            
+                cliente.borrarCliente(dni);
+
+                jtIdCliente.setText("");
+                jtDni.setText("");
+                jtDni2.setText("");
+                jtApellido.setText("");
+                jtNombre.setText("");
+                jtDireccion.setText("");
+                jtTel.setText("");
+                jrEstado.setSelected(false);
+                jtPersonaAlt.setText("");
+            }
+
+        } catch (NullPointerException | NumberFormatException np) {
+
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
