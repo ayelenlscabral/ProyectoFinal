@@ -71,7 +71,7 @@ public class MascotaData {
             ps.close();   
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: ","ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -244,4 +244,20 @@ public void eliminarMascota(int idMascota) {
         return mascota;
     }
 
+    public void modificarPromedio(Mascota mascota) {
+
+        String sql = "UPDATE mascota SET pesoPromedio=? WHERE idMascota = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1, mascota.getPesoPromedio());
+            ps.setInt(2, mascota.getIdMascota());
+            ps.executeUpdate();
+            ps.close();   
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: " + ex.getMessage());
+        }
+
+   }
+        
 }
