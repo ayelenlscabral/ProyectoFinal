@@ -204,11 +204,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jPanel1.add(jDescripcion, gridBagConstraints);
 
         jImporte.setMinimumSize(new java.awt.Dimension(10, 10));
-        jImporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jImporteActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 10;
@@ -435,7 +430,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
 
-
         if (jId.getText().equals("") || !comprobar()) {
             try {
                 trata.setTipoTratamiento(jTipo.getSelectedItem().toString());
@@ -500,6 +494,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
     private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
         int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 0)));
         trataData.eliminarTratamiento(id);
+        LimpiarTabla();
         cargarTabla();
     }//GEN-LAST:event_jEliminarActionPerformed
 
@@ -512,16 +507,16 @@ public class GestionTratamiento extends javax.swing.JPanel {
             if (categoria.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
                 System.out.println("entre al matches");
                 if (categoria.length() < 30) {
-                     System.out.println("pase el filtro 30");
+                    System.out.println("pase el filtro 30");
                     for (String cate : trataData.listarTipoCategoria()) {
-                         System.out.println("entre al for");
+                        System.out.println("entre al for");
                         if (cate.equalsIgnoreCase(categoria)) {
                             comprobar = true;
                             break;
                         }
                     }
                     if (!comprobar) {
-                        trataData.guardarTipoCategoria(categoria);
+                        trataData.guardarTipoCategoria(categoria.toUpperCase());
                         cargarCombos();
                     } else {
                         JOptionPane.showMessageDialog(null, "La categoria ya existe");
@@ -541,6 +536,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
 
     private void jEliminarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarCateActionPerformed
         boolean comprobar = false;
+        boolean comprobar2 = false;
         DefaultComboBoxModel<String> comboModel = (DefaultComboBoxModel<String>) jTipo.getModel();
         DefaultComboBoxModel<String> comboModelFiltro = (DefaultComboBoxModel<String>) jFiltroTipo.getModel();
         String categoria = JOptionPane.showInputDialog(null, "Que categoria desea eliminar? : ", "Eliminar Categoria", JOptionPane.PLAIN_MESSAGE);
@@ -549,13 +545,21 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 if (categoria.length() <= 30) {
                     for (String cate : trataData.listarTipoCategoria()) {
                         if (cate.equalsIgnoreCase(categoria)) {
-                            trataData.eliminarCategoria(categoria);
-                            cargarCombos();
-                            comprobar = true;
+                            comprobar2 = true;
+                            for (Tratamiento trata : trataData.listarTratamientos()) {
+                                if (trata.getTipoTratamiento().equalsIgnoreCase(categoria)) {
+                                    comprobar = true;
+                                    JOptionPane.showMessageDialog(null, "No puedes eliminar la categoria por que existen tratamientos agregados");
+                                    break;
+                                }
+                            }
                         }
                     }
-                    if (!comprobar) {
-                        JOptionPane.showMessageDialog(null, "La categoria no existe");
+                    if (!comprobar2) {
+                        JOptionPane.showMessageDialog(null, "No existe la categoria");
+                    } else if (!comprobar) {
+                        trataData.eliminarCategoria(categoria);
+                        cargarCombos();
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Debe tener 30 caracters como maximo!");
@@ -563,15 +567,8 @@ public class GestionTratamiento extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(null, "Solo puedes agregar letras y espacios");
             }
-        } else {
-//            JOptionPane.showMessageDialog(null, "No puedes dejar el campo vacio, vuelva a intentarlo");
-    
         }
     }//GEN-LAST:event_jEliminarCateActionPerformed
-
-    private void jImporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jImporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jImporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
