@@ -566,9 +566,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 String colorP = colordePeloT;
                 LocalDate naci = fechaNac;
                 Double pesoA = Double.parseDouble(pesoActualT);
-                
-                
-                
+
                 if (!ali.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
 
@@ -584,10 +582,12 @@ public class GestionMascota extends javax.swing.JPanel {
                 } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
                 } else if (pesoA > 300) {
-                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");        
+                    JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
                 } else {
 
                     Mascota mascotaActual = new Mascota();
+
+                    mascotaActual.setIdCliente(clienteSeleccionado);
                     mascotaActual.setAlias(ali);
                     mascotaActual.setSexo(sexoT);
                     mascotaActual.setEspecie(espe);
@@ -596,7 +596,6 @@ public class GestionMascota extends javax.swing.JPanel {
                     mascotaActual.setFechaNac(naci);
                     mascotaActual.setPesoActual(pesoA);
                     mascotaActual.setPesoPromedio(pesoA);
-                    mascotaActual.setIdCliente(clienteSeleccionado);
                     mascotaActual.setEstado(jRadioBEstado.isSelected());
 
                     mascotaData.agregarMascota(mascotaActual);
@@ -610,7 +609,7 @@ public class GestionMascota extends javax.swing.JPanel {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingresa valores válidos en los campos de números", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar la mascota: " , "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al guardar la mascota: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -621,7 +620,7 @@ public class GestionMascota extends javax.swing.JPanel {
         try {
 
             if (mascotaActual != null) {
-
+                String idmascota = jTidMascota.getText();
                 String alias = jTAlias.getText();
                 String colorPelo = jTColordePelo.getText();
                 String especie = jTEspecie.getText();
@@ -644,6 +643,7 @@ public class GestionMascota extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Ningun campo puede estar vacio");
 
                 } else {
+                    int mas = Integer.parseInt(idmascota);
                     String ali = alias;
                     String col = colorPelo;
                     String esp = especie;
@@ -668,7 +668,7 @@ public class GestionMascota extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
 
                     } else {
-
+                        mascotaActual.setIdMascota(mas);
                         mascotaActual.setAlias(ali);
                         mascotaActual.setColorPelo(col);
                         mascotaActual.setEspecie(esp);
@@ -700,6 +700,9 @@ public class GestionMascota extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Debe completar todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         }
+
+        limpiarTabla();
+        cargarTabla();
 
     }//GEN-LAST:event_jBModificarActionPerformed
 
@@ -737,7 +740,7 @@ public class GestionMascota extends javax.swing.JPanel {
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         Menu menu = new Menu();
         menu.setVisible(true);
-        SwingUtilities.getWindowAncestor(this).dispose(); 
+        SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
 
@@ -885,33 +888,15 @@ public class GestionMascota extends javax.swing.JPanel {
         if (dniCliente.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un DNI de un cliente.");
             return;
+        } else {
+            limpiarTabla();
+            cargarTabla();
+
         }
 
         try {
             int dniClienteint = Integer.parseInt(dniCliente);
 
-            List<Mascota> mascotas = mascotaData.MascotasporClienteDNI(dniClienteint);
-            if (mascotas.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No se encontraron mascotas para el cliente con DNI: " + dniClienteint);
-            } else {
-                DefaultTableModel model = (DefaultTableModel) jTabla.getModel();
-                model.setRowCount(0);
-
-                for (Mascota mascota : mascotas) {
-                    Object[] rowData = {
-                        mascota.getIdMascota(),
-                        mascota.getAlias(),
-                        mascota.getSexo(),
-                        mascota.getEspecie(),
-                        mascota.getRaza(),
-                        mascota.getColorPelo(),
-                        mascota.getFechaNac(),
-                        mascota.getPesoPromedio(),
-                        mascota.getPesoActual(),
-                        mascota.isEstado(),};
-                    model.addRow(rowData);
-                }
-            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de cliente válido.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (HeadlessException e) {
@@ -983,6 +968,36 @@ public class GestionMascota extends javax.swing.JPanel {
         modelo.addColumn("Peso Actual");
         modelo.addColumn("Estado");
         jTabla.setModel(modelo);
+    }
+
+    private void cargarTabla() {
+        DefaultTableModel model = (DefaultTableModel) jTabla.getModel();
+        model.setRowCount(0);
+        int mascotaDni = Integer.parseInt(jTClienteDNI.getText());
+        for (Mascota mascota : mascotaData.MascotasporClienteDNI(mascotaDni)) {
+            Object[] rowData = {
+                mascota.getIdMascota(),
+                mascota.getAlias(),
+                mascota.getSexo(),
+                mascota.getEspecie(),
+                mascota.getRaza(),
+                mascota.getColorPelo(),
+                mascota.getFechaNac(),
+                mascota.getPesoPromedio(),
+                mascota.getPesoActual(),
+                mascota.isEstado(),};
+            model.addRow(rowData);
+
+        }
+
+    }
+
+    private void limpiarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
+        int filas = jTabla.getRowCount();
+        for (int a = 0; filas > a; a++) {
+            modelo.removeRow(0);
+        }
     }
 
 }
