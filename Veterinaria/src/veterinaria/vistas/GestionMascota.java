@@ -845,11 +845,11 @@ public class GestionMascota extends javax.swing.JPanel {
             jTAlias.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 1)));
 
             String sex = String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 2));
-
-            if (sex.equals("Hembra")) {
+              
+            if (sex.equalsIgnoreCase("hembra")) {
                 jCheckBoxH.setSelected(true);
                 jCheckBoxM.setSelected(false);
-            } else if (sex.equals("Macho")) {
+            } else if (sex.equalsIgnoreCase("Macho")) {
                 jCheckBoxH.setSelected(false);
                 jCheckBoxM.setSelected(true);
             } else {
