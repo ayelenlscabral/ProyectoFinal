@@ -5,7 +5,9 @@
  */
 package veterinaria.vistas;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.TratamientoData;
@@ -16,6 +18,7 @@ import veterinaria.Entidades.Tratamiento;
  * @author calga
  */
 public class GestionTratamiento extends javax.swing.JPanel {
+
     TratamientoData trataData = new TratamientoData();
     Tratamiento trata = new Tratamiento();
     DefaultTableModel modelo = new DefaultTableModel() {
@@ -28,7 +31,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
             }
         }
     };
-    
 
     /**
      * Creates new form GestionTratamiento
@@ -37,6 +39,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         initComponents();
         cabecera();
         cargarTabla();
+        cargarCombos();
         jTipo.setSelectedIndex(-1);
         jFiltroTipo.setSelectedIndex(-1);
     }
@@ -49,6 +52,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -68,14 +72,19 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jFiltroTipo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jId = new javax.swing.JLabel();
+        jCategoria = new javax.swing.JButton();
+        jEliminarCate = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 255, 51));
         setMinimumSize(new java.awt.Dimension(100, 70));
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 51));
         jPanel1.setMinimumSize(new java.awt.Dimension(100, 70));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 700));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jScrollPane1.setMinimumSize(new java.awt.Dimension(100, 100));
 
@@ -104,6 +113,18 @@ public class GestionTratamiento extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTabla);
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 14;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 900;
+        gridBagConstraints.ipady = 90;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel1.add(jScrollPane1, gridBagConstraints);
+
         jGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jGuardar.setText("GUARDAR");
         jGuardar.setMaximumSize(new java.awt.Dimension(500, 500));
@@ -113,6 +134,18 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 jGuardarActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 175;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(52, 10, 48, 0);
+        jPanel1.add(jGuardar, gridBagConstraints);
 
         jSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jSalir.setText("ATRAS");
@@ -122,6 +155,18 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 jSalirActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 180;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(52, 212, 48, 0);
+        jPanel1.add(jSalir, gridBagConstraints);
 
         jEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jEliminar.setText("ELIMINAR");
@@ -132,6 +177,17 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 jEliminarActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 155;
+        gridBagConstraints.ipady = 50;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(52, 1, 48, 0);
+        jPanel1.add(jEliminar, gridBagConstraints);
 
         jDescripcion.setMinimumSize(new java.awt.Dimension(10, 10));
         jDescripcion.addActionListener(new java.awt.event.ActionListener() {
@@ -139,150 +195,236 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 jDescripcionActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 285;
+        gridBagConstraints.ipady = 42;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(2, 18, 0, 0);
+        jPanel1.add(jDescripcion, gridBagConstraints);
 
         jImporte.setMinimumSize(new java.awt.Dimension(10, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 285;
+        gridBagConstraints.ipady = 42;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
+        jPanel1.add(jImporte, gridBagConstraints);
 
         jEstado.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jEstado.setMaximumSize(new java.awt.Dimension(32000, 32000));
         jEstado.setMinimumSize(new java.awt.Dimension(10, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 11;
+        gridBagConstraints.ipady = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
+        jPanel1.add(jEstado, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Tipo de tratamiento:");
         jLabel1.setMinimumSize(new java.awt.Dimension(10, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 255;
+        gridBagConstraints.ipady = 42;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 0);
+        jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Descripcion: ");
         jLabel2.setMinimumSize(new java.awt.Dimension(10, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 255;
+        gridBagConstraints.ipady = 42;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 10, 0, 0);
+        jPanel1.add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Importe:");
         jLabel3.setMinimumSize(new java.awt.Dimension(10, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 255;
+        gridBagConstraints.ipady = 42;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
+        jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Estado:");
         jLabel4.setMinimumSize(new java.awt.Dimension(10, 10));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(28, 20, 0, 0);
+        jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Filtrar por tipo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 16;
+        gridBagConstraints.ipady = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 132, 0, 0);
+        jPanel1.add(jLabel5, gridBagConstraints);
 
-        jTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Peluqueria", "Accesorio", "Alimentos", "Varios" }));
         jTipo.setSelectedItem(-1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 262;
+        gridBagConstraints.ipady = 30;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 19, 0, 0);
+        jPanel1.add(jTipo, gridBagConstraints);
 
-        jFiltroTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacunacion", "Medicamentos", "Internacion", "Cirujia", "Peluqueria", "Accesorio", "Alimentos", "Varios" }));
         jFiltroTipo.setToolTipText("");
         jFiltroTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFiltroTipoActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 112;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 0, 0);
+        jPanel1.add(jFiltroTipo, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 0, 0);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         jId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 116;
+        gridBagConstraints.ipady = 24;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 18, 0, 0);
+        jPanel1.add(jId, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(190, 190, 190)
-                .addComponent(jEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(215, 215, 215)
-                .addComponent(jEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(225, 225, 225)
-                .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(445, 445, 445)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jFiltroTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jId, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jFiltroTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
-        );
+        jCategoria.setText("Nueva Categoria");
+        jCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCategoriaActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 6;
+        gridBagConstraints.ipady = 27;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(34, 212, 0, 0);
+        jPanel1.add(jCategoria, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        jEliminarCate.setText("Eliminar Categoria");
+        jEliminarCate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEliminarCateActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 27;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(18, 212, 0, 0);
+        jPanel1.add(jEliminarCate, gridBagConstraints);
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
-    Menu menu = new Menu();
-    menu.setVisible(true);
-    SwingUtilities.getWindowAncestor(this).dispose(); // Cierra el panel actual
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        SwingUtilities.getWindowAncestor(this).dispose(); // Cierra el panel actual
     }//GEN-LAST:event_jSalirActionPerformed
 
     private void jDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDescripcionActionPerformed
@@ -291,36 +433,60 @@ public class GestionTratamiento extends javax.swing.JPanel {
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
 
-     //   System.out.println("valor de id: " +id);
-        if (jId == null) {
-            trata.setTipoTratamiento(jTipo.getSelectedItem().toString());
-            trata.setDescripcion(jDescripcion.getText());
-            double importe = Double.parseDouble(jImporte.getText());
-            trata.setImporte(importe);
-            trata.setEstado(jEstado.isSelected());
-            trataData.guardarNuevoTratamiento(trata);
-            cargarTabla();
-            jTipo.setSelectedIndex(-1);
-            jFiltroTipo.setSelectedIndex(-1);
-            jDescripcion.setText("");
-            jImporte.setText("");
-            jEstado.setSelected(false);
-            
-        }else{
-        
-        
-        
-        
+        //   System.out.println("valor de id: " +id);
+        if (jId.getText().equals("") || !comprobar()) {
+            try {
+                trata.setTipoTratamiento(jTipo.getSelectedItem().toString());
+                trata.setDescripcion(jDescripcion.getText());
+                double importe = Double.parseDouble(jImporte.getText());
+                trata.setImporte(importe);
+                trata.setEstado(jEstado.isSelected());
+                trataData.guardarNuevoTratamiento(trata);
+                cargarTabla();
+                jTipo.setSelectedIndex(-1);
+                jFiltroTipo.setSelectedIndex(-1);
+                jDescripcion.setText("");
+                jImporte.setText("");
+                jEstado.setSelected(false);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo debes ingresar numeros en el campo Importe.", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de tratamiento", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            if (comprobar()) {
+                try {
+                    trata.setTipoTratamiento(jTipo.getSelectedItem().toString());
+                    int id = Integer.parseInt(jId.getText());
+                    trata.setIdTratamiento(id);
+                    trata.setDescripcion(jDescripcion.getText());
+                    double importe = Double.parseDouble(jImporte.getText());
+                    trata.setImporte(importe);
+                    trata.setEstado(jEstado.isSelected());
+                    trataData.modificarTratamiento(trata);
+                    cargarTabla();
+                    jTipo.setSelectedIndex(-1);
+                    jFiltroTipo.setSelectedIndex(-1);
+                    jDescripcion.setText("");
+                    jImporte.setText("");
+                    jEstado.setSelected(false);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo debes ingresar numeros en el campo Importe.", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (NullPointerException e) {
+                    JOptionPane.showMessageDialog(null, "Debes seleccionar un tipo de tratamiento", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
         }
 
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaMouseClicked
-        jId.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),0)));
-        jTipo.setSelectedItem(modelo.getValueAt(jTabla.getSelectedRow(),1));
-        jDescripcion.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),2)));
-        jImporte.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),3)));
-        Boolean estado = (boolean)modelo.getValueAt(jTabla.getSelectedRow(),4);
+        jId.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 0)));
+        jTipo.setSelectedItem(modelo.getValueAt(jTabla.getSelectedRow(), 1));
+        jDescripcion.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 2)));
+        jImporte.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 3)));
+        Boolean estado = (boolean) modelo.getValueAt(jTabla.getSelectedRow(), 4);
         jEstado.setSelected(estado);
     }//GEN-LAST:event_jTablaMouseClicked
 
@@ -330,15 +496,83 @@ public class GestionTratamiento extends javax.swing.JPanel {
     }//GEN-LAST:event_jFiltroTipoActionPerformed
 
     private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
-            int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(),0))) ;
-            trataData.eliminarTratamiento(id); 
-            cargarTabla();
+        int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 0)));
+        trataData.eliminarTratamiento(id);
+        cargarTabla();
     }//GEN-LAST:event_jEliminarActionPerformed
+
+    private void jCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCategoriaActionPerformed
+        boolean comprobar = false;
+        DefaultComboBoxModel<String> comboModel = (DefaultComboBoxModel<String>) jTipo.getModel();
+        DefaultComboBoxModel<String> comboModelFiltro = (DefaultComboBoxModel<String>) jFiltroTipo.getModel();
+        String categoria = JOptionPane.showInputDialog(null, "Nueva Categoria: ", "Categoria", JOptionPane.PLAIN_MESSAGE);
+        if (categoria != null) {
+            if (categoria.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
+                System.out.println("entre al matches");
+                if (categoria.length() < 30) {
+                     System.out.println("pase el filtro 30");
+                    for (String cate : trataData.listarTipoCategoria()) {
+                         System.out.println("entre al for");
+                        if (cate.equalsIgnoreCase(categoria)) {
+                            comprobar = true;
+                            break;
+                        }
+                    }
+                    if (!comprobar) {
+                        trataData.guardarTipoCategoria(categoria);
+                        cargarCombos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La categoria ya existe");
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe tener 30 caracters como maximo!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Solo puedes agregar letras y espacios");
+            }
+        } else {
+//            JOptionPane.showMessageDialog(null, "No puedes dejar el campo vacio, vuelva a intentarlo1");
+        }
+
+    }//GEN-LAST:event_jCategoriaActionPerformed
+
+    private void jEliminarCateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarCateActionPerformed
+        boolean comprobar = false;
+        DefaultComboBoxModel<String> comboModel = (DefaultComboBoxModel<String>) jTipo.getModel();
+        DefaultComboBoxModel<String> comboModelFiltro = (DefaultComboBoxModel<String>) jFiltroTipo.getModel();
+        String categoria = JOptionPane.showInputDialog(null, "Que categoria desea eliminar? : ", "Eliminar Categoria", JOptionPane.PLAIN_MESSAGE);
+        if (categoria != null) {
+            if (categoria.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
+                if (categoria.length() <= 30) {
+                    for (String cate : trataData.listarTipoCategoria()) {
+                        if (cate.equalsIgnoreCase(categoria)) {
+                            trataData.eliminarCategoria(categoria);
+                            cargarCombos();
+                            comprobar = true;
+                        }
+                    }
+                    if (!comprobar) {
+                        JOptionPane.showMessageDialog(null, "La categoria no existe");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe tener 30 caracters como maximo!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Solo puedes agregar letras y espacios");
+            }
+        } else {
+//            JOptionPane.showMessageDialog(null, "No puedes dejar el campo vacio, vuelva a intentarlo2");
+    
+        }
+    }//GEN-LAST:event_jEliminarCateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jCategoria;
     private javax.swing.JTextField jDescripcion;
     private javax.swing.JButton jEliminar;
+    private javax.swing.JButton jEliminarCate;
     private javax.swing.JCheckBox jEstado;
     private javax.swing.JComboBox<String> jFiltroTipo;
     private javax.swing.JButton jGuardar;
@@ -356,45 +590,83 @@ public class GestionTratamiento extends javax.swing.JPanel {
     private javax.swing.JTable jTabla;
     private javax.swing.JComboBox<String> jTipo;
     // End of variables declaration//GEN-END:variables
-private void cabecera (){
-modelo.addColumn("ID");
-modelo.addColumn("TIPO DE TRATAMIENTO");
-modelo.addColumn("DESCRIPCION");
-modelo.addColumn("IMPORTE");
-modelo.addColumn("ESTADO");
-jTabla.setModel(modelo);
-}
-private void cargarTabla(){
-    for (Tratamiento tratamiento : trataData.listarTratamientoActivos()) {
-        
-        if (jFiltroTipo.getSelectedIndex() != -1) {
-            if (jFiltroTipo.getSelectedItem().equals(tratamiento.getTipoTratamiento())) {
-                    modelo.addRow(new Object[]{
-                    tratamiento.getIdTratamiento(),
-                    tratamiento.getTipoTratamiento(),
-                    tratamiento.getDescripcion(), 
-                    tratamiento.getImporte(),
-                    tratamiento.isEstado()
-        });
-            } 
-        }else{
-      modelo.addRow(new Object[]{
-                    tratamiento.getIdTratamiento(),
-                    tratamiento.getTipoTratamiento(),
-                    tratamiento.getDescripcion(), 
-                    tratamiento.getImporte(),
-                    tratamiento.isEstado()
-      });
-        }    
+private void cabecera() {
+        modelo.addColumn("ID");
+        modelo.addColumn("TIPO DE TRATAMIENTO");
+        modelo.addColumn("DESCRIPCION");
+        modelo.addColumn("IMPORTE");
+        modelo.addColumn("ESTADO");
+        jTabla.setModel(modelo);
     }
-}
+
+    private void cargarTabla() {
+        for (Tratamiento tratamiento : trataData.listarTratamientos()) {
+
+            if (jFiltroTipo.getSelectedIndex() != -1) {
+                if (!jFiltroTipo.getSelectedItem().toString().equalsIgnoreCase("Todo")) {
+                    if (jFiltroTipo.getSelectedItem().equals(tratamiento.getTipoTratamiento())) {
+                        modelo.addRow(new Object[]{
+                            tratamiento.getIdTratamiento(),
+                            tratamiento.getTipoTratamiento(),
+                            tratamiento.getDescripcion(),
+                            tratamiento.getImporte(),
+                            tratamiento.isEstado()
+                        });
+                    }
+                } else {
+                    modelo.addRow(new Object[]{
+                        tratamiento.getIdTratamiento(),
+                        tratamiento.getTipoTratamiento(),
+                        tratamiento.getDescripcion(),
+                        tratamiento.getImporte(),
+                        tratamiento.isEstado()
+                    });
+                }
+
+            } else {
+                modelo.addRow(new Object[]{
+                    tratamiento.getIdTratamiento(),
+                    tratamiento.getTipoTratamiento(),
+                    tratamiento.getDescripcion(),
+                    tratamiento.getImporte(),
+                    tratamiento.isEstado()
+                });
+            }
+        }
+    }
+
     private void LimpiarTabla() {
-//     A la tabla ya creada, le volvemos a setear el modelo por defecto que le pusimos y en el for hacemos que elimine todas las filas para vaciarla.   
         DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
         int filas = jTabla.getRowCount();
         for (int a = 0; filas > a; a++) {
-//            remueve la fila con indice 0 hasta que no queden mas filas.
             modelo.removeRow(0);
         }
+    }
+
+    private void cargarCombos() {
+        jTipo.removeAllItems();
+        jFiltroTipo.removeAllItems();
+        for (String categoria : trataData.listarTipoCategoria()) {
+            if (categoria.equalsIgnoreCase("TODO")) {
+                jFiltroTipo.addItem(categoria);
+            } else {
+                jTipo.addItem(categoria);
+                jFiltroTipo.addItem(categoria);
+            }
+
+        }
+        jTipo.setSelectedIndex(-1);
+        jFiltroTipo.setSelectedIndex(-1);
+    }
+
+    public boolean comprobar() {
+        boolean validador = false;
+        int id = Integer.parseInt(jId.getText());
+        for (Tratamiento trata : trataData.listarTratamientos()) {
+            if (id == trata.getIdTratamiento()) {
+                validador = true;
+            }
+        }
+        return validador;
     }
 }
