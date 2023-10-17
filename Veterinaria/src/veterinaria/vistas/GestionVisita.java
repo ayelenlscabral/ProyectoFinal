@@ -433,12 +433,16 @@ public class GestionVisita extends javax.swing.JPanel {
         jMascota1.removeAllItems();
         jpeso.setText("");
         jDate.setDate(null);
-        int dni = (int) Integer.parseInt(jdni.getText());
-        client = clData.buscarCliente(dni);
-        if (!(client == null)) {
-            jidCliente.setText(Integer.toString(client.getIdCliente()));
+        try {
+            int dni = (int) Integer.parseInt(jdni.getText());
+            client = clData.buscarCliente(dni);
+            if (!(client == null)) {
+                jidCliente.setText(Integer.toString(client.getIdCliente()));
+            }
+            llenarMascota();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar el numero del dni. Recuerde no agregar letras, caracteres ni coma ni puntos");
         }
-        llenarMascota();
     }//GEN-LAST:event_jBuscarActionPerformed
 
     private void jMascota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota1ActionPerformed
@@ -460,15 +464,15 @@ public class GestionVisita extends javax.swing.JPanel {
 
             for (Visita aux : viData.listarVisitaXMascota(id)) {
                 Mascota aux2 = maData.buscarMascota(aux.getMascota().getIdMascota());
-                //Tratamiento aux3 = trData.buscarTratamiento(aux.getTratamiento().getIdTratamiento());
-                
+                Tratamiento aux3 = trData.buscarTratamiento(aux.getTratamiento().getIdTratamiento());
+
                 modelo.addRow(new Object[]{
                     aux.getIdVisita(),
                     aux.getFechaTratamiento().toString(),
                     aux2.getAlias(),
                     aux.getPesoActual(),
                     aux2.getPesoPromedio(),
-                    //aux3.getTipoTratamiento(),
+                    aux3.getTipoTratamiento(),
                     aux.getObservaciones()});
             }
 
@@ -492,24 +496,33 @@ public class GestionVisita extends javax.swing.JPanel {
     }//GEN-LAST:event_jTratamientoActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
-        double peso = Double.parseDouble(jpeso.getText());
-        mascota = (Mascota) jMascota1.getSelectedItem();
-//        double promedio=(mascota.getPesoActual()+peso)/2;
-//        mascota.setPesoPromedio(promedio);
+        try {
+            double peso = Double.parseDouble(jpeso.getText());
+            mascota = (Mascota) jMascota1.getSelectedItem();
 
-        tr = (Tratamiento) jTratamiento.getSelectedItem();
-        LocalDate fecha = (jDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        String obs = jObservacion.getText();
+            tr = (Tratamiento) jTratamiento.getSelectedItem();
+            LocalDate fecha = (jDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            String obs = jObservacion.getText();
 
-        visit.setMascota(mascota);
-        visit.setFechaTratamiento(fecha);
-        visit.setPesoActual(peso);
-        visit.setObservaciones(obs);
-        visit.setTratamiento(tr);
+            visit.setMascota(mascota);
+            visit.setFechaTratamiento(fecha);
+            visit.setPesoActual(peso);
+            visit.setObservaciones(obs);
+            visit.setTratamiento(tr);
 
-        viData.guardarVisita(visit);
-        JOptionPane.showMessageDialog(null, "se guardo visita");
-        viData.sacarPesoPromedio(mascota);
+            viData.guardarVisita(visit);
+
+            viData.sacarPesoPromedio(mascota);
+            jdni.setText("");
+            jidCliente.setText("");
+            jDatos.setText("");
+            jMascota1.removeAllItems();
+            jpeso.setText("");
+            jDate.setDate(null);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar el peso, solo ingrese numeros sin letras ni caracteres");
+        }
+
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jtarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtarjetaActionPerformed
