@@ -20,7 +20,7 @@ public class TratamientoData {
 
     public void modificarTratamiento(Tratamiento tr) {
         String sql = "UPDATE tratamiento SET tipoTratamiento=?,"
-                + "descripcion=?,importe=?,estado=? WHERE " + tr.getIdTratamiento();
+                + "descripcion=?,importe=?,estado=? WHERE idTratamiento= " + tr.getIdTratamiento();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tr.getTipoTratamiento());
@@ -45,7 +45,7 @@ public class TratamientoData {
             JOptionPane.showMessageDialog(null, " Se inhabilito el tratamiento ");
             ps.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla alumno");
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla tratamiento");
         }
     }
 
@@ -74,7 +74,7 @@ public class TratamientoData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 Tratamiento tr = new Tratamiento();
                 tr.setIdTratamiento(rs.getInt("idTratamiento"));
                 tr.setTipoTratamiento(rs.getString("tipoTratamiento"));
@@ -82,13 +82,48 @@ public class TratamientoData {
                 tr.setImporte(rs.getDouble("importe"));
                 tr.setEstado(rs.getBoolean("estado"));
                 tratamiento.add(tr);
-            } else {
-                ps.close();
             }
+            ps.close();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la lista Tratamiento");
         }
         return tratamiento;
+    }
+    
+    public Tratamiento buscarTratamiento(int id) {
+
+        Tratamiento tr = null;
+
+        String sql = "SELECT * FROM tratamiento WHERE idTratamiento = ?";
+
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                tr= new Tratamiento();
+                 tr.setIdTratamiento(rs.getInt("idTratamiento"));
+                tr.setTipoTratamiento(rs.getString("tipoTratamiento"));
+                tr.setDescripcion(rs.getString("descripcion"));
+                tr.setImporte(rs.getDouble("importe"));
+                tr.setEstado(rs.getBoolean("estado"));
+               
+            } else {
+
+                JOptionPane.showMessageDialog(null, "no existe el tratamiento");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla tratamiento" + ex.getMessage());
+        }
+
+        return tr;
     }
 //      public List<Tratamiento> listarXTipoTratamiento(String tipo) {
 //        ArrayList<Tratamiento> tratamiento = new ArrayList();
@@ -136,4 +171,71 @@ public class TratamientoData {
 //        }
 //        return tratamiento;
 //    }
+
+    public List<String> listarTipoCategoria() {
+        ArrayList<String> categorias = new ArrayList();
+        String sql = "SELECT tipoCategoria FROM categoria";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String cate = rs.getString("tipoCategoria");
+                categorias.add(cate);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la lista Categorias");
+        }
+        return categorias;
+    }
+
+    public void guardarTipoCategoria(String categoria) {
+        String sql = "INSERT INTO categoria(tipoCategoria) VALUES (?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, categoria);
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Categoria guardada ");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la lista de Categorias" + ex.getMessage());
+        }
+    }
+public List<Tratamiento> listarTratamientos() {
+        ArrayList<Tratamiento> tratamiento = new ArrayList();
+        String sql = "SELECT * FROM `tratamiento`";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Tratamiento tr = new Tratamiento();
+                tr.setIdTratamiento(rs.getInt("idTratamiento"));
+                tr.setTipoTratamiento(rs.getString("tipoTratamiento"));
+                tr.setDescripcion(rs.getString("descripcion"));
+                tr.setImporte(rs.getDouble("importe"));
+                tr.setEstado(rs.getBoolean("estado"));
+                tratamiento.add(tr);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la lista Tratamiento");
+        }
+        return tratamiento;
+    }
+public void eliminarCategoria(String categoria) {
+
+        try {
+            String sql = "DELETE FROM `categoria` WHERE tipoCategoria = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, categoria);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, " Se elimino la categoria ");
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla categoria");
+        }
+    }
 }

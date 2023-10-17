@@ -79,7 +79,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(100, 70));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 0, 51));
         jPanel1.setMinimumSize(new java.awt.Dimension(100, 70));
@@ -190,11 +190,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jPanel1.add(jEliminar, gridBagConstraints);
 
         jDescripcion.setMinimumSize(new java.awt.Dimension(10, 10));
-        jDescripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jDescripcionActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 7;
@@ -209,6 +204,11 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jPanel1.add(jDescripcion, gridBagConstraints);
 
         jImporte.setMinimumSize(new java.awt.Dimension(10, 10));
+        jImporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jImporteActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 10;
@@ -418,7 +418,13 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(18, 212, 0, 0);
         jPanel1.add(jEliminarCate, gridBagConstraints);
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 900;
+        gridBagConstraints.ipady = 630;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
@@ -427,13 +433,9 @@ public class GestionTratamiento extends javax.swing.JPanel {
         SwingUtilities.getWindowAncestor(this).dispose(); // Cierra el panel actual
     }//GEN-LAST:event_jSalirActionPerformed
 
-    private void jDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDescripcionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jDescripcionActionPerformed
-
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
 
-        //   System.out.println("valor de id: " +id);
+
         if (jId.getText().equals("") || !comprobar()) {
             try {
                 trata.setTipoTratamiento(jTipo.getSelectedItem().toString());
@@ -562,10 +564,14 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Solo puedes agregar letras y espacios");
             }
         } else {
-//            JOptionPane.showMessageDialog(null, "No puedes dejar el campo vacio, vuelva a intentarlo2");
+//            JOptionPane.showMessageDialog(null, "No puedes dejar el campo vacio, vuelva a intentarlo");
     
         }
     }//GEN-LAST:event_jEliminarCateActionPerformed
+
+    private void jImporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jImporteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jImporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
