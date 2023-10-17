@@ -566,22 +566,25 @@ public class GestionMascota extends javax.swing.JPanel {
                 String colorP = colordePeloT;
                 LocalDate naci = fechaNac;
                 Double pesoA = Double.parseDouble(pesoActualT);
-
-                if (!ali.matches("^[a-zA-Z\\s]+$")) {
+                
+                
+                
+                if (!ali.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
 
-                } else if (!espe.matches("^[a-zA-Z\\s]+$")) {
+                } else if (!espe.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
 
-                } else if (!raza.matches("^[a-zA-Z\\s]+$")) {
+                } else if (!raza.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
 
-                } else if (!colorP.matches("^[a-zA-Z\\s]+$")) {
+                } else if (!colorP.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
 
                 } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
                     JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
-
+                } else if (pesoA > 300) {
+                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");        
                 } else {
 
                     Mascota mascotaActual = new Mascota();
@@ -650,16 +653,16 @@ public class GestionMascota extends javax.swing.JPanel {
                     String sex = sexo;
                     boolean est = estado;
 
-                    if (!ali.matches("^[a-zA-Z\\s]+$")) {
+                    if (!ali.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                         JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
 
-                    } else if (!col.matches("^[a-zA-Z\\s]+$")) {
+                    } else if (!col.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                         JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
 
-                    } else if (!esp.matches("^[a-zA-Z\\s]+$")) {
+                    } else if (!esp.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                         JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
 
-                    } else if (!raz.matches("^[a-zA-Z\\s]+$")) {
+                    } else if (!raz.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
                         JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
                     } else if (pes > 300) {
                         JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
