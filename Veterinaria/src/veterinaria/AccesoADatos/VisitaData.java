@@ -145,56 +145,23 @@ public class VisitaData {
     }
 
     public void sacarPesoPromedio(Mascota mascota) {
-        List<Visita> visita = new ArrayList();
-        String sql = "SELECT * FROM `visita` WHERE idMascota=?";
-
         try {
+            String sql = "SELECT AVG(pesoActual) AS pesoPromedio "
+                    +"FROM (SELECT pesoActual FROM visita WHERE idMascota = ? ORDER BY fechaVisita DESC LIMIT 10) "
+                    +"AS UltimasVisitas";
+            
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, mascota.getIdMascota());
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
-                Visita visit = new Visita();
-                Tratamiento tratamiento = new Tratamiento();
-
-                visit.setIdVisita(rs.getInt("idVisita"));
-
-                mascota.setIdMascota(rs.getInt("idMascota"));
-                tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
-
-                visit.setMascota(mascota);
-                visit.setTratamiento(tratamiento);
-
-                visit.setFechaTratamiento(rs.getDate("fechaVisita").toLocalDate());
-                visit.setObservaciones(rs.getString("observaciones"));
-                visit.setPesoActual(rs.getDouble("pesoActual"));
-                visita.add(visit);
+                MascotaData maData = new MascotaData();
+                double promedio = rs.getDouble("pesoPromedio");
+                mascota.setPesoPromedio(promedio);
+                maData.modificarPromedio(mascota);
             }
-            int contador = 0;
-            double peso = 0;
-            
-            if (visita.size() >= 10) {
-                for (int i = visita.size(); i > (i - 10); i--) {                
-                    contador++;
-                    peso = visita.get(i).getPesoActual() + peso;
-                }
-            }else{
-                 for (int i = 0; i < visita.size(); i++) {                  
-                    contador++;
-                    peso = visita.get(i).getPesoActual() + peso;
-                }
-            }
-            
-            double pesoPromedio = peso / contador;
- 
-            mascota.setPesoPromedio(pesoPromedio);
-            MascotaData maData = new MascotaData();
-            maData.modificarMascota(mascota);
-
-            ps.close();
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "error al acceder al promedio");
         }
+
     }
 }

@@ -511,14 +511,16 @@ public class GestionVisita extends javax.swing.JPanel {
             visit.setTratamiento(tr);
 
             viData.guardarVisita(visit);
-
             viData.sacarPesoPromedio(mascota);
+            
             jdni.setText("");
             jidCliente.setText("");
             jDatos.setText("");
             jMascota1.removeAllItems();
             jpeso.setText("");
             jDate.setDate(null);
+            jObservacion.setText("");
+            jMascota2.setSelectedIndex(-1);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error al ingresar el peso, solo ingrese numeros sin letras ni caracteres");
         }
