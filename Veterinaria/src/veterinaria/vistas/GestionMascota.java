@@ -668,7 +668,9 @@ public class GestionMascota extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
 
                     } else {
+
                         mascotaActual.setIdMascota(mas);
+
                         mascotaActual.setAlias(ali);
                         mascotaActual.setColorPelo(col);
                         mascotaActual.setEspecie(esp);

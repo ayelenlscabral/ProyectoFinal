@@ -502,9 +502,9 @@ public class GestionCliente extends javax.swing.JPanel {
                                 cli.setEstado(jrEstado.isSelected());
                                 cli.setPersonaAlternativa(personaAlt);
 
-                                if (apellido.matches("^[a-zA-Z\\s]+$")) {
-                                    if (nombre.matches("^[a-zA-Z\\s]+$")) {
-                                        if (personaAlt.matches("^[a-zA-Z\\s]+$")) {
+                                if (apellido.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
+                                    if (nombre.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
+                                        if (personaAlt.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
 
                                             cliente.guardarCliente(cli);
 
@@ -560,9 +560,9 @@ public class GestionCliente extends javax.swing.JPanel {
                                     cli.setEstado(jrEstado.isSelected());
                                     cli.setPersonaAlternativa(personaAlt);
 
-                                    if (apellido.matches("^[a-zA-Z\\s]+$")) {
-                                        if (nombre.matches("^[a-zA-Z\\s]+$")) {
-                                            if (personaAlt.matches("^[a-zA-Z\\s]+$")) {
+                                    if (apellido.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
+                                        if (nombre.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
+                                            if (personaAlt.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
 
                                                 cliente.modificarCliente(cli);
 
