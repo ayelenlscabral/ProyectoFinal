@@ -455,13 +455,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgendaActionPerformed
-//        jPanelAlternativo.removeAll();
-//        jPanelAlternativo.repaint();
-//        GestionVisita nuevo = new GestionVisita();
-//        jMenuPanel.setVisible(false);
-//        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
-//        nuevo.setVisible(true);
-//        jPanelAlternativo.setVisible(true);
+
     }//GEN-LAST:event_jAgendaActionPerformed
 
     private void jAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarClienteActionPerformed
