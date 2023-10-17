@@ -460,7 +460,7 @@ public class GestionVisita extends javax.swing.JPanel {
 
             for (Visita aux : viData.listarVisitaXMascota(id)) {
                 Mascota aux2 = maData.buscarMascota(aux.getMascota().getIdMascota());
-                Tratamiento aux3 = trData.buscarTratamiento(aux.getTratamiento().getIdTratamiento());
+                //Tratamiento aux3 = trData.buscarTratamiento(aux.getTratamiento().getIdTratamiento());
                 
                 modelo.addRow(new Object[]{
                     aux.getIdVisita(),
@@ -468,7 +468,7 @@ public class GestionVisita extends javax.swing.JPanel {
                     aux2.getAlias(),
                     aux.getPesoActual(),
                     aux2.getPesoPromedio(),
-                    aux3.getTipoTratamiento(),
+                    //aux3.getTipoTratamiento(),
                     aux.getObservaciones()});
             }
 
