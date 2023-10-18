@@ -127,6 +127,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.ipady = 11;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
         jPanel1.add(jScrollPane1, gridBagConstraints);
 
         jGuardar.setBackground(new java.awt.Color(91, 220, 107));
@@ -313,7 +314,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(28, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(28, 10, 0, 0);
         jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -362,7 +363,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(30, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 0, 10);
         jPanel1.add(jFiltroTipo, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -405,7 +406,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = -5;
         gridBagConstraints.ipady = 23;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(34, 108, 0, 0);
@@ -425,7 +425,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = -5;
         gridBagConstraints.ipady = 23;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(18, 108, 0, 0);
@@ -458,18 +457,18 @@ public class GestionTratamiento extends javax.swing.JPanel {
                 double importe = Double.parseDouble(jImporte.getText());
                 trata.setImporte(importe);
                 trata.setEstado(jEstado.isSelected());
-               if (trata.getDescripcion().length()<=250 && trata.getImporte() <= Double.MAX_VALUE){
-                trataData.guardarNuevoTratamiento(trata);
-                cargarTabla();
-                jTipo.setSelectedIndex(-1);
-                jFiltroTipo.setSelectedIndex(-1);
-                jDescripcion.setText("");
-                jImporte.setText("");
-                jEstado.setSelected(false);
-                jId.setText("");
-               }else{
-                   JOptionPane.showMessageDialog(null, "El campo descripcion solo acepta hasta 300 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
-               }
+                if (trata.getDescripcion().length() <= 250 && trata.getImporte() <= Double.MAX_VALUE) {
+                    trataData.guardarNuevoTratamiento(trata);
+                    cargarTabla();
+                    jTipo.setSelectedIndex(-1);
+                    jFiltroTipo.setSelectedIndex(-1);
+                    jDescripcion.setText("");
+                    jImporte.setText("");
+                    jEstado.setSelected(false);
+                    jId.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "El campo descripcion solo acepta hasta 300 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
 
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Solo debes ingresar numeros en el campo Importe.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -486,19 +485,18 @@ public class GestionTratamiento extends javax.swing.JPanel {
                     double importe = Double.parseDouble(jImporte.getText());
                     trata.setImporte(importe);
                     trata.setEstado(jEstado.isSelected());
-                    if (trata.getDescripcion().length()<=250 && trata.getImporte() <= Double.MAX_VALUE){
-                    trataData.modificarTratamiento(trata);
-                    cargarTabla();
-                    jTipo.setSelectedIndex(-1);
-                    jFiltroTipo.setSelectedIndex(-1);
-                    jDescripcion.setText("");
-                    jImporte.setText("");
-                    jEstado.setSelected(false);
-                    jId.setText("");
-                     }else{
-                   JOptionPane.showMessageDialog(null, "El campo descripcion solo acepta hasta 300 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (trata.getDescripcion().length() <= 250 && trata.getImporte() <= Double.MAX_VALUE) {
+                        trataData.modificarTratamiento(trata);
+                        cargarTabla();
+                        jTipo.setSelectedIndex(-1);
+                        jFiltroTipo.setSelectedIndex(-1);
+                        jDescripcion.setText("");
+                        jImporte.setText("");
+                        jEstado.setSelected(false);
+                        jId.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El campo descripcion solo acepta hasta 300 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                   
 
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Solo debes ingresar numeros en el campo Importe.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -516,8 +514,12 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jTipo.setSelectedItem(modelo.getValueAt(jTabla.getSelectedRow(), 1));
         jDescripcion.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 2)));
         jImporte.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 3)));
-        Boolean estado = (boolean) modelo.getValueAt(jTabla.getSelectedRow(), 4);
-        jEstado.setSelected(estado);
+        String estado = String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 4));
+        if (estado.equals("Activado")) {
+            jEstado.setSelected(true);
+        } else {
+            jEstado.setSelected(false);
+        }
     }//GEN-LAST:event_jTablaMouseClicked
 
     private void jFiltroTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFiltroTipoActionPerformed
@@ -527,7 +529,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
 
     private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
         int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 0)));
-        trataData.eliminarTratamiento(id);
+        trataData.borrarTratamiento(id);
         LimpiarTabla();
         cargarTabla();
         jTipo.setSelectedIndex(-1);
@@ -664,7 +666,7 @@ private void cabecera() {
                             tratamiento.getTipoTratamiento(),
                             tratamiento.getDescripcion(),
                             tratamiento.getImporte(),
-                            tratamiento.isEstado()
+                            tratamiento.isEstado() ? "Activado" : "Desactivado"
                         });
                     }
                 } else {
@@ -673,7 +675,7 @@ private void cabecera() {
                         tratamiento.getTipoTratamiento(),
                         tratamiento.getDescripcion(),
                         tratamiento.getImporte(),
-                        tratamiento.isEstado()
+                        tratamiento.isEstado() ? "Activado" : "Desactivado"
                     });
                 }
 
@@ -683,7 +685,7 @@ private void cabecera() {
                     tratamiento.getTipoTratamiento(),
                     tratamiento.getDescripcion(),
                     tratamiento.getImporte(),
-                    tratamiento.isEstado()
+                    tratamiento.isEstado() ? "Activado" : "Desactivado"
                 });
             }
         }

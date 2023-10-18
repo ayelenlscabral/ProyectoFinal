@@ -125,52 +125,20 @@ public class TratamientoData {
 
         return tr;
     }
-//      public List<Tratamiento> listarXTipoTratamiento(String tipo) {
-//        ArrayList<Tratamiento> tratamiento = new ArrayList();
-//        String sql = "SELECT * FROM tratamiento WHERE estado=" +tipo;
-//        try {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//
-//            if (rs.next()) {
-//                Tratamiento tr = new Tratamiento();
-//                tr.setIdTratamiento(rs.getInt("idTratamiento"));
-//                tr.setTipoTratamiento(rs.getString("tipoTratamiento"));
-//                tr.setDescripcion(rs.getString("descripcion"));
-//                tr.setImporte(rs.getDouble("importe"));
-//                tr.setEstado(rs.getBoolean("estado"));
-//                tratamiento.add(tr);
-//            } else {
-//                ps.close();
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la lista Tratamiento");
-//        }
-//        return tratamiento;
-//    }
-//    public List<Tratamiento> listarXCliente(int idCliente) {
-//        ArrayList<Tratamiento> tratamiento = new ArrayList();
-//        String sql = "SELECT * FROM tratamiento WHERE estado=" +tipo;
-//        try {
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//
-//            if (rs.next()) {
-//                Tratamiento tr = new Tratamiento();
-//                tr.setIdTratamiento(rs.getInt("idTratamiento"));
-//                tr.setTipoTratamiento(rs.getString("tipoTratamiento"));
-//                tr.setDescripcion(rs.getString("descripcion"));
-//                tr.setImporte(rs.getDouble("importe"));
-//                tr.setEstado(rs.getBoolean("estado"));
-//                tratamiento.add(tr);
-//            } else {
-//                ps.close();
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la lista Tratamiento");
-//        }
-//        return tratamiento;
-//    }
+
+    public void borrarTratamiento(int id) {
+        String sql = "DELETE FROM `tratamiento` WHERE idTratamiento = ?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Tratamiento eliminado con exito");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de eliminar el tratamiento");
+        }
+    }
 
     public List<String> listarTipoCategoria() {
         ArrayList<String> categorias = new ArrayList();

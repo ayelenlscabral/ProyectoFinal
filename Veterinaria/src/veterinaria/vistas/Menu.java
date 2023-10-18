@@ -204,7 +204,7 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.ipady = 179;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
         jMenuPanel.add(jAgregarVisita, gridBagConstraints);
 
         jModo.setBackground(new java.awt.Color(85, 85, 85));
@@ -294,7 +294,7 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.ipady = 125;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
         jMenuPanel.add(jAbout, gridBagConstraints);
 
         jLogOut.setBackground(new java.awt.Color(128, 0, 32));
@@ -317,7 +317,7 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.ipady = 162;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
         jMenuPanel.add(jLogOut, gridBagConstraints);
 
         jBienvenida.setBackground(new java.awt.Color(0, 99, 177));
@@ -326,11 +326,11 @@ public class Menu extends javax.swing.JFrame {
         jBienvenida.setLayout(jBienvenidaLayout);
         jBienvenidaLayout.setHorizontalGroup(
             jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
         jBienvenidaLayout.setVerticalGroup(
             jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 543, Short.MAX_VALUE)
+            .addGap(0, 539, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -353,11 +353,11 @@ public class Menu extends javax.swing.JFrame {
         jPanelAdmin.setLayout(jPanelAdminLayout);
         jPanelAdminLayout.setHorizontalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
         jPanelAdminLayout.setVerticalGroup(
             jPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 341, Short.MAX_VALUE)
+            .addGap(0, 339, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -390,7 +390,7 @@ public class Menu extends javax.swing.JFrame {
             jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPublicidadLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1469, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1460, Short.MAX_VALUE)
                 .addGap(672, 672, 672)
                 .addComponent(fb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -403,14 +403,14 @@ public class Menu extends javax.swing.JFrame {
             jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPublicidadLayout.createSequentialGroup()
                 .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addGroup(jPublicidadLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(insta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fb, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(fb, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                             .addComponent(wsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -423,7 +423,7 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jMenuPanel.add(jPublicidad, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -446,9 +446,12 @@ public class Menu extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1000;
         gridBagConstraints.ipady = 700;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanelAlternativo, gridBagConstraints);
 
         pack();
