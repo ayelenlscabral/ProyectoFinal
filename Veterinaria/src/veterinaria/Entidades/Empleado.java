@@ -5,21 +5,24 @@ public class Empleado {
     private int idEmpleado;
     private String usuario;
     private String contrasenia;
+    private String sexo;
     private int acceso;
 
     public Empleado() {
     }
 
-    public Empleado(String usuario, String contrasenia, int acceso) {
+    public Empleado(String usuario, String contrasenia, String sexo, int acceso) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
+        this.sexo = sexo;
         this.acceso = acceso;
     }
 
-    public Empleado(int idEmpleado, String usuario, String contrasenia, int acceso) {
+    public Empleado(int idEmpleado, String usuario, String contrasenia, String sexo, int acceso) {
         this.idEmpleado = idEmpleado;
         this.usuario = usuario;
         this.contrasenia = contrasenia;
+        this.sexo = sexo;
         this.acceso = acceso;
     }
 
@@ -47,6 +50,14 @@ public class Empleado {
         this.contrasenia = contrasenia;
     }
 
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
     public int getAcceso() {
         return acceso;
     }
@@ -57,8 +68,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "idEmpleado=" + idEmpleado + ", usuario=" + usuario + ", contrasenia=" + contrasenia + ", acceso=" + acceso + '}';
+        return "Empleado{" + "idEmpleado=" + idEmpleado + ", usuario=" + usuario + ", contrasenia=" + contrasenia + ", sexo=" + sexo + ", acceso=" + acceso + '}';
     }
-    
-    
+
 }

@@ -5,20 +5,23 @@
  */
 package veterinaria.vistas;
 
+import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.TratamientoData;
+import veterinaria.AccesoADatos.VisitaData;
 import veterinaria.Entidades.Tratamiento;
+import veterinaria.Entidades.Visita;
 
 /**
  *
  * @author calga
  */
 public class GestionTratamiento extends javax.swing.JPanel {
-
+    VisitaData visitaData = new VisitaData();
     TratamientoData trataData = new TratamientoData();
     Tratamiento trata = new Tratamiento();
     DefaultTableModel modelo = new DefaultTableModel() {
@@ -202,7 +205,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jPanel1.add(jEliminar, gridBagConstraints);
 
         jDescripcion.setBackground(new java.awt.Color(255, 128, 171));
-        jDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jDescripcion.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jDescripcion.setMinimumSize(new java.awt.Dimension(10, 10));
         jDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,7 +225,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jPanel1.add(jDescripcion, gridBagConstraints);
 
         jImporte.setBackground(new java.awt.Color(255, 128, 171));
-        jImporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jImporte.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jImporte.setMinimumSize(new java.awt.Dimension(10, 10));
         jImporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -528,8 +531,19 @@ public class GestionTratamiento extends javax.swing.JPanel {
     }//GEN-LAST:event_jFiltroTipoActionPerformed
 
     private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
+        boolean comprobador = false;
         int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 0)));
-        trataData.borrarTratamiento(id);
+        for (Visita visita : visitaData.listarVisita()) {
+            if (visita.getTratamiento().getIdTratamiento() == id) {
+             comprobador=true;
+            }
+          }
+        if (!comprobador) {
+            trataData.borrarTratamiento(id);
+        }else{
+        JOptionPane.showMessageDialog(null, "No puedes eliminar el tratamiento ya que se encuentran visitas vinculadas" , "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
         LimpiarTabla();
         cargarTabla();
         jTipo.setSelectedIndex(-1);
