@@ -157,6 +157,11 @@ public class GestionMascota extends javax.swing.JPanel {
         buttonGroup1.add(jCheckBoxM);
         jCheckBoxM.setForeground(new java.awt.Color(0, 51, 204));
         jCheckBoxM.setText("macho");
+        jCheckBoxM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMActionPerformed(evt);
+            }
+        });
 
         jBuscar.setBackground(new java.awt.Color(0, 0, 153));
         jBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -414,11 +419,6 @@ public class GestionMascota extends javax.swing.JPanel {
 
         jTClienteDNI.setBackground(new java.awt.Color(255, 255, 255));
         jTClienteDNI.setForeground(new java.awt.Color(0, 0, 0));
-        jTClienteDNI.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTClienteDNIKeyTyped(evt);
-            }
-        });
 
         jBotonOk.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
         jBotonOk.setText("OK");
@@ -524,14 +524,12 @@ public class GestionMascota extends javax.swing.JPanel {
 
         jTidMascota.setText("");
         jTAlias.setText("");
-        jCheckBoxH.setSelected(false);
-        jCheckBoxM.setSelected(false);
         jTEspecie.setText("");
         jTRaza.setText("");
         jTColordePelo.setText("");
         jTPesoActual.setText("");
         jRadioBEstado.setSelected(false);
-
+        jDateFechaNac.setDate(null);
     }//GEN-LAST:event_jBNuevoActionPerformed
 
 
@@ -765,10 +763,16 @@ public class GestionMascota extends javax.swing.JPanel {
                     Date fechaNacimientoDate = Date.from(fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant());
                     jDateFechaNac.setDate(fechaNacimientoDate);
                     jRadioBEstado.setSelected(mascotaActual.isEstado());
-                    if (jCheckBoxH.isSelected()) {
+                    String sex = mascotaActual.getSexo();
+                    if (sex.equalsIgnoreCase("Hembra")) {
+                        jCheckBoxH.setSelected(true);
                         jCheckBoxM.setSelected(false);
-                    } else if (!jCheckBoxH.isSelected()) {
+                    } else if (sex.equalsIgnoreCase("Macho")) {
+                        jCheckBoxH.setSelected(false);
                         jCheckBoxM.setSelected(true);
+                    } else {
+                        jCheckBoxH.setSelected(false);
+                        jCheckBoxM.setSelected(false);
                     }
 
                     Cliente cliente = mascotaActual.getIdCliente();
@@ -778,6 +782,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido en el campo id Mascota.", "ERROR", JOptionPane.ERROR_MESSAGE);
+
             }
         } else {
             JOptionPane.showMessageDialog(this, "El campo id Mascota no puede estar vacío.");
@@ -787,50 +792,12 @@ public class GestionMascota extends javax.swing.JPanel {
 
     private void jCheckBoxHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHActionPerformed
 
+        if (jCheckBoxH.isSelected()) {
+            jCheckBoxM.setSelected(false);
+        }
+
     }//GEN-LAST:event_jCheckBoxHActionPerformed
 
-    private void jTClienteDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClienteDNIKeyTyped
-
-//        String dniCliente = jTClienteDNI.getText();
-//
-//        if (dniCliente.isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Por favor, ingrese un DNI de cliente.");
-//            
-//        }
-//
-//        try {
-//            int idCliente = Integer.parseInt(dniCliente);
-//
-//            List<Mascota> mascotas = mascotaData.MascotasporClienteDNI(idCliente);
-//            if (mascotas.isEmpty()) {
-//                JOptionPane.showMessageDialog(this, "No se encontraron mascotas para el cliente con DNI: " + idCliente);
-//            } else {
-//                DefaultTableModel model = (DefaultTableModel) jTabla.getModel();
-//                model.setRowCount(0);
-//
-//                for (Mascota mascota : mascotas) {
-//                    Object[] rowData = {
-//                        mascota.getIdMascota(),
-//                        mascota.getAlias(),
-//                        mascota.getSexo(),
-//                        mascota.getEspecie(),
-//                        mascota.getRaza(),
-//                        mascota.getColorPelo(),
-//                        mascota.getFechaNac(),
-//                        mascota.getPesoPromedio(),
-//                        mascota.getPesoActual(),
-//                        mascota.isEstado() ? "Activo" : "Inactivo"
-//                    };
-//                    model.addRow(rowData);
-//                }
-//            }
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID de cliente válido.");
-//        } catch (HeadlessException e) {
-//            JOptionPane.showMessageDialog(this, "Error al buscar las mascotas: " + e.getMessage());
-//        }
-
-    }//GEN-LAST:event_jTClienteDNIKeyTyped
 
     private void jComboBoxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClienteActionPerformed
         // TODO add your handling code here:
@@ -845,7 +812,7 @@ public class GestionMascota extends javax.swing.JPanel {
             jTAlias.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 1)));
 
             String sex = String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 2));
-              
+
             if (sex.equalsIgnoreCase("hembra")) {
                 jCheckBoxH.setSelected(true);
                 jCheckBoxM.setSelected(false);
@@ -905,6 +872,14 @@ public class GestionMascota extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error al buscar las mascotas: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBotonOkMouseClicked
+
+    private void jCheckBoxMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMActionPerformed
+
+        if (jCheckBoxM.isSelected()) {
+            jCheckBoxH.setSelected(false);
+        }
+
+    }//GEN-LAST:event_jCheckBoxMActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

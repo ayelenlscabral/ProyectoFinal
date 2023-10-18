@@ -72,6 +72,8 @@ public class MascotaData {
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: ","ERROR", JOptionPane.ERROR_MESSAGE);
+                   
+            
         }
         
     }
@@ -255,7 +257,7 @@ public void eliminarMascota(int idMascota) {
             ps.close();   
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
    }
