@@ -168,7 +168,6 @@ public class VisitaData {
     public List<Visita> listarVisita() {
         List<Visita> visita = new ArrayList();
         String sql = "SELECT * FROM `visita`";
-
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
