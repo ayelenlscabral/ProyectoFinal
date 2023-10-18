@@ -39,6 +39,8 @@ public class GestionVisita extends javax.swing.JPanel {
         jDatos.setOpaque(true);
         jimporte.setOpaque(true);
         jcontado.setSelected(true);
+//        jLabel1.setOpaque(true);jLabel2.setOpaque(true);jLabel3.setOpaque(true);jLabel4.setOpaque(true);jLabel5.setOpaque(true);jLabel6.setOpaque(true);jLabel7.setOpaque(true);jLabel8.setOpaque(true);jLabel9.setOpaque(true);jLabel10.setOpaque(true);jLabel11.setOpaque(true);
+        
     }
     private DefaultTableModel modelo = new DefaultTableModel() {
         @Override
@@ -131,32 +133,58 @@ public class GestionVisita extends javax.swing.JPanel {
         jCoincidencias = new javax.swing.JLabel();
         jDate = new com.toedter.calendar.JDateChooser();
 
+        setBackground(new java.awt.Color(153, 51, 255));
+        setForeground(new java.awt.Color(0, 0, 204));
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
+        jLabel1.setBackground(new java.awt.Color(51, 51, 255));
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("REGISTRAR VISITA");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Buscar Cliente por DNI:");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Elegir Mascota:");
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Datos Mascota:");
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Tratamiento a realizar:");
 
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Importe:    $");
 
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Peso Actual");
 
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Fecha de visita");
 
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Observacion:");
 
+        jMascota1.setBackground(new java.awt.Color(102, 0, 102));
+        jMascota1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jMascota1.setForeground(new java.awt.Color(255, 255, 255));
         jMascota1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMascota1ActionPerformed(evt);
             }
         });
 
+        jTratamiento.setBackground(new java.awt.Color(102, 0, 102));
+        jTratamiento.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jTratamiento.setForeground(new java.awt.Color(255, 255, 255));
         jTratamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTratamientoActionPerformed(evt);
@@ -167,6 +195,9 @@ public class GestionVisita extends javax.swing.JPanel {
         jObservacion.setRows(5);
         jScrollPane1.setViewportView(jObservacion);
 
+        jcontado.setBackground(new java.awt.Color(102, 0, 102));
+        jcontado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jcontado.setForeground(new java.awt.Color(255, 255, 255));
         jcontado.setText("Contado");
         jcontado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +205,9 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
 
+        jtarjeta.setBackground(new java.awt.Color(102, 0, 102));
+        jtarjeta.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jtarjeta.setForeground(new java.awt.Color(255, 255, 255));
         jtarjeta.setText("Tarjeta");
         jtarjeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,10 +215,13 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
 
-        jimporte.setBackground(java.awt.SystemColor.controlShadow);
+        jimporte.setBackground(new java.awt.Color(255, 255, 255));
+        jimporte.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jimporte.setForeground(new java.awt.Color(0, 0, 0));
 
-        jDatos.setBackground(java.awt.SystemColor.controlShadow);
-        jDatos.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jDatos.setBackground(new java.awt.Color(153, 51, 255));
+        jDatos.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
+        jDatos.setForeground(new java.awt.Color(255, 255, 255));
 
         jpeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,8 +229,12 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("kg");
 
+        jGuardar.setBackground(new java.awt.Color(102, 0, 102));
+        jGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jGuardar.setText("GUARDAR VISITA");
         jGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +242,9 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(102, 0, 102));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Volver al Menu");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,8 +252,13 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("MOSTRAR VISITAS POR MASCOTA");
 
+        jMascota2.setBackground(new java.awt.Color(102, 0, 102));
+        jMascota2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jMascota2.setForeground(new java.awt.Color(255, 255, 255));
         jMascota2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMascota2ActionPerformed(evt);
@@ -235,6 +284,8 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
 
+        jBuscar.setBackground(new java.awt.Color(102, 0, 102));
+        jBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jBuscar.setText("buscar");
         jBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,17 +293,25 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
 
-        jidCliente.setBackground(java.awt.SystemColor.controlShadow);
+        jidCliente.setBackground(new java.awt.Color(102, 0, 102));
+        jidCliente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jidCliente.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Codigo:");
 
-        jCoincidencias.setBackground(new java.awt.Color(255, 255, 255));
-        jCoincidencias.setForeground(new java.awt.Color(0, 51, 204));
+        jCoincidencias.setBackground(new java.awt.Color(204, 204, 255));
+        jCoincidencias.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jCoincidencias.setForeground(new java.awt.Color(0, 0, 0));
         jCoincidencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCoincidenciasMouseClicked(evt);
             }
         });
+
+        jDate.setBackground(new java.awt.Color(102, 0, 102));
+        jDate.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -426,34 +485,6 @@ public class GestionVisita extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
-        jCoincidencias.setVisible(false);
-        jDatos.setText("");
-        jMascota1.removeAllItems();
-        jpeso.setText("");
-        jDate.setDate(null);
-        try {
-            int dni = (int) Integer.parseInt(jdni.getText());
-            client = clData.buscarCliente(dni);
-            if (!(client == null)) {
-                jidCliente.setText(Integer.toString(client.getIdCliente()));
-            }
-            llenarMascota();
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error al ingresar el numero del dni. Recuerde no agregar letras, caracteres ni coma ni puntos");
-        }
-    }//GEN-LAST:event_jBuscarActionPerformed
-
-    private void jMascota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota1ActionPerformed
-        if (jMascota1.getSelectedIndex() == -1) {
-            jDatos.setText("");
-        } else {
-            mascota = (Mascota) jMascota1.getSelectedItem();
-            jDatos.setText(mascota.toString() + ",  " + mascota.getSexo() + "  , " + mascota.getColorPelo() + "  ,Peso Promedio:" + mascota.getPesoPromedio() + "kg  ,  Nacio el: " + mascota.getFechaNac());
-        }
-    }//GEN-LAST:event_jMascota1ActionPerformed
-
     private void jMascota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota2ActionPerformed
         borrarFilas();
         if (jMascota2.getSelectedIndex() == -1) {
@@ -474,7 +505,7 @@ public class GestionVisita extends javax.swing.JPanel {
                     aux2.getPesoPromedio(),
                     aux3.getTipoTratamiento(),
                     aux.getObservaciones()});
-            }
+        }
 
         }
     }//GEN-LAST:event_jMascota2ActionPerformed
@@ -484,16 +515,6 @@ public class GestionVisita extends javax.swing.JPanel {
         menu.setVisible(true);
         SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTratamientoActionPerformed
-        if (jTratamiento.getSelectedIndex() == -1) {
-            jimporte.setText("");
-        } else {
-            Tratamiento tr = new Tratamiento();
-            tr = (Tratamiento) jTratamiento.getSelectedItem();
-            jimporte.setText(Double.toString(tr.getImporte()));
-        }
-    }//GEN-LAST:event_jTratamientoActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
         try {
@@ -512,7 +533,7 @@ public class GestionVisita extends javax.swing.JPanel {
 
             viData.guardarVisita(visit);
             viData.sacarPesoPromedio(mascota);
-            
+
             jdni.setText("");
             jidCliente.setText("");
             jDatos.setText("");
@@ -524,22 +545,34 @@ public class GestionVisita extends javax.swing.JPanel {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error al ingresar el peso, solo ingrese numeros sin letras ni caracteres");
         }
-
     }//GEN-LAST:event_jGuardarActionPerformed
-
-    private void jtarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtarjetaActionPerformed
-        jcontado.setSelected(false);
-        jtarjeta.setSelected(true);
-    }//GEN-LAST:event_jtarjetaActionPerformed
-
-    private void jcontadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcontadoActionPerformed
-        jcontado.setSelected(true);
-        jtarjeta.setSelected(false);
-    }//GEN-LAST:event_jcontadoActionPerformed
 
     private void jpesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpesoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpesoActionPerformed
+
+    private void jCoincidenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCoincidenciasMouseClicked
+        jCoincidencias.setVisible(false);
+        jdni.setText(jCoincidencias.getText());
+    }//GEN-LAST:event_jCoincidenciasMouseClicked
+
+    private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
+        jCoincidencias.setVisible(false);
+        jDatos.setText("");
+        jMascota1.removeAllItems();
+        jpeso.setText("");
+        jDate.setDate(null);
+        try {
+            int dni = (int) Integer.parseInt(jdni.getText());
+            client = clData.buscarCliente(dni);
+            if (!(client == null)) {
+                jidCliente.setText(Integer.toString(client.getIdCliente()));
+            }
+            llenarMascota();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error al ingresar el numero del dni. Recuerde no agregar letras, caracteres ni coma ni puntos");
+        }
+    }//GEN-LAST:event_jBuscarActionPerformed
 
     private void jdniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdniKeyReleased
         jCoincidencias.setVisible(false);
@@ -552,10 +585,35 @@ public class GestionVisita extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jdniKeyReleased
 
-    private void jCoincidenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCoincidenciasMouseClicked
-        jCoincidencias.setVisible(false);
-        jdni.setText(jCoincidencias.getText());
-    }//GEN-LAST:event_jCoincidenciasMouseClicked
+    private void jtarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtarjetaActionPerformed
+        jcontado.setSelected(false);
+        jtarjeta.setSelected(true);
+    }//GEN-LAST:event_jtarjetaActionPerformed
+
+    private void jcontadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcontadoActionPerformed
+        jcontado.setSelected(true);
+        jtarjeta.setSelected(false);
+    }//GEN-LAST:event_jcontadoActionPerformed
+
+    private void jTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTratamientoActionPerformed
+        if (jTratamiento.getSelectedIndex() == -1) {
+            jimporte.setText("");
+        } else {
+            Tratamiento tr = new Tratamiento();
+            tr = (Tratamiento) jTratamiento.getSelectedItem();
+            jimporte.setText(Double.toString(tr.getImporte()));
+        }
+    }//GEN-LAST:event_jTratamientoActionPerformed
+
+    private void jMascota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota1ActionPerformed
+        if (jMascota1.getSelectedIndex() == -1) {
+            jDatos.setText("");
+        } else {
+            mascota = (Mascota) jMascota1.getSelectedItem();
+            jDatos.setText(mascota.toString() + ",  " + mascota.getSexo() + "  , " + mascota.getColorPelo() + "  ,Peso Promedio:" + mascota.getPesoPromedio() + "kg  ,  Nacio el: " + mascota.getFechaNac());
+        }
+    }//GEN-LAST:event_jMascota1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
