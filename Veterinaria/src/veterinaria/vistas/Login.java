@@ -143,9 +143,9 @@ public class Login extends javax.swing.JFrame {
         String usuario = jUsuario.getText();
         String contrasenia =jContrasenia.getText();
             comprobador = empleadoData.buscarEmpleado(usuario, contrasenia);
-           System.out.println("comprobador : " + comprobador);
         if (comprobador.isComprobacion()) {
                 menu.getUsuario(comprobador.getEmpleado());
+//                menu.inicio(comprobador.getEmpleado());
                 this.dispose();
                 loginLatch.countDown();
             if (menu != null) {
