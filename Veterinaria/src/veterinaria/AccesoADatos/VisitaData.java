@@ -147,9 +147,9 @@ public class VisitaData {
     public void sacarPesoPromedio(Mascota mascota) {
         try {
             String sql = "SELECT AVG(pesoActual) AS pesoPromedio "
-                    +"FROM (SELECT pesoActual FROM visita WHERE idMascota = ? ORDER BY fechaVisita DESC LIMIT 10) "
-                    +"AS UltimasVisitas";
-            
+                    + "FROM (SELECT pesoActual FROM visita WHERE idMascota = ? ORDER BY fechaVisita DESC LIMIT 10) "
+                    + "AS UltimasVisitas";
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, mascota.getIdMascota());
             ResultSet rs = ps.executeQuery();
@@ -163,5 +163,32 @@ public class VisitaData {
             JOptionPane.showMessageDialog(null, "error al acceder al promedio");
         }
 
+    }
+
+    public List<Visita> listarVisita() {
+        List<Visita> visita = new ArrayList();
+        String sql = "SELECT * FROM `visita`";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Visita visit = new Visita();
+                Mascota mascota = new Mascota();
+                Tratamiento tratamiento = new Tratamiento();
+                visit.setIdVisita(rs.getInt("idVisita"));
+                mascota.setIdMascota(rs.getInt("idMascota"));
+                tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
+                visit.setMascota(mascota);
+                visit.setTratamiento(tratamiento);
+                visit.setFechaTratamiento(rs.getDate("fechaVisita").toLocalDate());
+                visit.setObservaciones(rs.getString("observaciones"));
+                visit.setPesoActual(rs.getDouble("pesoActual"));
+                visita.add(visit);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+        }
+        return visita;
     }
 }

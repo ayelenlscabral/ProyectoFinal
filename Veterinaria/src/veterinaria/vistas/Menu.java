@@ -458,7 +458,13 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgendaActionPerformed
-
+        jPanelAlternativo.removeAll();
+        jPanelAlternativo.repaint();
+        Agenda nuevo = new Agenda();
+        jMenuPanel.setVisible(false);
+        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
+        nuevo.setVisible(true);
+        jPanelAlternativo.setVisible(true);
     }//GEN-LAST:event_jAgendaActionPerformed
 
     private void jAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarClienteActionPerformed
@@ -595,7 +601,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jModoActionPerformed
 
     private void jBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalanceActionPerformed
-        
+        jPanelAlternativo.removeAll();
+        jPanelAlternativo.repaint();
+        Balance nuevo = new Balance();
+        jMenuPanel.setVisible(false);
+        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
+        nuevo.setVisible(true);
+        jPanelAlternativo.setVisible(true);
     }//GEN-LAST:event_jBalanceActionPerformed
 
     /**
