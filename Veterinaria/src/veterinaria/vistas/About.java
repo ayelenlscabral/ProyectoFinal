@@ -5,17 +5,22 @@
  */
 package veterinaria.vistas;
 
+import veterinaria.Entidades.Empleado;
+
 /**
  *
  * @author calga
  */
 public class About extends javax.swing.JPanel {
-
+    private boolean modo;
+    private Empleado empleado;
     /**
      * Creates new form About
      */
-    public About() {
+    public About(boolean modo,Empleado empleado) {
         initComponents();
+                this.modo = modo;
+                this.empleado=empleado;
     }
 
     /**
@@ -31,11 +36,11 @@ public class About extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -4,30 +4,35 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import javax.swing.UnsupportedLookAndFeelException;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 import veterinaria.Entidades.Empleado;
 
 public class Menu extends javax.swing.JFrame {
+
+    ImageIcon hombre = new ImageIcon((getClass().getResource("/veterinaria/Recursos/hombre.png")));
+    ImageIcon mujer = new ImageIcon((getClass().getResource("/veterinaria/Recursos/mujer.png")));
+    ImageIcon administrador = new ImageIcon((getClass().getResource("/veterinaria/Recursos/administrador.png")));
     private Empleado empleado;
     private static Menu menu;
-    public boolean condicion = false;
-
-    public Menu() {
+    public boolean modo;
+    
+    public Menu(boolean modo, Empleado empleado ) {
         initComponents();
         mostrarHoraActual();
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.modo = modo;
+        this.empleado = empleado;
+        getUsuario(empleado);
+        actualizarApariencia(modo);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,6 +55,9 @@ public class Menu extends javax.swing.JFrame {
         jAbout = new javax.swing.JButton();
         jLogOut = new javax.swing.JButton();
         jBienvenida = new javax.swing.JPanel();
+        jBienvenido = new javax.swing.JLabel();
+        jUsuario = new javax.swing.JLabel();
+        jLogo = new javax.swing.JLabel();
         jPanelAdmin = new javax.swing.JPanel();
         jPublicidad = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,12 +93,14 @@ public class Menu extends javax.swing.JFrame {
         jPanelHorario.add(jFecha, java.awt.BorderLayout.PAGE_START);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 0);
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 558;
+        gridBagConstraints.ipady = 309;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         jMenuPanel.add(jPanelHorario, gridBagConstraints);
 
         jAgregarCliente.setBackground(new java.awt.Color(0, 120, 215));
@@ -105,12 +115,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 345;
-        gridBagConstraints.ipady = 109;
+        gridBagConstraints.ipadx = 1066;
+        gridBagConstraints.ipady = 310;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -128,11 +138,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 78;
+        gridBagConstraints.ipadx = 488;
+        gridBagConstraints.ipady = 202;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -150,10 +160,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 71;
+        gridBagConstraints.ipadx = 562;
+        gridBagConstraints.ipady = 202;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -172,11 +183,10 @@ public class Menu extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 110;
-        gridBagConstraints.ipady = 105;
+        gridBagConstraints.ipadx = 524;
+        gridBagConstraints.ipady = 291;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -195,16 +205,17 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 21;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 52;
-        gridBagConstraints.ipady = 179;
+        gridBagConstraints.ipadx = 698;
+        gridBagConstraints.ipady = 529;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 11);
         jMenuPanel.add(jAgregarVisita, gridBagConstraints);
 
         jModo.setBackground(new java.awt.Color(85, 85, 85));
@@ -218,13 +229,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 38;
-        gridBagConstraints.ipady = 118;
+        gridBagConstraints.ipadx = 358;
+        gridBagConstraints.ipady = 290;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -242,11 +251,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 9;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 336;
+        gridBagConstraints.ipadx = 492;
+        gridBagConstraints.ipady = 640;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -264,12 +274,11 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 238;
-        gridBagConstraints.ipady = 124;
+        gridBagConstraints.ipadx = 558;
+        gridBagConstraints.ipady = 291;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -287,14 +296,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 18;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 125;
+        gridBagConstraints.ipadx = 320;
+        gridBagConstraints.ipady = 291;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 11);
         jMenuPanel.add(jAbout, gridBagConstraints);
 
         jLogOut.setBackground(new java.awt.Color(128, 0, 32));
@@ -308,39 +318,71 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 7;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 9;
-        gridBagConstraints.ipady = 162;
+        gridBagConstraints.ipadx = 698;
+        gridBagConstraints.ipady = 329;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 11);
         jMenuPanel.add(jLogOut, gridBagConstraints);
 
         jBienvenida.setBackground(new java.awt.Color(0, 99, 177));
+        jBienvenida.setPreferredSize(new java.awt.Dimension(500, 500));
+        jBienvenida.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jBienvenidaLayout = new javax.swing.GroupLayout(jBienvenida);
-        jBienvenida.setLayout(jBienvenidaLayout);
-        jBienvenidaLayout.setHorizontalGroup(
-            jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
-        );
-        jBienvenidaLayout.setVerticalGroup(
-            jBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 539, Short.MAX_VALUE)
-        );
+        jBienvenido.setFont(new java.awt.Font("Tahoma", 1, 55)); // NOI18N
+        jBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 401;
+        gridBagConstraints.ipady = 70;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jBienvenida.add(jBienvenido, gridBagConstraints);
+
+        jUsuario.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 409;
+        gridBagConstraints.ipady = 84;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        jBienvenida.add(jUsuario, gridBagConstraints);
+
+        jLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 250;
+        gridBagConstraints.ipady = 176;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(30, 100, 10, 100);
+        jBienvenida.add(jLogo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 214;
-        gridBagConstraints.ipady = 235;
+        gridBagConstraints.ipadx = 59;
+        gridBagConstraints.ipady = 26;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -362,11 +404,11 @@ public class Menu extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridheight = 10;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 210;
-        gridBagConstraints.ipady = 155;
+        gridBagConstraints.ipadx = 534;
+        gridBagConstraints.ipady = 339;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -415,15 +457,15 @@ public class Menu extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = 27;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 147;
-        gridBagConstraints.ipady = 3;
+        gridBagConstraints.ipadx = 897;
+        gridBagConstraints.ipady = 155;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 11, 11);
         jMenuPanel.add(jPublicidad, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -460,7 +502,7 @@ public class Menu extends javax.swing.JFrame {
     private void jAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgendaActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
-        Agenda nuevo = new Agenda();
+        Agenda nuevo = new Agenda(modo,empleado);
         jMenuPanel.setVisible(false);
         jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
         nuevo.setVisible(true);
@@ -470,7 +512,7 @@ public class Menu extends javax.swing.JFrame {
     private void jAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarClienteActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
-        GestionCliente nuevo = new GestionCliente();
+        GestionCliente nuevo = new GestionCliente(modo,empleado);
         jMenuPanel.setVisible(false);
         jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
         nuevo.setVisible(true);
@@ -480,7 +522,7 @@ public class Menu extends javax.swing.JFrame {
     private void jHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHistorialActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
-        Historial nuevo = new Historial();
+        Historial nuevo = new Historial(modo,empleado);
         jMenuPanel.setVisible(false);
         jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
         nuevo.setVisible(true);
@@ -490,7 +532,7 @@ public class Menu extends javax.swing.JFrame {
     private void jGestionTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGestionTratamientoActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
-        GestionTratamiento nuevo = new GestionTratamiento();
+        GestionTratamiento nuevo = new GestionTratamiento(modo,empleado);
         jMenuPanel.setVisible(false);
         jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
         nuevo.setVisible(true);
@@ -498,20 +540,26 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jGestionTratamientoActionPerformed
 
     private void jLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogOutActionPerformed
-        Login login = new Login(menu);
+        Login login = new Login();
         login.repaint();
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLogOutActionPerformed
 
     private void jAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAboutActionPerformed
-                
+        jPanelAlternativo.removeAll();
+        jPanelAlternativo.repaint();
+        About nuevo = new About(modo,empleado);
+        jMenuPanel.setVisible(false);
+        jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
+        nuevo.setVisible(true);
+        jPanelAlternativo.setVisible(true);
     }//GEN-LAST:event_jAboutActionPerformed
 
     private void jAgregarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarVisitaActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
-        GestionVisita nuevo = new GestionVisita();
+        GestionVisita nuevo = new GestionVisita(modo,empleado);
         jMenuPanel.setVisible(false);
         jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
         nuevo.setVisible(true);
@@ -521,7 +569,7 @@ public class Menu extends javax.swing.JFrame {
     private void jAgregarMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarMascotaActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
-        GestionMascota nuevo = new GestionMascota();
+        GestionMascota nuevo = new GestionMascota(modo,empleado);
         jMenuPanel.setVisible(false);
         jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
         nuevo.setVisible(true);
@@ -529,81 +577,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jAgregarMascotaActionPerformed
 
     private void jModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModoActionPerformed
-       condicion = !condicion;
-                if (condicion) {
-                    try {
-                        javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-                        javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
-                        Color color = new Color(52, 55, 59);
-                          jMenuPanel.setBackground(color);
-                          jAgenda.setBackground(color);
-                          jAbout.setBackground(color);        
-                          jAgregarCliente.setBackground(color);
-                          jAgregarMascota.setBackground(color);
-                          jAgregarVisita.setBackground(color);
-                          jBalance.setBackground(color);
-                          jBienvenida.setBackground(color);
-                          jFecha.setBackground(color);
-                          jGestionTratamiento.setBackground(color);
-                          jHistorial.setBackground(color);
-                          jLogOut.setBackground(color);
-                          jModo.setBackground(color);
-                          jPanelAdmin.setBackground(color);
-                          jPanelAlternativo.setBackground(color);
-                          jPanelHorario.setBackground(color);
-                          jReloj.setBackground(color);
-                          jPublicidad.setBackground(color);
-                    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                        Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-
-                    }
-
-                } else {
-                    try {
-                        javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
-                        javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
-                        Color fondo = new Color(0, 133, 94);
-                        jMenuPanel.setBackground(fondo);
-                        Color fondoAgenda = new Color(136,223,153);
-                        jAgenda.setBackground(fondoAgenda);
-                        Color fondoAbout = new Color(22,141,79);
-                        jAbout.setBackground(fondoAbout);  
-                        Color fondoCliente = new Color(0,120,215);
-                        jAgregarCliente.setBackground(fondoCliente);
-                        Color fondoMascota = new Color(57,230,100);
-                        jAgregarMascota.setBackground(fondoMascota);
-                        Color fondoVisita = new Color(125,60,152);
-                        jAgregarVisita.setBackground(fondoVisita);
-                        Color fondoBalance = new Color(240,150,50);
-                         jBalance.setBackground(fondoBalance);
-                        Color fondoBienvenida = new Color(0,99,177);
-                        jBienvenida.setBackground(fondoBienvenida);
-                        Color fondoTratamiento = new Color(255,105,180);
-                        jGestionTratamiento.setBackground(fondoTratamiento);
-                        Color fondoHistorial = new Color(209,17,65);
-                        jHistorial.setBackground(fondoHistorial);
-                        Color fondoLogout = new Color(128,0,32);
-                        jLogOut.setBackground(fondoLogout);
-                        Color fondoModo = new Color(85,85,85);
-                        jModo.setBackground(fondoModo);
-                        Color fondoAdmin = new Color(240,150,50);
-                        jPanelAdmin.setBackground(fondoAdmin);
-                        Color fondoAlternativo = new Color(255,255,51);
-                        jPanelAlternativo.setBackground(fondoAlternativo);
-                        Color fondoHorario = new Color(120,168,255);
-                        jPanelHorario.setBackground(fondoHorario);
-                        Color fondoPublicidad = new Color(179,158,181);
-                        jPublicidad.setBackground(fondoPublicidad);
-                       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                        Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+        modo = !modo;
+        actualizarApariencia(modo);
     }//GEN-LAST:event_jModoActionPerformed
 
     private void jBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalanceActionPerformed
         jPanelAlternativo.removeAll();
         jPanelAlternativo.repaint();
-        Balance nuevo = new Balance();
+        Balance nuevo = new Balance(modo,empleado);
         jMenuPanel.setVisible(false);
         jPanelAlternativo.add(nuevo, BorderLayout.CENTER);
         nuevo.setVisible(true);
@@ -619,12 +600,12 @@ public class Menu extends javax.swing.JFrame {
 
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new Menu().setVisible(true);
+                    new Menu(false,new Empleado()).setVisible(true);
                     //DECOMENTAR AL FINAL PARA QUE FUNCIONE EL LOGIN
-//                Login login = new Login(Menu.getInstancia());
+//                Login login = new Login();
 //               login.setVisible(true);
-            }
-        });
+                }
+            });
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -649,11 +630,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jAgregarVisita;
     private javax.swing.JButton jBalance;
     private javax.swing.JPanel jBienvenida;
+    private javax.swing.JLabel jBienvenido;
     private javax.swing.JLabel jFecha;
     private javax.swing.JButton jGestionTratamiento;
     private javax.swing.JButton jHistorial;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jLogOut;
+    private javax.swing.JLabel jLogo;
     private javax.swing.JPanel jMenuPanel;
     private javax.swing.JButton jModo;
     private javax.swing.JPanel jPanelAdmin;
@@ -661,6 +644,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelHorario;
     private javax.swing.JPanel jPublicidad;
     private javax.swing.JLabel jReloj;
+    private javax.swing.JLabel jUsuario;
     private javax.swing.JLabel wsp;
     // End of variables declaration//GEN-END:variables
 private void mostrarHoraActual() {
@@ -681,15 +665,104 @@ private void mostrarHoraActual() {
 
         timer.start();
     }
-public static Menu getInstancia() {
-        if (menu == null) {
-            menu = new Menu();
+
+
+    public void getUsuario(Empleado empleado2) {
+        this.empleado = empleado2;
+        if (empleado != null) {
+            if (empleado.getAcceso() == 1) {
+                if (empleado.getSexo().equalsIgnoreCase("Masculino")) {
+                    jBienvenido.setText("BIENVENIDO");
+                    jUsuario.setText(empleado.getUsuario());
+                    jLogo.setIcon(administrador);
+                } else {
+                    jBienvenido.setText("BIENVENIDA");
+                    jUsuario.setText(empleado.getUsuario());
+                    jLogo.setIcon(administrador);
+                }
+
+            } else {
+                if (empleado2.getSexo().equalsIgnoreCase("Masculino")) {
+                    jBienvenido.setText("BIENVENIDO");
+                    jUsuario.setText(empleado.getUsuario());
+                    jLogo.setIcon(hombre);
+                } else {
+                    jBienvenido.setText("BIENVENIDA");
+                    jUsuario.setText(empleado.getUsuario());
+                    jLogo.setIcon(mujer);
+                }
+            }
+        } else {
+            System.out.println("Empleado null");
         }
-        return menu;
     }
-    public void getUsuario(Empleado empleado2){ 
-       this.empleado = empleado2;
-    }  
 
-
+    public void actualizarApariencia(boolean modoOscuro) {
+        if (modo) {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
+                Color color = new Color(52, 55, 59);
+                jMenuPanel.setBackground(color);
+                jAgenda.setBackground(color);
+                jAbout.setBackground(color);
+                jAgregarCliente.setBackground(color);
+                jAgregarMascota.setBackground(color);
+                jAgregarVisita.setBackground(color);
+                jBalance.setBackground(color);
+                jBienvenida.setBackground(color);
+                jFecha.setBackground(color);
+                jGestionTratamiento.setBackground(color);
+                jHistorial.setBackground(color);
+                jLogOut.setBackground(color);
+                jModo.setBackground(color);
+                jPanelAdmin.setBackground(color);
+                jPanelAlternativo.setBackground(color);
+                jPanelHorario.setBackground(color);
+                jReloj.setBackground(color);
+                jPublicidad.setBackground(color);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(Menu.this);
+                Color fondo = new Color(0, 133, 94);
+                jMenuPanel.setBackground(fondo);
+                Color fondoAgenda = new Color(136, 223, 153);
+                jAgenda.setBackground(fondoAgenda);
+                Color fondoAbout = new Color(22, 141, 79);
+                jAbout.setBackground(fondoAbout);
+                Color fondoCliente = new Color(0, 120, 215);
+                jAgregarCliente.setBackground(fondoCliente);
+                Color fondoMascota = new Color(57, 230, 100);
+                jAgregarMascota.setBackground(fondoMascota);
+                Color fondoVisita = new Color(125, 60, 152);
+                jAgregarVisita.setBackground(fondoVisita);
+                Color fondoBalance = new Color(240, 150, 50);
+                jBalance.setBackground(fondoBalance);
+                Color fondoBienvenida = new Color(0, 99, 177);
+                jBienvenida.setBackground(fondoBienvenida);
+                Color fondoTratamiento = new Color(255, 105, 180);
+                jGestionTratamiento.setBackground(fondoTratamiento);
+                Color fondoHistorial = new Color(209, 17, 65);
+                jHistorial.setBackground(fondoHistorial);
+                Color fondoLogout = new Color(128, 0, 32);
+                jLogOut.setBackground(fondoLogout);
+                Color fondoModo = new Color(85, 85, 85);
+                jModo.setBackground(fondoModo);
+                Color fondoAdmin = new Color(240, 150, 50);
+                jPanelAdmin.setBackground(fondoAdmin);
+                Color fondoAlternativo = new Color(255, 255, 51);
+                jPanelAlternativo.setBackground(fondoAlternativo);
+                Color fondoHorario = new Color(120, 168, 255);
+                jPanelHorario.setBackground(fondoHorario);
+                Color fondoPublicidad = new Color(179, 158, 181);
+                jPublicidad.setBackground(fondoPublicidad);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

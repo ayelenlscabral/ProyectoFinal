@@ -1,7 +1,5 @@
 package veterinaria.vistas;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 import javax.swing.JOptionPane;
 import veterinaria.AccesoADatos.EmpleadoData;
@@ -11,19 +9,18 @@ import veterinaria.Entidades.validadorUsuario;
 public class Login extends javax.swing.JFrame {
 
     EmpleadoData empleadoData = new EmpleadoData();
-    private static Menu menu ;
+
     private Empleado empleado;
     private CountDownLatch loginLatch;
 
-    public Login(Menu menu) {
+    public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
         loginLatch = new CountDownLatch(1);
-        this.menu = menu;
+
     }
 
-
-@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -42,11 +39,6 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jContrasenia.setBackground(new java.awt.Color(204, 204, 204));
-        jContrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jContraseniaActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,34 +130,29 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIniciarActionPerformed
-       validadorUsuario comprobador;
-        try{
-        String usuario = jUsuario.getText();
-        String contrasenia =jContrasenia.getText();
+        validadorUsuario comprobador;
+        try {
+            String usuario = jUsuario.getText();
+            String contrasenia = jContrasenia.getText();
             comprobador = empleadoData.buscarEmpleado(usuario, contrasenia);
-        if (comprobador.isComprobacion()) {
-                menu.getUsuario(comprobador.getEmpleado());
-//                menu.inicio(comprobador.getEmpleado());
+            if (comprobador.isComprobacion()) {
+                Menu menu = new Menu(false, comprobador.getEmpleado());
                 this.dispose();
                 loginLatch.countDown();
-            if (menu != null) {
-                menu.setVisible(true);
+                if (menu != null) {
+                    menu.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos, vuelva a intentarlo ");
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrectos, vuelva a intentarlo ");
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "error " + e.getMessage());
         }
-       }catch(NullPointerException e){
-       JOptionPane.showMessageDialog(null, "error " + e.getMessage());
-       }
     }//GEN-LAST:event_jIniciarActionPerformed
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jSalirActionPerformed
-
-    private void jContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jContraseniaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jContraseniaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -178,28 +165,24 @@ public class Login extends javax.swing.JFrame {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Login.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Login.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Login.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -207,7 +190,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 //                new Login().setVisible(true);
-                Login login = new Login(menu);
+                Login login = new Login();
             }
         });
     }
@@ -229,5 +212,5 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "nose que poner");
         }
     }
- 
+
 }
