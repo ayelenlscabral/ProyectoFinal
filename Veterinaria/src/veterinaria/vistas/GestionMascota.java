@@ -16,11 +16,14 @@ import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.MascotaData;
 import veterinaria.AccesoADatos.VisitaData;
 import veterinaria.Entidades.Cliente;
+import veterinaria.Entidades.Empleado;
 import veterinaria.Entidades.Mascota;
 import veterinaria.Entidades.Visita;
 
 public class GestionMascota extends javax.swing.JPanel {
 
+    private boolean modo;
+    private Empleado empleado;    
     private ClienteData CliData = new ClienteData();
     private MascotaData mascotaData = new MascotaData();
     private VisitaData VisData = new VisitaData();
@@ -39,10 +42,12 @@ public class GestionMascota extends javax.swing.JPanel {
         }
     };
 
-    public GestionMascota() {
+    public GestionMascota(boolean modo, Empleado empleado) {
         initComponents();
         cabecera();
         cargarClientes();
+        this.modo = modo;
+        this.empleado = empleado;
     }
 
     @SuppressWarnings("unchecked")
@@ -74,7 +79,6 @@ public class GestionMascota extends javax.swing.JPanel {
         jBuscar = new javax.swing.JButton();
         jComboBoxCliente = new javax.swing.JComboBox<>();
         jDateFechaNac = new com.toedter.calendar.JDateChooser();
-        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabla = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -290,20 +294,6 @@ public class GestionMascota extends javax.swing.JPanel {
                 .addGap(17, 17, 17))
         );
 
-        jPanel3.setBackground(new java.awt.Color(51, 204, 255));
-        jPanel3.setForeground(new java.awt.Color(51, 204, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 899, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 171, Short.MAX_VALUE)
-        );
-
         jTabla.setBackground(new java.awt.Color(255, 255, 255));
         jTabla.setForeground(new java.awt.Color(255, 0, 51));
         jTabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -447,11 +437,8 @@ public class GestionMascota extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,9 +455,7 @@ public class GestionMascota extends javax.swing.JPanel {
                         .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -530,6 +515,7 @@ public class GestionMascota extends javax.swing.JPanel {
         jTPesoActual.setText("");
         jRadioBEstado.setSelected(false);
         jDateFechaNac.setDate(null);
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
 
@@ -738,9 +724,11 @@ public class GestionMascota extends javax.swing.JPanel {
 
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-        Menu menu = new Menu();
+        Menu menu = new Menu(modo,empleado);
         menu.setVisible(true);
         SwingUtilities.getWindowAncestor(this).dispose();
+        
+        
     }//GEN-LAST:event_jBSalirActionPerformed
 
 
@@ -909,7 +897,6 @@ public class GestionMascota extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioBEstado;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTAlias;

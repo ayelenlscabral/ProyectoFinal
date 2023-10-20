@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import veterinaria.Entidades.Cliente;
 import veterinaria.Entidades.Mascota;
 
 public class MascotaData {
@@ -55,7 +56,7 @@ public class MascotaData {
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-                        
+
             ps.setInt(1, mascota.getIdCliente().getIdCliente());
             ps.setString(2, mascota.getAlias());
             ps.setString(3, mascota.getSexo());
@@ -68,18 +69,16 @@ public class MascotaData {
             ps.setInt(10, mascota.getIdMascota());
 
             ps.executeUpdate();
-            ps.close();   
-            
+            ps.close();
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: ","ERROR", JOptionPane.ERROR_MESSAGE);
-                   
-            
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: ", "ERROR", JOptionPane.ERROR_MESSAGE);
+
         }
-        
+
     }
 
-
-public void eliminarMascota(int idMascota) {
+    public void eliminarMascota(int idMascota) {
 
         String sql = "UPDATE mascota SET estado = 0 WHERE idMascota=?";
 
@@ -113,7 +112,7 @@ public void eliminarMascota(int idMascota) {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-
+                Cliente cliente = new Cliente();
                 mascota = new Mascota();
                 mascota.setIdMascota(rs.getInt("idMascota"));
                 mascota.setAlias(rs.getString("alias"));
@@ -125,6 +124,8 @@ public void eliminarMascota(int idMascota) {
                 mascota.setPesoPromedio(rs.getDouble("pesoPromedio"));
                 mascota.setPesoActual(rs.getDouble("pesoActual"));
                 mascota.setEstado(rs.getBoolean("estado"));
+                cliente.setIdCliente(rs.getInt("idCliente"));
+                mascota.setIdCliente(cliente);
 
             } else {
 
@@ -213,7 +214,7 @@ public void eliminarMascota(int idMascota) {
 
         List<Mascota> mascota = new ArrayList<>();
 
-        String sql = "SELECT * FROM mascota WHERE idCliente=?" ;
+        String sql = "SELECT * FROM mascota WHERE idCliente=?";
 
         PreparedStatement ps;
         try {
@@ -254,12 +255,41 @@ public void eliminarMascota(int idMascota) {
             ps.setDouble(1, mascota.getPesoPromedio());
             ps.setInt(2, mascota.getIdMascota());
             ps.executeUpdate();
-            ps.close();   
-            
+            ps.close();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Mascota: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
-   }
-        
+    }
+
+    public List<Mascota> listarMascotasParaHistorial() {
+
+        List<Mascota> mascotaHistorial = new ArrayList<>();
+
+        String sql = "SELECT idMascota, alias, raza, pesoActual, pesoPromedio FROM mascota";
+
+        PreparedStatement ps;
+        try { ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Mascota mas = new Mascota();
+                mas.setIdMascota(rs.getInt("idMascota"));
+                mas.setAlias(rs.getString("alias"));
+                mas.setRaza(rs.getString("raza"));
+                mas.setPesoActual(rs.getDouble("pesoActual"));
+                mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
+                mascotaHistorial.add(mas);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota");
+        }
+
+        return mascotaHistorial;
+    }
 }
