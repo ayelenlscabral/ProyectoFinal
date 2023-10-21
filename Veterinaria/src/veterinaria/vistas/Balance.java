@@ -330,21 +330,22 @@ public class Balance extends javax.swing.JPanel {
     }
 
     public void llenarTabla1(LocalDate fecha) {
-
+        Cliente aux3 = null;
         jDia.setText(fecha.toString());
         jImporte1.setText(Double.toString(viData.importeTotalDiario(fecha)));
         for (Visita aux : viData.balanceDiario(fecha)) {
             Mascota aux2 = maData.buscarMascota(aux.getMascota().getIdMascota());
-            Cliente aux3=null;
-            for(Cliente ax:clData.listarClientes()){
-                if(ax.getIdCliente()==aux2.getIdCliente().getIdCliente()){
-               aux3 = ax;}
-            }
             Tratamiento aux4 = trData.buscarTratamiento(aux.getTratamiento().getIdTratamiento());
+            for (Cliente ax : clData.listarClientes()) {
+                if (ax.getIdCliente() == aux2.getIdCliente().getIdCliente()) {
+                    aux3 = ax;
+                }
+            }
+
             modelo.addRow(new Object[]{
                 aux.getFechaTratamiento(),
                 aux3.getDni(),
-                "Cod:"+aux2.getIdMascota()+" '"+aux2.getAlias()+"'",
+                "Cod:" + aux2.getIdMascota() + " '" + aux2.getAlias() + "'",
                 aux4.getTipoTratamiento(),
                 aux4.getImporte(),});
         }
@@ -355,19 +356,24 @@ public class Balance extends javax.swing.JPanel {
 
         int mes = fecha.getMonthValue();
         int año = fecha.getYear();
-
+        Cliente aux3 = null;
         jDia2.setText(fecha.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + año);
 
         jImporte2.setText(Double.toString(viData.importeTotalMensual(mes, año)));
 
         for (Visita aux : viData.balanceMensual(mes, año)) {
             Mascota aux2 = maData.buscarMascota(aux.getMascota().getIdMascota());
-            Cliente aux3 = clData.buscarClienteId(aux2.getIdCliente().getIdCliente());
             Tratamiento aux4 = trData.buscarTratamiento(aux.getTratamiento().getIdTratamiento());
+            for (Cliente ax : clData.listarClientes()) {
+                if (ax.getIdCliente() == aux2.getIdCliente().getIdCliente()) {
+                    aux3 = ax;
+                }
+            }
+
             modelo2.addRow(new Object[]{
                 aux.getFechaTratamiento(),
-                aux3.getApellido(),
-                aux2.getAlias(),
+                aux3.getDni(),
+                "Cod:" + aux2.getIdMascota() + " '" + aux2.getAlias() + "'",
                 aux4.getTipoTratamiento(),
                 aux4.getImporte(),});
         }
