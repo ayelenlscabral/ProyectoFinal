@@ -153,7 +153,8 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIniciarActionPerformed
-        validadorUsuario comprobador;
+        if ( jConexion.getText().equalsIgnoreCase("Conectado")) {
+         validadorUsuario comprobador;
         try {
             String usuario = jUsuario.getText();
             String contrasenia = jContrasenia.getText();
@@ -170,6 +171,9 @@ public class Login extends javax.swing.JFrame {
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "error " + e.getMessage());
+        }
+        }else{
+        JOptionPane.showMessageDialog(null, "Debes conectarte la base de datos primero");
         }
     }//GEN-LAST:event_jIniciarActionPerformed
 
@@ -240,10 +244,10 @@ public class Login extends javax.swing.JFrame {
  private void comprobarConexion(){
         con = Conexion.getConexion();
         if (con ==null) {
-            jConexion.setText("CONECTADO");
+            jConexion.setText("NO CONECTADO");
             jConexion.setForeground(Color.RED);
         }else{
-        jConexion.setText("NO CONECTADO");
+        jConexion.setText("CONECTADO");
         jConexion.setForeground(Color.GREEN);
         }
     }

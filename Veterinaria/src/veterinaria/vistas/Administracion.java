@@ -3,8 +3,10 @@ package veterinaria.vistas;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.EmpleadoData;
 import veterinaria.Entidades.Empleado;
@@ -21,12 +23,31 @@ public class Administracion extends javax.swing.JPanel {
             }
         }
     };
+
+    public class PasswordCellRenderer extends DefaultTableCellRenderer {
+
+        @Override
+        protected void setValue(Object value) {
+            if (value != null) {
+                String password = value.toString();
+                StringBuilder maskedPassword = new StringBuilder(password.length());
+                for (int i = 0; i < password.length(); i++) {
+                    maskedPassword.append('*');
+                }
+                value = maskedPassword.toString();
+            }
+            super.setValue(value);
+        }
+    }
     private boolean modo;
     private EmpleadoData empData = new EmpleadoData();
     private Empleado empleado;
 
     public Administracion(boolean modo, Empleado empleado) {
         initComponents();
+        actualizarApariencia(modo);
+        cabecera();
+        cargarTabla();
         this.modo = modo;
         this.empleado = empleado;
     }
@@ -65,11 +86,12 @@ public class Administracion extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jFiltro = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(49, 112, 143));
+        setBackground(new java.awt.Color(255, 204, 102));
         setLayout(new java.awt.GridBagLayout());
 
-        jVolver.setText("REGRESAR");
-        jVolver.setPreferredSize(new java.awt.Dimension(73, 49));
+        jVolver.setBackground(new java.awt.Color(50, 119, 242));
+        jVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
+        jVolver.setToolTipText("VOLVER");
         jVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jVolverActionPerformed(evt);
@@ -87,6 +109,8 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
         add(jVolver, gridBagConstraints);
 
+        jTabla.setBackground(new java.awt.Color(255, 166, 35));
+        jTabla.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -124,8 +148,9 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 0);
         add(jScrollPane1, gridBagConstraints);
 
-        jGuardar.setText("GUARDAR");
-        jGuardar.setPreferredSize(new java.awt.Dimension(73, 49));
+        jGuardar.setBackground(new java.awt.Color(91, 220, 107));
+        jGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/guardar.png"))); // NOI18N
+        jGuardar.setToolTipText("GUARDAR");
         jGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jGuardarActionPerformed(evt);
@@ -143,7 +168,9 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
         add(jGuardar, gridBagConstraints);
 
-        jEliminar.setText("ELIMINAR");
+        jEliminar.setBackground(new java.awt.Color(232, 62, 62));
+        jEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/eliminar.png"))); // NOI18N
+        jEliminar.setToolTipText("ELIMINAR");
         jEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jEliminarActionPerformed(evt);
@@ -162,8 +189,9 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
         add(jEliminar, gridBagConstraints);
 
-        jLimpiar.setText("LIMPIAR");
-        jLimpiar.setPreferredSize(new java.awt.Dimension(73, 49));
+        jLimpiar.setBackground(new java.awt.Color(255, 255, 102));
+        jLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/limpiar.png"))); // NOI18N
+        jLimpiar.setToolTipText("LIMPIAR");
         jLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jLimpiarActionPerformed(evt);
@@ -181,6 +209,7 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
         add(jLimpiar, gridBagConstraints);
 
+        jPanelCrear.setBackground(new java.awt.Color(255, 204, 102));
         jPanelCrear.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -263,7 +292,8 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 250, 10, 10);
         jPanelCrear.add(jTitulo, gridBagConstraints);
 
-        jContraseña.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jContraseña.setBackground(new java.awt.Color(255, 166, 35));
+        jContraseña.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -278,7 +308,13 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanelCrear.add(jContraseña, gridBagConstraints);
 
-        jUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jUsuario.setBackground(new java.awt.Color(255, 166, 35));
+        jUsuario.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUsuarioActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -332,6 +368,7 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jPanelCrear, gridBagConstraints);
 
+        jPanelAcceso.setBackground(new java.awt.Color(255, 204, 102));
         jPanelAcceso.setLayout(new java.awt.GridBagLayout());
 
         jLAcceso.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -390,11 +427,6 @@ public class Administracion extends javax.swing.JPanel {
         GroupAcceso.add(jAdministrador);
         jAdministrador.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jAdministrador.setOpaque(false);
-        jAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAdministradorActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -420,6 +452,7 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jPanelAcceso, gridBagConstraints);
 
+        jPanelFiltro.setBackground(new java.awt.Color(255, 204, 102));
         jPanelFiltro.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -436,6 +469,7 @@ public class Administracion extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanelFiltro.add(jLabel1, gridBagConstraints);
 
+        jFiltro.setBackground(new java.awt.Color(255, 166, 35));
         jFiltro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -475,29 +509,100 @@ public class Administracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jVolverActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
+        String usuario = jUsuario.getText();
+        String contraseña = jContraseña.getText();
         Empleado nuevo = new Empleado();
         int acceso;
         String sexo;
-        nuevo.setUsuario(jUsuario.getText());
-        nuevo.setContrasenia(jContraseña.getText());
-        if (jMasculino.isSelected()) {
-            nuevo.setSexo("Masculino");
-        } else {
-            nuevo.setSexo("Femenino");
-        }
-        if (jAdministrador.isSelected()) {
-            nuevo.setAcceso(1);
-        } else {
-            nuevo.setAcceso(0);
-        }
-        empData.agregarEmpleado(nuevo);
+        if (usuario.isEmpty() || !comprobar()) {
+            if (!usuario.equalsIgnoreCase("")) {
+                if (!contraseña.isEmpty()) {
+                    if (GroupSexo.getSelection() != null) {
+                        if (GroupAcceso.getSelection() != null) {
+                            nuevo.setUsuario(usuario);
+                            nuevo.setContrasenia(contraseña);
+                            if (jMasculino.isSelected()) {
+                                nuevo.setSexo("Masculino");
+                            } else {
+                                nuevo.setSexo("Femenino");
+                            }
+                            if (jAdministrador.isSelected()) {
+                                nuevo.setAcceso(1);
+                            } else {
+                                nuevo.setAcceso(0);
+                            }
+                            if (usuario.length() <= 30) {
+                                if (contraseña.length() <= 30) {
+                                    empData.agregarEmpleado(nuevo);
+                                    jUsuario.setText("");
+                                    jContraseña.setText("");
+                                    GroupSexo.clearSelection();
+                                    GroupAcceso.clearSelection();
+                                    LimpiarTabla();
+                                    cargarTabla();
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "La contraseña no puede tener mas de 30 caracteres");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "El usuario no puede tener mas de 30 caracteres");
+                            }
 
-        jUsuario.setText("");
-        jContraseña.setText("");
-        GroupSexo.clearSelection();
-        GroupAcceso.clearSelection();
-        LimpiarTabla();
-        cargarTabla();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Debes seleccionar el nivel de acceso");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Debes seleccionar el sexo");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Debes agregar una contraseña");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Debes agregar un nombre de usuario");
+            }
+        } else {
+            if (comprobar()) {
+                if (!contraseña.isEmpty()) {
+                    if (GroupSexo.getSelection() != null) {
+                        if (GroupAcceso.getSelection() != null) {
+                            nuevo.setUsuario(usuario);
+                            nuevo.setContrasenia(contraseña);
+                            if (jMasculino.isSelected()) {
+                                nuevo.setSexo("Masculino");
+                            } else {
+                                nuevo.setSexo("Femenino");
+                            }
+                            if (jAdministrador.isSelected()) {
+                                nuevo.setAcceso(1);
+                            } else {
+                                nuevo.setAcceso(0);
+                            }
+                            if (usuario.length() <= 30) {
+                                if (contraseña.length() <= 30) {
+                                    empData.modificarEmpleado(nuevo);
+                                    jUsuario.setText("");
+                                    jContraseña.setText("");
+                                    GroupSexo.clearSelection();
+                                    GroupAcceso.clearSelection();
+                                    LimpiarTabla();
+                                    cargarTabla();
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "La contraseña no puede tener mas de 30 caracteres");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "El usuario no puede tener mas de 30 caracteres");
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Debes seleccionar el nivel de acceso");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Debes seleccionar el sexo");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Debes agregar una contraseña");
+                }
+            }
+        }
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFiltroKeyReleased
@@ -524,7 +629,7 @@ public class Administracion extends javax.swing.JPanel {
         } else {
             jFemenino.setSelected(true);
         }
-        if (String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 4)).equalsIgnoreCase("1")) {
+        if (String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 3)).equalsIgnoreCase("Administrador")) {
             jAdministrador.setSelected(true);
         } else {
             jEmpleado.setSelected(true);
@@ -542,9 +647,9 @@ public class Administracion extends javax.swing.JPanel {
         cargarTabla();
     }//GEN-LAST:event_jLimpiarActionPerformed
 
-    private void jAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdministradorActionPerformed
+    private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jAdministradorActionPerformed
+    }//GEN-LAST:event_jUsuarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -594,18 +699,27 @@ private void cabecera() {
     }
 
     private void cargarTabla() {
-        for (Empleado empleado : empData.listarEmpleados()) {
-            if (empleado == null) {
-                if (empleado.getUsuario().startsWith(jFiltro.getText())) {
+        jTabla.getColumnModel().getColumn(1).setCellRenderer(new PasswordCellRenderer());
+        for (Empleado empleado2 : empData.listarEmpleados()) {
+            if (empleado2 != null) {
+                if (empleado2.getUsuario().toLowerCase().startsWith(jFiltro.getText().toLowerCase())) {
+                    String accesoText = (empleado2.getAcceso() == 0) ? "Empleado" : "Administrador";
                     modelo.addRow(new Object[]{
-                        empleado.getUsuario(),
-                        empleado.getContrasenia(),
-                        empleado.getSexo(),
-                        empleado.getAcceso(),});
+                        empleado2.getUsuario(),
+                        empleado2.getContrasenia(),
+                        empleado2.getSexo(),
+                        //                        empleado2.getAcceso(),
+                        accesoText
+                    });
+
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay empleados");
+                break;
             }
         }
     }
+
     private void actualizarApariencia(boolean modo) {
         if (modo) {
             try {
@@ -623,6 +737,10 @@ private void cabecera() {
                 jTabla.setBackground(color);
                 jScrollPane1.setBackground(color);
                 jTabla.setBackground(color);
+                jUsuario.setBackground(color);
+                jContraseña.setBackground(color);
+                jFiltro.setBackground(color);
+
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -634,5 +752,15 @@ private void cabecera() {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    public boolean comprobar() {
+        boolean validador = false;
+        for (Empleado trata : empData.listarEmpleados()) {
+            if (trata.getUsuario().equalsIgnoreCase(jUsuario.getText())) {
+                validador = true;
+            }
+        }
+        return validador;
     }
 }
