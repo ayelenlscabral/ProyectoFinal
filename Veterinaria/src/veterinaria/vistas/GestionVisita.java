@@ -13,12 +13,15 @@ import veterinaria.AccesoADatos.MascotaData;
 import veterinaria.AccesoADatos.TratamientoData;
 import veterinaria.AccesoADatos.VisitaData;
 import veterinaria.Entidades.Cliente;
+import veterinaria.Entidades.Empleado;
 import veterinaria.Entidades.Mascota;
 import veterinaria.Entidades.Tratamiento;
 import veterinaria.Entidades.Visita;
 
 public class GestionVisita extends javax.swing.JPanel {
 
+    private Boolean modo;
+    private Empleado empleado;
     private ClienteData clData = new ClienteData();
     private MascotaData maData = new MascotaData();
     private TratamientoData trData = new TratamientoData();
@@ -28,7 +31,7 @@ public class GestionVisita extends javax.swing.JPanel {
     private Tratamiento tr = new Tratamiento();
     private Visita visit = new Visita();
 
-    public GestionVisita() {
+    public GestionVisita(boolean modo, Empleado empleado) {
         initComponents();
         cabecera();
         llenarTratamiento();
@@ -39,8 +42,8 @@ public class GestionVisita extends javax.swing.JPanel {
         jDatos.setOpaque(true);
         jimporte.setOpaque(true);
         jcontado.setSelected(true);
-//        jLabel1.setOpaque(true);jLabel2.setOpaque(true);jLabel3.setOpaque(true);jLabel4.setOpaque(true);jLabel5.setOpaque(true);jLabel6.setOpaque(true);jLabel7.setOpaque(true);jLabel8.setOpaque(true);jLabel9.setOpaque(true);jLabel10.setOpaque(true);jLabel11.setOpaque(true);
-        
+        this.modo = modo;
+        this.empleado = empleado;
     }
     private DefaultTableModel modelo = new DefaultTableModel() {
         @Override
@@ -505,13 +508,12 @@ public class GestionVisita extends javax.swing.JPanel {
                     aux2.getPesoPromedio(),
                     aux3.getTipoTratamiento(),
                     aux.getObservaciones()});
-        }
-
+            }
         }
     }//GEN-LAST:event_jMascota2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Menu menu = new Menu();
+        Menu menu = new Menu(modo, empleado);
         menu.setVisible(true);
         SwingUtilities.getWindowAncestor(this).dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -613,7 +615,6 @@ public class GestionVisita extends javax.swing.JPanel {
             jDatos.setText(mascota.toString() + ",  " + mascota.getSexo() + "  , " + mascota.getColorPelo() + "  ,Peso Promedio:" + mascota.getPesoPromedio() + "kg  ,  Nacio el: " + mascota.getFechaNac());
         }
     }//GEN-LAST:event_jMascota1ActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

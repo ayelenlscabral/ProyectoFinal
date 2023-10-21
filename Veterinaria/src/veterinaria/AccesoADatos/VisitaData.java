@@ -191,4 +191,111 @@ public class VisitaData {
         }
         return visita;
     }
+
+    public double importeTotalDiario(LocalDate fecha) {
+        String sql = "SELECT SUM(tratamiento.importe) as total_importe FROM "
+                + "visita JOIN tratamiento ON (visita.idTratamiento=tratamiento.idTratamiento)"
+                + "WHERE fechaVisita =?";
+        try {
+            PreparedStatement ps2 = con.prepareStatement(sql);
+            ps2.setDate(1, Date.valueOf(fecha));
+            ResultSet rs2 = ps2.executeQuery();
+            if (rs2.next()) {
+                double importeTotal = rs2.getDouble("total_importe");
+                return importeTotal;
+            }
+            ps2.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+        }
+        return 0;
+    }
+       public double importeTotalMensual(int mes, int año) {
+        String sql = "SELECT SUM(tratamiento.importe) as total_importe FROM "
+                + "visita JOIN tratamiento ON (visita.idTratamiento=tratamiento.idTratamiento)"
+                + "WHERE MONTH(fechaVisita)=? AND YEAR(fechaVisita)=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mes);
+            ps.setInt(2,año);
+            ResultSet rs2 = ps.executeQuery();
+            if (rs2.next()) {
+                double importeTotal = rs2.getDouble("total_importe");
+                return importeTotal;
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+        }
+        return 0;
+    }
+
+    public List<Visita> balanceDiario(LocalDate fecha) {
+        List<Visita> visita = new ArrayList<Visita>();
+
+        String sql1 = "SELECT * FROM visita JOIN tratamiento ON "
+                + "(visita.idTratamiento=tratamiento.idTratamiento) WHERE fechaVisita =?";
+try {
+            PreparedStatement ps1 = con.prepareStatement(sql1);
+            ps1.setDate(1, Date.valueOf(fecha));
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                Visita visit = new Visita();
+                Mascota mascota = new Mascota();
+                Tratamiento tratamiento = new Tratamiento();
+                visit.setIdVisita(rs1.getInt("idVisita"));
+                mascota.setIdMascota(rs1.getInt("idMascota"));
+                tratamiento.setIdTratamiento(rs1.getInt("idTratamiento"));
+                visit.setMascota(mascota);
+                visit.setTratamiento(tratamiento);
+                visit.setFechaTratamiento(rs1.getDate("fechaVisita").toLocalDate());
+                visit.setObservaciones(rs1.getString("observaciones"));
+                visit.setPesoActual(rs1.getDouble("pesoActual"));
+
+                visita.add(visit);
+            }
+            ps1.close();
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+        }
+        return visita;
+    }
+    
+    public List<Visita> balanceMensual(int mes,int año) {
+        List<Visita> visita = new ArrayList<Visita>();
+
+        String sql1 = "SELECT * FROM visita JOIN tratamiento ON "
+                + "(visita.idTratamiento=tratamiento.idTratamiento) WHERE MONTH(fechaVisita)=? AND YEAR(fechaVisita)=?";
+
+        try {
+            PreparedStatement ps1 = con.prepareStatement(sql1);
+            ps1.setInt(1, mes);
+            ps1.setInt(2,año);
+            ResultSet rs1 = ps1.executeQuery();
+            while (rs1.next()) {
+                Visita visit = new Visita();
+                Mascota mascota = new Mascota();
+                Tratamiento tratamiento = new Tratamiento();
+                visit.setIdVisita(rs1.getInt("idVisita"));
+                mascota.setIdMascota(rs1.getInt("idMascota"));
+                tratamiento.setIdTratamiento(rs1.getInt("idTratamiento"));
+                visit.setMascota(mascota);
+                visit.setTratamiento(tratamiento);
+                visit.setFechaTratamiento(rs1.getDate("fechaVisita").toLocalDate());
+                visit.setObservaciones(rs1.getString("observaciones"));
+                visit.setPesoActual(rs1.getDouble("pesoActual"));
+
+                visita.add(visit);
+            }
+            ps1.close();
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+        }
+        return visita;
+    }
 }
