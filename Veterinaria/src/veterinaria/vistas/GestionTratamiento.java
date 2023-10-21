@@ -1,8 +1,20 @@
 package veterinaria.vistas;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.TratamientoData;
 import veterinaria.AccesoADatos.VisitaData;
@@ -29,7 +41,9 @@ public class GestionTratamiento extends javax.swing.JPanel {
     };
 
     public GestionTratamiento(boolean modo, Empleado empleado) {
+        UIManager.put("ComboBox.background", new ColorUIResource(Color.BLACK));
         initComponents();
+        actualizarApariencia(modo);
         cabecera();
         cargarTabla();
         cargarCombos();
@@ -37,7 +51,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jFiltroTipo.setSelectedIndex(-1);
         this.modo = modo;
         this.empleado = empleado;
-        System.out.println("trata: " + modo);
     }
 
     @SuppressWarnings("unchecked")
@@ -397,6 +410,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = -5;
         gridBagConstraints.ipady = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(34, 108, 0, 0);
@@ -416,6 +430,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = -5;
         gridBagConstraints.ipady = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(18, 108, 0, 0);
@@ -727,4 +742,57 @@ private void cabecera() {
         }
         return validador;
     }
+
+    private void actualizarApariencia(boolean modo) {
+        if (modo) {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+                Color color = new Color(52, 55, 59);
+                jPanel1.setBackground(color);
+                jCategoria.setBackground(color);
+                jDescripcion.setBackground(color);
+                jEliminar.setBackground(color);
+                jEliminarCate.setBackground(color);
+                jEstado.setBackground(color);
+                jGuardar.setBackground(color);
+                jImporte.setBackground(color);
+                jSalir.setBackground(color);
+                jScrollPane1.setBackground(color);
+                jTabla.setBackground(color);
+                jFiltroTipo.setBackground(color);
+                jTipo.setBackground(color);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public class Custom extends JComboBox<String> {
+
+        public Custom() {
+            setUI(new BasicComboBoxUI() {
+    public ListCellRenderer<? super String> getRenderer() {
+        return new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (isSelected) {
+                    component.setBackground(Color.RED); // Cambia el color de fondo de los elementos seleccionados
+                }
+                return component;
+            }
+        };
+    }
+            });
+        }
+    }
+    
 }
