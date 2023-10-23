@@ -47,6 +47,7 @@ public class GestionMascota extends javax.swing.JPanel {
     public GestionMascota(boolean modo, Empleado empleado) {
         initComponents();
         cabecera();
+        actualizarApariencia(modo);
         cargarClientes();
         this.modo = modo;
         this.empleado = empleado;
