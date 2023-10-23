@@ -2,10 +2,15 @@
 package veterinaria.vistas;
 
 //FEDE
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
 import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.Entidades.Cliente;
+import veterinaria.Entidades.Empleado;
 
 //import java.awt.Color;
 //import java.awt.GradientPaint;
@@ -19,10 +24,13 @@ public class GestionCliente extends javax.swing.JPanel {
 
     ClienteData cliente = new ClienteData();
     Cliente cli = new Cliente();
+    private boolean modo;
+    private Empleado empleado;
 
-    public GestionCliente() {
+    public GestionCliente(boolean modo, Empleado empleado) {
 
         initComponents();
+        actualizarApariencia(modo);
 
 //        SwingUtilities.invokeLater(() -> {
 //
@@ -614,7 +622,7 @@ public class GestionCliente extends javax.swing.JPanel {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
 
         // Cierra el panel 
-        Menu menu = new Menu();
+        Menu menu = new Menu(modo, empleado);
         menu.setVisible(true);
         SwingUtilities.getWindowAncestor(this).dispose();
 
@@ -661,6 +669,44 @@ public class GestionCliente extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void actualizarApariencia(boolean modo) {
+        if (modo) {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+                Color color = new Color(52, 55, 59);
+
+                jtIdCliente.setBackground(color);
+                jtDni.setBackground(color);
+                jtDni2.setBackground(color);
+                jtApellido.setBackground(color);
+                jtNombre.setBackground(color);
+                jtDireccion.setBackground(color);
+                jtTel.setBackground(color);
+                jrEstado.setBackground(color);
+                jtPersonaAlt.setBackground(color);
+                jbGuardar.setBackground(color);
+                jbEliminar.setBackground(color);
+                jbLimpiar.setBackground(color);
+                jbSalir.setBackground(color);
+                jbBuscar.setBackground(color);
+                jPanel2.setBackground(color);
+                jPanel4.setBackground(color);
+                jPanel5.setBackground(color);
+
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
