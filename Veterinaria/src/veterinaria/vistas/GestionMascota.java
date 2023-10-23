@@ -1,5 +1,6 @@
 package veterinaria.vistas;
 
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.MascotaData;
@@ -23,7 +25,7 @@ import veterinaria.Entidades.Visita;
 public class GestionMascota extends javax.swing.JPanel {
 
     private boolean modo;
-    private Empleado empleado;    
+    private Empleado empleado;
     private ClienteData CliData = new ClienteData();
     private MascotaData mascotaData = new MascotaData();
     private VisitaData VisData = new VisitaData();
@@ -543,56 +545,55 @@ public class GestionMascota extends javax.swing.JPanel {
             if (aliasT.isEmpty() || sexoT.isEmpty() || especieT.isEmpty() || razaT.isEmpty()
                     || colordePeloT.isEmpty() || pesoActualT.isEmpty() || fechaNac == null || clienteSeleccionado == null) {
                 JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacíos.");
+
             } else {
-                String ali = aliasT;
-                String espe = especieT;
-                String raza = razaT;
-                String colorP = colordePeloT;
-                LocalDate naci = fechaNac;
                 Double pesoA = Double.parseDouble(pesoActualT);
+                if (fechaNac.isBefore(LocalDate.now()) || fechaNac.isEqual(LocalDate.now())) {
 
-                if (!ali.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
+                    if (!aliasT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
 
-                } else if (!espe.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
+                    } else if (!especieT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
 
-                } else if (!raza.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
+                    } else if (!razaT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
 
-                } else if (!colorP.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
+                    } else if (!colordePeloT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
 
-                } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
-                } else if (pesoA > 300) {
-                    JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
-                } else {
-
+                    } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
+                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
+                    } else if (pesoA > 300) {
+                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
+                
                     Mascota mascotaActual = new Mascota();
 
                     mascotaActual.setIdCliente(clienteSeleccionado);
-                    mascotaActual.setAlias(ali);
+                    mascotaActual.setAlias(aliasT);
                     mascotaActual.setSexo(sexoT);
-                    mascotaActual.setEspecie(espe);
-                    mascotaActual.setRaza(raza);
-                    mascotaActual.setColorPelo(colorP);
-                    mascotaActual.setFechaNac(naci);
+                    mascotaActual.setEspecie(especieT);
+                    mascotaActual.setRaza(razaT);
+                    mascotaActual.setColorPelo(colordePeloT);
+                    mascotaActual.setFechaNac(fechaNac);
                     mascotaActual.setPesoActual(pesoA);
                     mascotaActual.setPesoPromedio(pesoA);
                     mascotaActual.setEstado(jRadioBEstado.isSelected());
 
                     mascotaData.agregarMascota(mascotaActual);
-
-                    JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");
-
+                    JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");     
+                   
+                } else {
+                        JOptionPane.showMessageDialog(this, "La fecha es incorrecta");
                 }
-
+                }        
             }
+                   
 
-        } catch (NumberFormatException e) {
+
+        }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingresa valores válidos en los campos de números", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
+        }catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar la mascota: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -724,11 +725,11 @@ public class GestionMascota extends javax.swing.JPanel {
 
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-        Menu menu = new Menu(modo,empleado);
+        Menu menu = new Menu(modo, empleado);
         menu.setVisible(true);
         SwingUtilities.getWindowAncestor(this).dispose();
-        
-        
+
+
     }//GEN-LAST:event_jBSalirActionPerformed
 
 
@@ -820,8 +821,10 @@ public class GestionMascota extends javax.swing.JPanel {
 
             try {
                 jDateFechaNac.setDate(formatoFecha.parse(fecha));
+
             } catch (ParseException ex) {
-                Logger.getLogger(GestionMascota.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(GestionMascota.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
 
             jTPesoActual.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 8)));
@@ -961,6 +964,49 @@ public class GestionMascota extends javax.swing.JPanel {
         int filas = jTabla.getRowCount();
         for (int a = 0; filas > a; a++) {
             modelo.removeRow(0);
+        }
+    }
+
+    private void actualizarApariencia(boolean modo) {
+        if (modo) {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+                Color color = new Color(52, 55, 59);
+                this.setBackground(color);
+
+                jTidMascota.setBackground(color);
+                jBuscar.setBackground(color);
+                jTAlias.setBackground(color);
+                jTColordePelo.setBackground(color);
+                jTEspecie.setBackground(color);
+                jTRaza.setBackground(color);
+                jTPesoActual.setBackground(color);
+                jDateFechaNac.setBackground(color);
+                jRadioBEstado.setBackground(color);
+                jCheckBoxH.setBackground(color);
+                jCheckBoxM.setBackground(color);
+                jComboBoxCliente.setBackground(color);
+                jTabla.setBackground(color);
+                jTClienteDNI.setBackground(color);
+                jBotonOk.setBackground(color);
+                jBNuevo.setBackground(color);
+                jBGuardar.setBackground(color);
+                jBModificar.setBackground(color);
+                jBEliminar.setBackground(color);
+                jBSalir.setBackground(color);
+                jPanel1.setBackground(color);
+
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
