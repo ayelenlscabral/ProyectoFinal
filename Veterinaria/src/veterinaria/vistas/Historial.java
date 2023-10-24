@@ -52,8 +52,6 @@ public class Historial extends javax.swing.JPanel {
         jBDesde = new javax.swing.JLabel();
         jBLimpiar = new javax.swing.JButton();
         jDateHasta = new com.toedter.calendar.JDateChooser();
-        jBusquedaHasta = new javax.swing.JLabel();
-        jBusquedaDesde = new javax.swing.JLabel();
         jDateDesde = new com.toedter.calendar.JDateChooser();
         jBFiltrar = new javax.swing.JButton();
         jBHasta = new javax.swing.JLabel();
@@ -136,14 +134,6 @@ public class Historial extends javax.swing.JPanel {
         jDateHasta.setBackground(new java.awt.Color(255, 255, 255));
         jDateHasta.setForeground(new java.awt.Color(255, 255, 255));
 
-        jBusquedaHasta.setBackground(new java.awt.Color(255, 0, 0));
-        jBusquedaHasta.setForeground(new java.awt.Color(255, 255, 255));
-        jBusquedaHasta.setText("HASTA:");
-
-        jBusquedaDesde.setBackground(new java.awt.Color(255, 0, 0));
-        jBusquedaDesde.setForeground(new java.awt.Color(255, 255, 255));
-        jBusquedaDesde.setText("DESDE:");
-
         jDateDesde.setBackground(new java.awt.Color(255, 255, 255));
         jDateDesde.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -173,22 +163,16 @@ public class Historial extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(232, 232, 232)
-                                    .addComponent(jBusquedaDesde))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(291, 291, 291)
-                                    .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(291, 291, 291)
+                                .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBusquedaHasta)
-                                .addGap(146, 146, 146))))
+                                .addGap(194, 194, 194))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +183,7 @@ public class Historial extends javax.swing.JPanel {
                                 .addComponent(jLTitulo)
                                 .addGap(198, 198, 198)
                                 .addComponent(jBotonSalir)))))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,10 +206,7 @@ public class Historial extends javax.swing.JPanel {
                     .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBusquedaDesde)
-                    .addComponent(jBusquedaHasta)
-                    .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(175, 175, 175)
                 .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
@@ -312,8 +293,6 @@ public class Historial extends javax.swing.JPanel {
     private javax.swing.JLabel jBHasta;
     private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBotonSalir;
-    private javax.swing.JLabel jBusquedaDesde;
-    private javax.swing.JLabel jBusquedaHasta;
     private com.toedter.calendar.JDateChooser jDateDesde;
     private com.toedter.calendar.JDateChooser jDateHasta;
     private javax.swing.JLabel jLTitulo;
