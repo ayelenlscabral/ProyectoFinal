@@ -1,15 +1,14 @@
 package veterinaria.vistas;
 
-import java.awt.Color;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
+import veterinaria.AccesoADatos.Conexion;
 import veterinaria.AccesoADatos.MascotaData;
 import veterinaria.AccesoADatos.VisitaData;
 import veterinaria.Entidades.Cliente;
@@ -34,7 +33,7 @@ public class Historial extends javax.swing.JPanel {
 
     public Historial(boolean modo, Empleado empleado) {
         initComponents();
-        cargarTabla();
+        cabecera();
         this.modo = modo;
         this.empleado = empleado;
 
@@ -45,39 +44,27 @@ public class Historial extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jBusquedaMascota = new javax.swing.JLabel();
-        jBotonBusquedaMascota = new javax.swing.JButton();
         jLTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabla = new javax.swing.JTable();
         jBotonSalir = new javax.swing.JButton();
-        jBusquedaMascota1 = new javax.swing.JLabel();
-        jBotonBusquedaFecha = new javax.swing.JButton();
-        jBusquedaMascota2 = new javax.swing.JLabel();
-        jBotonBusquedaCliente = new javax.swing.JButton();
+        jBDesde = new javax.swing.JLabel();
+        jBLimpiar = new javax.swing.JButton();
+        jDateHasta = new com.toedter.calendar.JDateChooser();
+        jBusquedaHasta = new javax.swing.JLabel();
+        jBusquedaDesde = new javax.swing.JLabel();
+        jDateDesde = new com.toedter.calendar.JDateChooser();
+        jBFiltrar = new javax.swing.JButton();
+        jBHasta = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 153, 0));
+        setBackground(new java.awt.Color(255, 255, 204));
         setForeground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jBusquedaMascota.setBackground(new java.awt.Color(255, 0, 0));
-        jBusquedaMascota.setForeground(new java.awt.Color(255, 255, 255));
-        jBusquedaMascota.setText("FILTRO POR ID DE MASCOTA:");
-
-        jBotonBusquedaMascota.setBackground(new java.awt.Color(51, 153, 255));
-        jBotonBusquedaMascota.setForeground(new java.awt.Color(255, 255, 255));
-        jBotonBusquedaMascota.setText("OK");
-        jBotonBusquedaMascota.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
-        jBotonBusquedaMascota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonBusquedaMascotaActionPerformed(evt);
-            }
-        });
-
         jLTitulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLTitulo.setForeground(new java.awt.Color(255, 0, 0));
+        jLTitulo.setForeground(new java.awt.Color(255, 0, 255));
         jLTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTitulo.setText("       HISTORIAL DE LA VETERINARIA");
 
@@ -85,34 +72,34 @@ public class Historial extends javax.swing.JPanel {
         jTabla.setForeground(new java.awt.Color(51, 153, 255));
         jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id Cliente", "dni Cliente", "Apellido Ciente", "Nombre Cliente", "Mascota", "raza", "Ultimo peso ", "Peso promedio Masc", "Fecha de visita", "Tratamiento", "Importe", "Id Mascota", "Title 13", "Title 14"
+                "id Cliente", "dni Cliente", "Apellido Ciente", "Nombre Cliente", "id Mascota", "Raza", "Especie", "Ultimo Peso", "id Visita", "Fecha de Visita", "Id Tratamiento", "Tipo de Tratamiento", "Importe"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, true, true, true, true, true, false, true, true, true, false, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -123,7 +110,7 @@ public class Historial extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTabla);
 
         jBotonSalir.setBackground(new java.awt.Color(51, 51, 255));
-        jBotonSalir.setForeground(new java.awt.Color(204, 255, 255));
+        jBotonSalir.setForeground(new java.awt.Color(0, 255, 204));
         jBotonSalir.setText("SALIR");
         jBotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,33 +118,47 @@ public class Historial extends javax.swing.JPanel {
             }
         });
 
-        jBusquedaMascota1.setBackground(new java.awt.Color(255, 0, 0));
-        jBusquedaMascota1.setForeground(new java.awt.Color(255, 255, 255));
-        jBusquedaMascota1.setText("FILTRO POR FECHA:");
+        jBDesde.setBackground(new java.awt.Color(255, 255, 204));
+        jBDesde.setForeground(new java.awt.Color(153, 153, 153));
+        jBDesde.setText("FECHA DESDE:");
 
-        jBotonBusquedaFecha.setBackground(new java.awt.Color(51, 153, 255));
-        jBotonBusquedaFecha.setForeground(new java.awt.Color(255, 255, 255));
-        jBotonBusquedaFecha.setText("OK");
-        jBotonBusquedaFecha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
-        jBotonBusquedaFecha.addActionListener(new java.awt.event.ActionListener() {
+        jBLimpiar.setBackground(new java.awt.Color(255, 51, 255));
+        jBLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        jBLimpiar.setText("LIMPIAR TABLA");
+        jBLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonBusquedaFechaActionPerformed(evt);
+                jBLimpiarActionPerformed(evt);
             }
         });
 
-        jBusquedaMascota2.setBackground(new java.awt.Color(255, 0, 0));
-        jBusquedaMascota2.setForeground(new java.awt.Color(255, 255, 255));
-        jBusquedaMascota2.setText("FILTRO POR ID DE CLIENTE");
+        jDateHasta.setBackground(new java.awt.Color(255, 255, 255));
+        jDateHasta.setForeground(new java.awt.Color(255, 255, 255));
 
-        jBotonBusquedaCliente.setBackground(new java.awt.Color(51, 153, 255));
-        jBotonBusquedaCliente.setForeground(new java.awt.Color(255, 255, 255));
-        jBotonBusquedaCliente.setText("OK");
-        jBotonBusquedaCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
-        jBotonBusquedaCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotonBusquedaClienteActionPerformed(evt);
+        jBusquedaHasta.setBackground(new java.awt.Color(255, 0, 0));
+        jBusquedaHasta.setForeground(new java.awt.Color(255, 255, 255));
+        jBusquedaHasta.setText("HASTA:");
+
+        jBusquedaDesde.setBackground(new java.awt.Color(255, 0, 0));
+        jBusquedaDesde.setForeground(new java.awt.Color(255, 255, 255));
+        jBusquedaDesde.setText("DESDE:");
+
+        jDateDesde.setBackground(new java.awt.Color(255, 255, 255));
+        jDateDesde.setForeground(new java.awt.Color(255, 255, 255));
+
+        jBFiltrar.setBackground(new java.awt.Color(255, 51, 255));
+        jBFiltrar.setForeground(new java.awt.Color(255, 255, 255));
+        jBFiltrar.setText("FILTRAR");
+        jBFiltrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
+        jBFiltrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBFiltrarMouseClicked(evt);
             }
         });
+
+        jBHasta.setBackground(new java.awt.Color(255, 255, 204));
+        jBHasta.setForeground(new java.awt.Color(153, 153, 153));
+        jBHasta.setText("FECHA HASTA:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -169,26 +170,35 @@ public class Historial extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jBusquedaMascota2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBotonBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jBusquedaMascota)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBotonBusquedaMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jBusquedaMascota1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBotonBusquedaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(232, 232, 232)
+                                    .addComponent(jBusquedaDesde))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(291, 291, 291)
+                                    .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBusquedaHasta)
+                                .addGap(146, 146, 146))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(230, 230, 230)
-                        .addComponent(jLTitulo)
-                        .addGap(198, 198, 198)
-                        .addComponent(jBotonSalir)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(230, 230, 230)
+                                .addComponent(jLTitulo)
+                                .addGap(198, 198, 198)
+                                .addComponent(jBotonSalir)))))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,15 +212,22 @@ public class Historial extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLTitulo)
                             .addComponent(jBotonSalir))))
-                .addGap(28, 28, 28)
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBusquedaMascota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonBusquedaMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBusquedaMascota1)
-                    .addComponent(jBotonBusquedaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBusquedaMascota2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(jBDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBusquedaDesde)
+                    .addComponent(jBusquedaHasta)
+                    .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(175, 175, 175)
+                .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(787, 787, 787))
         );
@@ -226,33 +243,63 @@ public class Historial extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jBotonSalirActionPerformed
 
-    private void jBotonBusquedaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBusquedaFechaActionPerformed
 
-        Date fechaDate = visita.getFechaTratamiento();
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
+        modelo.setRowCount(0);
 
+    }//GEN-LAST:event_jBLimpiarActionPerformed
 
-    }//GEN-LAST:event_jBotonBusquedaFechaActionPerformed
+    private void jBFiltrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBFiltrarMouseClicked
 
-    private void jBotonBusquedaMascotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBusquedaMascotaActionPerformed
+        Connection connection = Conexion.getConexion();
 
+        String sql = "SELECT c.idCliente, c.dni, c.apellido, c.nombre, m.idMascota, m.especie, m.raza, m.pesoActual FROM cliente c JOIN mascota m ON c.idCliente = m.idCliente";
 
-    }//GEN-LAST:event_jBotonBusquedaMascotaActionPerformed
+        PreparedStatement ps;
 
+        try {
 
-    private void jBotonBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonBusquedaClienteActionPerformed
+            ps = connection.prepareStatement(sql);
 
+            ResultSet rs = ps.executeQuery();
 
-    }//GEN-LAST:event_jBotonBusquedaClienteActionPerformed
+            DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
+
+            modelo.setRowCount(0);
+
+            while (rs.next()) {
+                Object[] fila = {
+                rs.getInt("idCliente"),
+                rs.getString("dni"),
+                rs.getString("apellido"),
+                rs.getString("nombre"),
+                rs.getInt("idMascota"),
+                rs.getString("especie"),
+                rs.getString("raza"),                
+                rs.getDouble("pesoActual"),
+                };
+                modelo.addRow(fila);
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error" + ex);
+        }
+    }//GEN-LAST:event_jBFiltrarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBotonBusquedaCliente;
-    private javax.swing.JButton jBotonBusquedaFecha;
-    private javax.swing.JButton jBotonBusquedaMascota;
+    private javax.swing.JLabel jBDesde;
+    private javax.swing.JButton jBFiltrar;
+    private javax.swing.JLabel jBHasta;
+    private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBotonSalir;
-    private javax.swing.JLabel jBusquedaMascota;
-    private javax.swing.JLabel jBusquedaMascota1;
-    private javax.swing.JLabel jBusquedaMascota2;
+    private javax.swing.JLabel jBusquedaDesde;
+    private javax.swing.JLabel jBusquedaHasta;
+    private com.toedter.calendar.JDateChooser jDateDesde;
+    private com.toedter.calendar.JDateChooser jDateHasta;
     private javax.swing.JLabel jLTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -261,18 +308,17 @@ public class Historial extends javax.swing.JPanel {
 
     public DefaultTableModel cabecera() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("idCliente");
-        modelo.addColumn("DNI");
-        modelo.addColumn("Apellido");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("idMascota");
-        modelo.addColumn("Alias");
+        modelo.addColumn("id Cliente");
+        modelo.addColumn("dni Cliente");
+        modelo.addColumn("Apellido Cliente");
+        modelo.addColumn("Nombre Cliente");
+        modelo.addColumn("id Mascota");
         modelo.addColumn("Especie");
-        modelo.addColumn("Peso Promedio");
-        modelo.addColumn("Peso Actual");
-        modelo.addColumn("idVisita");
+        modelo.addColumn("Raza");
+        modelo.addColumn("Ultimo Peso");
+        modelo.addColumn("id Visita");
         modelo.addColumn("Fecha de Visita");
-        modelo.addColumn("idTratamiento");
+        modelo.addColumn("id Tratamiento");
         modelo.addColumn("Tipo de Tratamiento");
         modelo.addColumn("Importe");
 
@@ -280,85 +326,4 @@ public class Historial extends javax.swing.JPanel {
 
     }
 
-    private void obtenerClientes() {
-        DefaultTableModel modelo = new DefaultTableModel();
-        ClienteData clienteData = new ClienteData();
-        ArrayList<Cliente> listaClientes = clienteData.listarClientes();
-        for (Cliente cliente : listaClientes) {
-            modelo.addRow(new Object[]{
-                cliente.getIdCliente(),
-                cliente.getDni(),
-                cliente.getApellido(),
-                cliente.getNombre(),});
-        }
-    }
-
-     private void actualizarApariencia(boolean modo) {
-        if (modo) {
-            try {
-                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-                javax.swing.SwingUtilities.updateComponentTreeUI(this);
-                Color color = new Color(52, 55, 59);
-                this.setBackground(color);
-    
-                 
-                jPanel1.setBackground(color);
-                jTabla.setBackground(color);
-                jBotonBusquedaCliente.setBackground(color);
-                jBotonBusquedaFecha.setBackground(color);
-                jBotonBusquedaMascota.setBackground(color);
-                jBotonSalir.setBackground(color);
-                jTabla.setBackground(color);
-                
-
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            try {
-                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
-                javax.swing.SwingUtilities.updateComponentTreeUI(this);
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    
-    
-    private void cargarTabla() {
-
-        DefaultTableModel modelo = cabecera();
-
-        List<Cliente> clientes = clienteData.listarClientes();
-        List<Mascota> mascotas = mascotaData.listarMascotasParaHistorial();
-        List<Visita> visitas = visitaData.listarVisita();
-        List<Tratamiento> tratamientos = tratamientoData.listarTratamientos();
-
-        for (int i = 0; i < clientes.size(); i++) {
-            Cliente cliente = clientes.get(i);
-            Mascota mascota = mascotas.get(i);
-            Visita visita = visitas.get(i);
-            Tratamiento tratamiento = tratamientos.get(i);
-
-            modelo.addRow(new Object[]{
-                cliente.getIdCliente(),
-                cliente.getDni(),
-                cliente.getApellido(),
-                cliente.getNombre(),
-                mascota.getIdMascota(),
-                mascota.getAlias(),
-                mascota.getEspecie(),
-                mascota.getPesoPromedio(),
-                mascota.getPesoActual(),
-                visita.getIdVisita(),
-                visita.getFechaTratamiento(),
-                tratamiento.getIdTratamiento(),
-                tratamiento.getTipoTratamiento(),
-                tratamiento.getImporte(),});
-        }
-        jTabla.setModel(modelo);
-    }
-
-    
-    
 }

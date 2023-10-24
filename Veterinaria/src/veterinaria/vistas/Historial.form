@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="0" green="99" red="ff" type="rgb"/>
+      <Color blue="cc" green="ff" red="ff" type="rgb"/>
     </Property>
     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -33,30 +33,47 @@
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
-                      <Component id="jBusquedaMascota2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jBotonBusquedaCliente" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jBusquedaMascota" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jBotonBusquedaMascota" min="-2" pref="39" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="jBusquedaMascota1" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jBotonBusquedaFecha" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jBDesde" min="-2" pref="88" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="232" pref="232" max="-2" attributes="0"/>
+                                  <Component id="jBusquedaDesde" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="291" pref="291" max="-2" attributes="0"/>
+                                  <Component id="jDateDesde" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jBHasta" min="-2" pref="88" max="-2" attributes="0"/>
+                          <Component id="jDateHasta" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jBFiltrar" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jBusquedaHasta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                      <Component id="jLTitulo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
-                      <Component id="jBotonSalir" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jBLimpiar" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                              <Component id="jLTitulo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+                              <Component id="jBotonSalir" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="46" max="32767" attributes="0"/>
+              <EmptySpace pref="124" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,16 +93,25 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jBusquedaMascota" alignment="3" max="32767" attributes="0"/>
-                  <Component id="jBotonBusquedaMascota" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jBusquedaMascota1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jBotonBusquedaFecha" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="jBusquedaMascota2" alignment="3" max="32767" attributes="0"/>
-                  <Component id="jBotonBusquedaCliente" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="jBDesde" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="jBHasta" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jDateDesde" min="-2" max="-2" attributes="0"/>
+                  <Component id="jDateHasta" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jBusquedaDesde" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBusquedaHasta" min="-2" max="-2" attributes="0"/>
+                  <Component id="jBFiltrar" min="-2" pref="29" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+              <Component id="jBLimpiar" min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="394" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="787" max="-2" attributes="0"/>
           </Group>
@@ -97,48 +123,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
     </Container>
-    <Component class="javax.swing.JLabel" name="jBusquedaMascota">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="FILTRO POR ID DE MASCOTA:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBotonBusquedaMascota">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="99" red="33" type="rgb"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="OK"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-            <BevelBorder>
-              <Color PropertyName="highlightOuter" blue="ff" green="ff" red="66" type="rgb"/>
-              <Color PropertyName="highlightInner" blue="ff" green="ff" red="66" type="rgb"/>
-              <Color PropertyName="shadowOuter" blue="ff" green="ff" red="66" type="rgb"/>
-              <Color PropertyName="shadowInner" blue="ff" green="ff" red="66" type="rgb"/>
-            </BevelBorder>
-          </Border>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonBusquedaMascotaActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="24" style="1"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
+          <Color blue="ff" green="0" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="       HISTORIAL DE LA VETERINARIA"/>
@@ -163,30 +154,24 @@
               <Color blue="ff" green="99" red="33" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="14" rowCount="21">
-                <Column editable="true" title="id Cliente" type="java.lang.Object"/>
+              <Table columnCount="13" rowCount="21">
+                <Column editable="false" title="id Cliente" type="java.lang.Object"/>
                 <Column editable="false" title="dni Cliente" type="java.lang.Object"/>
-                <Column editable="true" title="Apellido Ciente" type="java.lang.Object"/>
-                <Column editable="true" title="Nombre Cliente" type="java.lang.Object"/>
-                <Column editable="true" title="Mascota" type="java.lang.Object"/>
-                <Column editable="true" title="raza" type="java.lang.Object"/>
-                <Column editable="true" title="Ultimo peso " type="java.lang.Object"/>
-                <Column editable="false" title="Peso promedio Masc" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha de visita" type="java.lang.Object"/>
-                <Column editable="true" title="Tratamiento" type="java.lang.Object"/>
-                <Column editable="true" title="Importe" type="java.lang.Object"/>
-                <Column editable="false" title="Id Mascota" type="java.lang.Object"/>
-                <Column editable="true" title="Title 13" type="java.lang.Object"/>
-                <Column editable="true" title="Title 14" type="java.lang.Object"/>
+                <Column editable="false" title="Apellido Ciente" type="java.lang.Object"/>
+                <Column editable="false" title="Nombre Cliente" type="java.lang.Object"/>
+                <Column editable="false" title="id Mascota" type="java.lang.Object"/>
+                <Column editable="false" title="Raza" type="java.lang.Object"/>
+                <Column editable="false" title="Especie" type="java.lang.Object"/>
+                <Column editable="false" title="Ultimo Peso" type="java.lang.Object"/>
+                <Column editable="false" title="id Visita" type="java.lang.Object"/>
+                <Column editable="false" title="Fecha de Visita" type="java.lang.Object"/>
+                <Column editable="false" title="Id Tratamiento" type="java.lang.Object"/>
+                <Column editable="false" title="Tipo de Tratamiento" type="java.lang.Object"/>
+                <Column editable="false" title="Importe" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -270,7 +255,7 @@
           <Color blue="ff" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+          <Color blue="cc" green="ff" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="SALIR"/>
       </Properties>
@@ -278,26 +263,26 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonSalirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jBusquedaMascota1">
+    <Component class="javax.swing.JLabel" name="jBDesde">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="FILTRO POR FECHA:"/>
+        <Property name="text" type="java.lang.String" value="FECHA DESDE:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jBotonBusquedaFecha">
+    <Component class="javax.swing.JButton" name="jBLimpiar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="99" red="33" type="rgb"/>
+          <Color blue="ff" green="33" red="ff" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="OK"/>
+        <Property name="text" type="java.lang.String" value="LIMPIAR TABLA"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder>
@@ -310,10 +295,20 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonBusquedaFechaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBLimpiarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jBusquedaMascota2">
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateHasta">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jBusquedaHasta">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -321,18 +316,39 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="FILTRO POR ID DE CLIENTE"/>
+        <Property name="text" type="java.lang.String" value="HASTA:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jBotonBusquedaCliente">
+    <Component class="javax.swing.JLabel" name="jBusquedaDesde">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="99" red="33" type="rgb"/>
+          <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="OK"/>
+        <Property name="text" type="java.lang.String" value="DESDE:"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateDesde">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBFiltrar">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="33" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="FILTRAR"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder>
@@ -345,8 +361,19 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBotonBusquedaClienteActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jBFiltrarMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jBHasta">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="FECHA HASTA:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
