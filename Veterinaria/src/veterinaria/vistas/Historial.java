@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -254,14 +255,25 @@ public class Historial extends javax.swing.JPanel {
 
         Connection connection = Conexion.getConexion();
 
-        String sql = "SELECT c.idCliente, c.dni, c.apellido, c.nombre, m.idMascota, m.especie, m.raza, m.pesoActual FROM cliente c JOIN mascota m ON c.idCliente = m.idCliente";
+        Date fechaInicio = jDateDesde.getDate();
+        Date fechaFin = jDateHasta.getDate();
+        
+        String sql = "SELECT c.idCliente, c.dni, c.apellido, c.nombre, m.idMascota,m.especie, m.raza, m.pesoActual, v.idVisita, v.fechaVisita, t.idTratamiento, t.tipoTratamiento, t.importe "
+                + "FROM cliente c "
+                + "JOIN mascota m ON c.idCliente = m.idCliente "
+                + "JOIN visita v ON v.idMascota = m.idMascota "
+                + "JOIN tratamiento t ON t.idTratamiento = v.idTratamiento "
+                + "WHERE v.fechaVisita BETWEEN ? AND ? " 
+                + "ORDER BY v.fechaVisita";
 
         PreparedStatement ps;
 
         try {
 
             ps = connection.prepareStatement(sql);
-
+            ps.setDate(1, new java.sql.Date(fechaInicio.getTime()));
+            ps.setDate(2, new java.sql.Date(fechaFin.getTime()));
+            
             ResultSet rs = ps.executeQuery();
 
             DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
@@ -270,15 +282,19 @@ public class Historial extends javax.swing.JPanel {
 
             while (rs.next()) {
                 Object[] fila = {
-                rs.getInt("idCliente"),
-                rs.getString("dni"),
-                rs.getString("apellido"),
-                rs.getString("nombre"),
-                rs.getInt("idMascota"),
-                rs.getString("especie"),
-                rs.getString("raza"),                
-                rs.getDouble("pesoActual"),
-                };
+                    rs.getInt("idCliente"),
+                    rs.getString("dni"),
+                    rs.getString("apellido"),
+                    rs.getString("nombre"),
+                    rs.getInt("idMascota"),
+                    rs.getString("especie"),
+                    rs.getString("raza"),
+                    rs.getDouble("pesoActual"),
+                    rs.getInt("idVisita"),
+                    rs.getDate("fechaVisita"),
+                    rs.getInt("idTratamiento"),
+                    rs.getString("tipoTratamiento"),
+                    rs.getDouble("importe"),};
                 modelo.addRow(fila);
             }
             rs.close();
