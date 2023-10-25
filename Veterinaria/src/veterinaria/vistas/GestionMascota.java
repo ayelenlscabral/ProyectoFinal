@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.MascotaData;
@@ -44,7 +43,6 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         }
     };
-    
 
     public GestionMascota(boolean modo, Empleado empleado) {
         initComponents();
@@ -431,8 +429,7 @@ public class GestionMascota extends javax.swing.JPanel {
 
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
- try {
-
+        try {
             String aliasT = jTAlias.getText();
             String sexoT = "";
 
@@ -455,55 +452,71 @@ public class GestionMascota extends javax.swing.JPanel {
 
             } else {
                 Double pesoA = Double.parseDouble(pesoActualT);
-                
-                if (!fechaNac.isBefore(LocalDate.now())) {
+
+                if (fechaNac.isBefore(LocalDate.now()) || fechaNac.equals(LocalDate.now())) {
+
+                    if (aliasT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+
+                        if (especieT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+
+                            if (razaT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+
+                                if (colordePeloT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+
+                                    if (pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
+
+                                        if (pesoA <= 300) {
+
+                                            Mascota mascotaActual = new Mascota();
+
+                                            mascotaActual.setIdCliente(clienteSeleccionado);
+
+                                            mascotaActual.setAlias(aliasT);
+
+                                            mascotaActual.setSexo(sexoT);
+
+                                            mascotaActual.setEspecie(especieT);
+
+                                            mascotaActual.setRaza(razaT);
+
+                                            mascotaActual.setColorPelo(colordePeloT);
+
+                                            mascotaActual.setFechaNac(fechaNac);
+
+                                            mascotaActual.setPesoActual(pesoA);
+
+                                            mascotaActual.setPesoPromedio(pesoA);
+
+                                            mascotaActual.setEstado(jRadioBEstado.isSelected());
+
+                                            mascotaData.agregarMascota(mascotaActual);
+
+                                            JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");
+
+                                        } else {
+                                            JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
+                                        }
+
+                                    } else {
+                                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
+                                    }
+
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
+                                }
+
+                            } else {
+                                JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
+                    }
+                } else {
                     JOptionPane.showMessageDialog(this, "La fecha es incorrecta");
-                    
-                } else if (!aliasT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
-                   
-                } else if (!especieT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
-                   
-                } else if (!razaT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
-                    
-                } else if (!colordePeloT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
-                    
-                } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
-                    JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
-                   
-                } else if (pesoA > 300) {
-                    JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
-                   
-                }   
-                    Mascota mascotaActual = new Mascota();
-                    
-                    mascotaActual.setIdCliente(clienteSeleccionado);
-                   
-                    mascotaActual.setAlias(aliasT);
-                    
-                    mascotaActual.setSexo(sexoT);
-                   
-                    mascotaActual.setEspecie(especieT);
-                    
-                    mascotaActual.setRaza(razaT);
-                    
-                    mascotaActual.setColorPelo(colordePeloT);
-                    
-                    mascotaActual.setFechaNac(fechaNac);
-                  
-                    mascotaActual.setPesoActual(pesoA);
-                    
-                    mascotaActual.setPesoPromedio(pesoA);
-                    
-                    mascotaActual.setEstado(jRadioBEstado.isSelected());
-                    
-                    mascotaData.agregarMascota(mascotaActual);
-                    
-                    JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");
-                
+                }
 
             }
 
@@ -681,7 +694,7 @@ public class GestionMascota extends javax.swing.JPanel {
                     }
 
                     Cliente cliente = mascotaActual.getIdCliente();
-                  
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Mascota no encontrada");
                 }
