@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.MascotaData;
@@ -43,6 +44,7 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         }
     };
+    
 
     public GestionMascota(boolean modo, Empleado empleado) {
         initComponents();
@@ -94,213 +96,141 @@ public class GestionMascota extends javax.swing.JPanel {
         jTClienteDNI = new javax.swing.JTextField();
         jBotonOk = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(51, 204, 255));
-        setForeground(new java.awt.Color(51, 204, 255));
+        setBackground(new java.awt.Color(57, 230, 100));
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(57, 230, 100));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 700));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel1.setText("Sexo");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Sexo :");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 60, 30));
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel2.setText("Especie");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Especie :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
-        jTRaza.setBackground(new java.awt.Color(255, 255, 255));
-        jTRaza.setForeground(new java.awt.Color(0, 0, 0));
+        jTRaza.setBackground(new java.awt.Color(57, 150, 100));
+        jTRaza.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTRaza.setForeground(new java.awt.Color(255, 255, 255));
+        jTRaza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTRazaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTRaza, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 210, 30));
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel3.setText("Raza");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Raza :");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
-        jTidMascota.setBackground(new java.awt.Color(255, 255, 255));
-        jTidMascota.setForeground(new java.awt.Color(0, 0, 0));
+        jTidMascota.setBackground(new java.awt.Color(57, 150, 100));
+        jTidMascota.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTidMascota.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jTidMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 13, 205, 30));
 
-        jTEspecie.setBackground(new java.awt.Color(255, 255, 255));
-        jTEspecie.setForeground(new java.awt.Color(0, 0, 0));
+        jTEspecie.setBackground(new java.awt.Color(57, 150, 100));
+        jTEspecie.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTEspecie.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jTEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 210, 30));
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel4.setText("Id Mascota");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Id mascota :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 24, -1, -1));
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel5.setText("Alias");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setText("Alias :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel7.setText("Color de Pelo");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Color de pelo :");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        jLabel8.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel8.setText("Estado");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("Estado :");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, -1, -1));
 
-        jLabel9.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel9.setText("Peso Actual");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("Peso actual :");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel10.setText("Fecha de Nacimiento");
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setText("Fecha de nacimiento : ");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, 40));
 
-        jTPesoActual.setBackground(new java.awt.Color(255, 255, 255));
-        jTPesoActual.setForeground(new java.awt.Color(0, 0, 0));
+        jTPesoActual.setBackground(new java.awt.Color(57, 150, 100));
+        jTPesoActual.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTPesoActual.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jTPesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 210, 30));
 
-        jTAlias.setBackground(new java.awt.Color(255, 255, 255));
-        jTAlias.setForeground(new java.awt.Color(0, 0, 0));
+        jTAlias.setBackground(new java.awt.Color(57, 150, 100));
+        jTAlias.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTAlias.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jTAlias, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 210, 30));
 
-        jTColordePelo.setBackground(new java.awt.Color(255, 255, 255));
-        jTColordePelo.setForeground(new java.awt.Color(0, 0, 0));
+        jTColordePelo.setBackground(new java.awt.Color(57, 150, 100));
+        jTColordePelo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTColordePelo.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jTColordePelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 210, 30));
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel11.setText("Cliente");
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("Seleccione cliente : ");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, 30));
 
         jRadioBEstado.setBackground(new java.awt.Color(0, 153, 255));
         jRadioBEstado.setForeground(new java.awt.Color(255, 255, 51));
+        jRadioBEstado.setOpaque(false);
+        jPanel1.add(jRadioBEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, -1, -1));
 
-        jCheckBoxH.setBackground(new java.awt.Color(51, 204, 255));
+        jCheckBoxH.setBackground(new java.awt.Color(57, 230, 100));
         buttonGroup1.add(jCheckBoxH);
-        jCheckBoxH.setForeground(new java.awt.Color(0, 51, 204));
-        jCheckBoxH.setText("hembra");
+        jCheckBoxH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBoxH.setText("Hembra");
+        jPanel1.add(jCheckBoxH, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, -1, -1));
 
-        jCheckBoxM.setBackground(new java.awt.Color(0, 204, 255));
+        jCheckBoxM.setBackground(new java.awt.Color(57, 230, 100));
         buttonGroup1.add(jCheckBoxM);
-        jCheckBoxM.setForeground(new java.awt.Color(0, 51, 204));
-        jCheckBoxM.setText("macho");
+        jCheckBoxM.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCheckBoxM.setText("Macho");
         jCheckBoxM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMActionPerformed(evt);
             }
         });
+        jPanel1.add(jCheckBoxM, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, -1, -1));
 
-        jBuscar.setBackground(new java.awt.Color(0, 0, 153));
+        jBuscar.setBackground(new java.awt.Color(0, 153, 0));
         jBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        jBuscar.setText("BUSCAR");
+        jBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/buscar.png"))); // NOI18N
+        jBuscar.setToolTipText("BUSCAR");
         jBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(jBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 80, 40));
 
-        jComboBoxCliente.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxCliente.setForeground(new java.awt.Color(0, 0, 153));
+        jComboBoxCliente.setBackground(new java.awt.Color(57, 150, 100));
         jComboBoxCliente.setModel(jComboBoxCliente.getModel());
         jComboBoxCliente.setSelectedItem(jComboBoxCliente);
         jComboBoxCliente.setEditor(null);
+        jPanel1.add(jComboBoxCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 620, 30));
 
-        jDateFechaNac.setBackground(new java.awt.Color(255, 255, 255));
+        jDateFechaNac.setBackground(new java.awt.Color(57, 150, 100));
         jDateFechaNac.setForeground(new java.awt.Color(255, 255, 255));
+        jDateFechaNac.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPanel1.add(jDateFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 201, 41));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTidMascota, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                            .addComponent(jTAlias, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTRaza, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTEspecie, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTColordePelo)
-                            .addComponent(jTPesoActual))
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBuscar)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addComponent(jDateFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jRadioBEstado))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCheckBoxM)
-                                            .addComponent(jCheckBoxH)))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(30, 30, 30)
-                        .addComponent(jComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTidMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jBuscar))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jDateFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioBEstado))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTColordePelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTRaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3))
-                            .addGap(2, 2, 2)
-                            .addComponent(jLabel1)
-                            .addGap(72, 72, 72))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jCheckBoxH)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jCheckBoxM)
-                            .addGap(45, 45, 45)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jTPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 360));
 
-        jTabla.setBackground(new java.awt.Color(255, 255, 255));
-        jTabla.setForeground(new java.awt.Color(255, 0, 51));
+        jTabla.setBackground(new java.awt.Color(57, 150, 100));
+        jTabla.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTabla.setForeground(new java.awt.Color(255, 255, 255));
         jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -320,9 +250,9 @@ public class GestionMascota extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTabla.setGridColor(new java.awt.Color(0, 0, 153));
-        jTabla.setSelectionBackground(new java.awt.Color(0, 0, 153));
-        jTabla.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTabla.setGridColor(new java.awt.Color(255, 255, 255));
+        jTabla.setSelectionBackground(new java.awt.Color(51, 255, 0));
+        jTabla.getTableHeader().setReorderingAllowed(false);
         jTabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTablaMouseClicked(evt);
@@ -330,30 +260,35 @@ public class GestionMascota extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTabla);
 
-        jPanel2.setBackground(new java.awt.Color(0, 204, 255));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 800, 110));
+
+        jPanel2.setBackground(new java.awt.Color(57, 230, 100));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jBNuevo.setBackground(new java.awt.Color(0, 0, 153));
+        jBNuevo.setBackground(new java.awt.Color(255, 255, 102));
         jBNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        jBNuevo.setText("NUEVO");
+        jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/limpiar.png"))); // NOI18N
+        jBNuevo.setToolTipText("LIMPIAR");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBNuevoActionPerformed(evt);
             }
         });
 
-        jBGuardar.setBackground(new java.awt.Color(0, 0, 153));
+        jBGuardar.setBackground(new java.awt.Color(91, 220, 107));
         jBGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        jBGuardar.setText("GUARDAR");
+        jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/guardar.png"))); // NOI18N
+        jBGuardar.setToolTipText("GUARDAR");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
 
-        jBEliminar.setBackground(new java.awt.Color(0, 0, 153));
+        jBEliminar.setBackground(new java.awt.Color(232, 62, 62));
         jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/eliminar.png"))); // NOI18N
         jBEliminar.setText("ELIMINAR");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,9 +296,10 @@ public class GestionMascota extends javax.swing.JPanel {
             }
         });
 
-        jBSalir.setBackground(new java.awt.Color(0, 0, 153));
+        jBSalir.setBackground(new java.awt.Color(50, 119, 242));
         jBSalir.setForeground(new java.awt.Color(255, 255, 255));
-        jBSalir.setText("SALIR");
+        jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
+        jBSalir.setToolTipText("VOLVER");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalirActionPerformed(evt);
@@ -384,36 +320,45 @@ public class GestionMascota extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jBNuevo)
-                .addGap(71, 71, 71)
-                .addComponent(jBGuardar)
-                .addGap(83, 83, 83)
-                .addComponent(jBModificar)
-                .addGap(106, 106, 106)
-                .addComponent(jBEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jBSalir)
-                .addGap(58, 58, 58))
+                .addContainerGap()
+                .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBNuevo)
-                    .addComponent(jBGuardar)
-                    .addComponent(jBEliminar)
-                    .addComponent(jBSalir)
-                    .addComponent(jBModificar))
-                .addGap(32, 32, 32))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jBNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBEliminar, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel13.setText("Busqueda de mascota por DNI de Cliente:");
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 800, 50));
 
-        jTClienteDNI.setBackground(new java.awt.Color(255, 255, 255));
-        jTClienteDNI.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setText("Busqueda de mascota por DNI de Cliente:");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 270, 20));
+
+        jTClienteDNI.setBackground(new java.awt.Color(57, 150, 100));
+        jTClienteDNI.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTClienteDNI.setForeground(new java.awt.Color(255, 255, 255));
+        jTClienteDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTClienteDNIActionPerformed(evt);
+            }
+        });
+        add(jTClienteDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 148, -1));
 
         jBotonOk.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
         jBotonOk.setText("OK");
@@ -422,46 +367,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 jBotonOkMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBotonOk))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(129, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBotonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTClienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
+        add(jBotonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, -1, 22));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -525,8 +431,7 @@ public class GestionMascota extends javax.swing.JPanel {
 
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-
-        try {
+ try {
 
             String aliasT = jTAlias.getText();
             String sexoT = "";
@@ -541,7 +446,6 @@ public class GestionMascota extends javax.swing.JPanel {
             String razaT = jTRaza.getText();
             String colordePeloT = jTColordePelo.getText();
             LocalDate fechaNac = jDateFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
             String pesoActualT = (jTPesoActual.getText());
             Cliente clienteSeleccionado = (Cliente) jComboBoxCliente.getSelectedItem();
 
@@ -551,52 +455,61 @@ public class GestionMascota extends javax.swing.JPanel {
 
             } else {
                 Double pesoA = Double.parseDouble(pesoActualT);
-                if (fechaNac.isBefore(LocalDate.now()) || fechaNac.isEqual(LocalDate.now())) {
-
-                    if (!aliasT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                        JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
-
-                    } else if (!especieT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                        JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
-
-                    } else if (!razaT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                        JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
-
-                    } else if (!colordePeloT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
-                        JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
-
-                    } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
-                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
-                    } else if (pesoA > 300) {
-                        JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
                 
+                if (!fechaNac.isBefore(LocalDate.now())) {
+                    JOptionPane.showMessageDialog(this, "La fecha es incorrecta");
+                    
+                } else if (!aliasT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                    JOptionPane.showMessageDialog(this, "El campo 'alias' solo debe contener letras y espacios.");
+                   
+                } else if (!especieT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                    JOptionPane.showMessageDialog(this, "El campo 'especie' solo debe contener letras y espacios.");
+                   
+                } else if (!razaT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                    JOptionPane.showMessageDialog(this, "El campo 'raza' solo debe contener letras y espacios.");
+                    
+                } else if (!colordePeloT.matches("^[a-zA-Z][a-zA-Z\\s]+$")) {
+                    JOptionPane.showMessageDialog(this, "El campo 'color de Pelo' solo debe contener letras y espacios.");
+                    
+                } else if (!pesoA.toString().matches("^[0-9]+(\\.[0-9]+)?$")) {
+                    JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' solo debe contener numeros.");
+                   
+                } else if (pesoA > 300) {
+                    JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
+                   
+                }   
                     Mascota mascotaActual = new Mascota();
-
+                    
                     mascotaActual.setIdCliente(clienteSeleccionado);
+                   
                     mascotaActual.setAlias(aliasT);
+                    
                     mascotaActual.setSexo(sexoT);
+                   
                     mascotaActual.setEspecie(especieT);
+                    
                     mascotaActual.setRaza(razaT);
+                    
                     mascotaActual.setColorPelo(colordePeloT);
+                    
                     mascotaActual.setFechaNac(fechaNac);
+                  
                     mascotaActual.setPesoActual(pesoA);
+                    
                     mascotaActual.setPesoPromedio(pesoA);
+                    
                     mascotaActual.setEstado(jRadioBEstado.isSelected());
-
+                    
                     mascotaData.agregarMascota(mascotaActual);
-                    JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");     
-                   
-                } else {
-                        JOptionPane.showMessageDialog(this, "La fecha es incorrecta");
-                }
-                }        
+                    
+                    JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");
+                
+
             }
-                   
 
-
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingresa valores válidos en los campos de números", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al guardar la mascota: ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -874,6 +787,10 @@ public class GestionMascota extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_jCheckBoxMActionPerformed
+
+    private void jTRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTRazaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTRazaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

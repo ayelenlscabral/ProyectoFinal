@@ -8,6 +8,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.EmpleadoData;
 import veterinaria.Entidades.Empleado;
 
@@ -611,17 +612,21 @@ public class Administracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jFiltroKeyReleased
 
     private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
-        empData.eliminarEmpleado(jUsuario.getText());
+        if (comprobar()) {
+       empData.eliminarEmpleado(jUsuario.getText());
         jUsuario.setText("");
         jContraseña.setText("");
         GroupSexo.clearSelection();
         GroupAcceso.clearSelection();
         LimpiarTabla();
         cargarTabla();
+        }else{
+        JOptionPane.showMessageDialog(this, "El usuario no existe en la base de datos");
+        }
+
     }//GEN-LAST:event_jEliminarActionPerformed
 
     private void jTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaMouseClicked
-        jUsuario.setEditable(false);
         jUsuario.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 0)));
         jContraseña.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 1)));
         if (String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 2)).equalsIgnoreCase("Masculino")) {
@@ -638,7 +643,6 @@ public class Administracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jTablaMouseClicked
 
     private void jLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimpiarActionPerformed
-        jUsuario.setEditable(true);
         jUsuario.setText("");
         jContraseña.setText("");
         GroupSexo.clearSelection();
@@ -648,7 +652,7 @@ public class Administracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jLimpiarActionPerformed
 
     private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jUsuarioActionPerformed
 
 

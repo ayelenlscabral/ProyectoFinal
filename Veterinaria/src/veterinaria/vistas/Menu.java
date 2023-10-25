@@ -28,7 +28,6 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         mostrarHoraActual();
         this.setLocationRelativeTo(null);
-        this.setExtendedState(this.MAXIMIZED_BOTH);
         this.modo = modo;
         this.empleado = empleado;
         getUsuario(empleado);
@@ -58,59 +57,48 @@ public class Menu extends javax.swing.JFrame {
         jBienvenido = new javax.swing.JLabel();
         jUsuario = new javax.swing.JLabel();
         jLogo = new javax.swing.JLabel();
-        jPublicidad = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        wsp = new javax.swing.JLabel();
-        insta = new javax.swing.JLabel();
-        fb = new javax.swing.JLabel();
         jAdministracion = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanelAlternativo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VETERINARIA LAYOUT");
         setBackground(new java.awt.Color(51, 255, 51));
-        setPreferredSize(new java.awt.Dimension(1000, 700));
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
+        setSize(new java.awt.Dimension(800, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jMenuPanel.setBackground(new java.awt.Color(0, 255, 0));
         jMenuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jMenuPanel.setAutoscrolls(true);
         jMenuPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuPanel.setMinimumSize(new java.awt.Dimension(100, 100));
-        jMenuPanel.setPreferredSize(new java.awt.Dimension(1000, 700));
-        jMenuPanel.setLayout(new java.awt.GridBagLayout());
+        jMenuPanel.setMaximumSize(new java.awt.Dimension(800, 600));
+        jMenuPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        jMenuPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+        jMenuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelHorario.setBackground(new java.awt.Color(120, 168, 255));
-        jPanelHorario.setLayout(new java.awt.BorderLayout());
+        jPanelHorario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jReloj.setBackground(new java.awt.Color(255, 255, 255));
-        jReloj.setFont(new java.awt.Font("Tahoma", 1, 95)); // NOI18N
+        jReloj.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jReloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jReloj.setText("RELOJ");
         jReloj.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jReloj.setMinimumSize(new java.awt.Dimension(10, 10));
-        jPanelHorario.add(jReloj, java.awt.BorderLayout.CENTER);
+        jPanelHorario.add(jReloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 280, 90));
 
         jFecha.setBackground(new java.awt.Color(255, 255, 255));
-        jFecha.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jFecha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jFecha.setText("FECHA");
         jFecha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jFecha.setMinimumSize(new java.awt.Dimension(10, 10));
-        jPanelHorario.add(jFecha, java.awt.BorderLayout.PAGE_START);
+        jPanelHorario.add(jFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, -1));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 558;
-        gridBagConstraints.ipady = 309;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        jMenuPanel.add(jPanelHorario, gridBagConstraints);
+        jMenuPanel.add(jPanelHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 280, 140));
 
         jAgregarCliente.setBackground(new java.awt.Color(0, 120, 215));
         jAgregarCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -124,18 +112,7 @@ public class Menu extends javax.swing.JFrame {
                 jAgregarClienteActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1070;
-        gridBagConstraints.ipady = 310;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 10.0;
-        gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
-        jMenuPanel.add(jAgregarCliente, gridBagConstraints);
+        jMenuPanel.add(jAgregarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 410, 160));
 
         jAgregarMascota.setBackground(new java.awt.Color(57, 230, 100));
         jAgregarMascota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -148,18 +125,7 @@ public class Menu extends javax.swing.JFrame {
                 jAgregarMascotaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 600;
-        gridBagConstraints.ipady = 200;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
-        jMenuPanel.add(jAgregarMascota, gridBagConstraints);
+        jMenuPanel.add(jAgregarMascota, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 210, 110));
 
         jHistorial.setBackground(new java.awt.Color(209, 17, 65));
         jHistorial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -172,18 +138,7 @@ public class Menu extends javax.swing.JFrame {
                 jHistorialActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 560;
-        gridBagConstraints.ipady = 202;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        jMenuPanel.add(jHistorial, gridBagConstraints);
+        jMenuPanel.add(jHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 200, 110));
 
         jAgenda.setBackground(new java.awt.Color(136, 223, 153));
         jAgenda.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -196,18 +151,7 @@ public class Menu extends javax.swing.JFrame {
                 jAgendaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridheight = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 520;
-        gridBagConstraints.ipady = 390;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 3.0;
-        gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jMenuPanel.add(jAgenda, gridBagConstraints);
+        jMenuPanel.add(jAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 150, 170));
 
         jAgregarVisita.setBackground(new java.awt.Color(125, 60, 152));
         jAgregarVisita.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -221,19 +165,7 @@ public class Menu extends javax.swing.JFrame {
                 jAgregarVisitaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 698;
-        gridBagConstraints.ipady = 529;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 10.0;
-        gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jMenuPanel.add(jAgregarVisita, gridBagConstraints);
+        jMenuPanel.add(jAgregarVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 240, 220));
 
         jModo.setBackground(new java.awt.Color(85, 85, 85));
         jModo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -246,17 +178,7 @@ public class Menu extends javax.swing.JFrame {
                 jModoActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 355;
-        gridBagConstraints.ipady = 290;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jMenuPanel.add(jModo, gridBagConstraints);
+        jMenuPanel.add(jModo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 240, 123));
 
         jGestionTratamiento.setBackground(new java.awt.Color(255, 105, 180));
         jGestionTratamiento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -270,18 +192,7 @@ public class Menu extends javax.swing.JFrame {
                 jGestionTratamientoActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridheight = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 490;
-        gridBagConstraints.ipady = 640;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
-        jMenuPanel.add(jGestionTratamiento, gridBagConstraints);
+        jMenuPanel.add(jGestionTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 210, 330));
 
         jBalance.setBackground(new java.awt.Color(240, 150, 50));
         jBalance.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -294,17 +205,7 @@ public class Menu extends javax.swing.JFrame {
                 jBalanceActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 558;
-        gridBagConstraints.ipady = 291;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        jMenuPanel.add(jBalance, gridBagConstraints);
+        jMenuPanel.add(jBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 200, 190));
 
         jAbout.setBackground(new java.awt.Color(22, 141, 79));
         jAbout.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -317,17 +218,7 @@ public class Menu extends javax.swing.JFrame {
                 jAboutActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 320;
-        gridBagConstraints.ipady = 291;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
-        jMenuPanel.add(jAbout, gridBagConstraints);
+        jMenuPanel.add(jAbout, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 240, 120));
 
         jLogOut.setBackground(new java.awt.Color(128, 0, 32));
         jLogOut.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -340,129 +231,25 @@ public class Menu extends javax.swing.JFrame {
                 jLogOutActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jMenuPanel.add(jLogOut, gridBagConstraints);
+        jMenuPanel.add(jLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, 160, 140));
 
         jBienvenida.setBackground(new java.awt.Color(0, 99, 177));
         jBienvenida.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jBienvenida.setPreferredSize(new java.awt.Dimension(400, 500));
-        jBienvenida.setLayout(new java.awt.GridBagLayout());
+        jBienvenida.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBienvenido.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jBienvenido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 410;
-        gridBagConstraints.ipady = 70;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 20.0;
-        gridBagConstraints.weighty = 20.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 50, 0, 50);
-        jBienvenida.add(jBienvenido, gridBagConstraints);
+        jBienvenida.add(jBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 50));
 
         jUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 410;
-        gridBagConstraints.ipady = 60;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 20.0;
-        gridBagConstraints.weighty = 20.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 50, 0, 50);
-        jBienvenida.add(jUsuario, gridBagConstraints);
+        jBienvenida.add(jUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 150, 50));
 
         jLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 250;
-        gridBagConstraints.ipady = 250;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 150.0;
-        gridBagConstraints.weighty = 150.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 50, 20, 50);
-        jBienvenida.add(jLogo, gridBagConstraints);
+        jBienvenida.add(jLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 130, 120));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = -60;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 30.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jMenuPanel.add(jBienvenida, gridBagConstraints);
-
-        jPublicidad.setBackground(new java.awt.Color(179, 158, 181));
-        jPublicidad.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-
-        wsp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/wsp.png"))); // NOI18N
-
-        insta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/instagram.png"))); // NOI18N
-
-        fb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/facebook.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPublicidadLayout = new javax.swing.GroupLayout(jPublicidad);
-        jPublicidad.setLayout(jPublicidadLayout);
-        jPublicidadLayout.setHorizontalGroup(
-            jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPublicidadLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(fb)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(insta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(wsp)
-                .addGap(188, 188, 188))
-            .addGroup(jPublicidadLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1709, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
-        );
-        jPublicidadLayout.setVerticalGroup(
-            jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPublicidadLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPublicidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(wsp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(insta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(jLabel2))
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 897;
-        gridBagConstraints.ipady = 84;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jMenuPanel.add(jPublicidad, gridBagConstraints);
+        jMenuPanel.add(jBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 270));
 
         jAdministracion.setBackground(new java.awt.Color(255, 204, 102));
         jAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/administracion.png"))); // NOI18N
@@ -474,48 +261,18 @@ public class Menu extends javax.swing.JFrame {
                 jAdministracionActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 373;
-        gridBagConstraints.ipady = 207;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 5.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        jMenuPanel.add(jAdministracion, gridBagConstraints);
-        jMenuPanel.add(jScrollPane1, new java.awt.GridBagConstraints());
+        jMenuPanel.add(jAdministracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 150, 160));
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1359;
-        gridBagConstraints.ipady = 757;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jMenuPanel, gridBagConstraints);
+        getContentPane().add(jMenuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
         jMenuPanel.getAccessibleContext().setAccessibleDescription("");
 
         jPanelAlternativo.setBackground(new java.awt.Color(255, 255, 51));
         jPanelAlternativo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelAlternativo.setPreferredSize(new java.awt.Dimension(1000, 700));
+        jPanelAlternativo.setMaximumSize(new java.awt.Dimension(800, 600));
+        jPanelAlternativo.setMinimumSize(new java.awt.Dimension(800, 600));
+        jPanelAlternativo.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanelAlternativo.setLayout(new java.awt.BorderLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1000;
-        gridBagConstraints.ipady = 700;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        getContentPane().add(jPanelAlternativo, gridBagConstraints);
+        getContentPane().add(jPanelAlternativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -653,8 +410,6 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel fb;
-    private javax.swing.JLabel insta;
     private javax.swing.JButton jAbout;
     private javax.swing.JButton jAdministracion;
     private javax.swing.JButton jAgenda;
@@ -667,18 +422,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jFecha;
     private javax.swing.JButton jGestionTratamiento;
     private javax.swing.JButton jHistorial;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jLogOut;
     private javax.swing.JLabel jLogo;
     private javax.swing.JPanel jMenuPanel;
     private javax.swing.JButton jModo;
     private javax.swing.JPanel jPanelAlternativo;
     private javax.swing.JPanel jPanelHorario;
-    private javax.swing.JPanel jPublicidad;
     private javax.swing.JLabel jReloj;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jUsuario;
-    private javax.swing.JLabel wsp;
     // End of variables declaration//GEN-END:variables
 private void mostrarHoraActual() {
 
@@ -756,7 +507,7 @@ private void mostrarHoraActual() {
                 jPanelAlternativo.setBackground(color);
                 jPanelHorario.setBackground(color);
                 jReloj.setBackground(color);
-                jPublicidad.setBackground(color);
+//                jPublicidad.setBackground(color);
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -796,7 +547,7 @@ private void mostrarHoraActual() {
                 Color fondoHorario = new Color(120, 168, 255);
                 jPanelHorario.setBackground(fondoHorario);
                 Color fondoPublicidad = new Color(179, 158, 181);
-                jPublicidad.setBackground(fondoPublicidad);
+//                jPublicidad.setBackground(fondoPublicidad);
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
