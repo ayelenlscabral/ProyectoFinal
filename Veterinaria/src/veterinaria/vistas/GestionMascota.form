@@ -356,7 +356,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="540" y="250" width="-1" height="-1"/>
+              <AbsoluteConstraints x="540" y="250" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -560,10 +560,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jBNuevo" min="-2" pref="123" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jBGuardar" min="-2" pref="124" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="jBModificar" min="-2" pref="117" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                  <Component id="jBGuardar" min="-2" pref="140" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jBModificar" min="-2" pref="114" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="jBEliminar" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace pref="41" max="32767" attributes="0"/>
                   <Component id="jBSalir" min="-2" pref="124" max="-2" attributes="0"/>
@@ -577,9 +577,11 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jBNuevo" alignment="0" max="32767" attributes="0"/>
                       <Component id="jBGuardar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jBSalir" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jBEliminar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBModificar" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="jBEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBModificar" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jBSalir" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
