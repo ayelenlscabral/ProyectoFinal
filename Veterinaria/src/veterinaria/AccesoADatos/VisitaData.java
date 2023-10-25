@@ -143,6 +143,41 @@ public class VisitaData {
         }
         return visita;
     }
+    public List<Visita> listarVisitaXTratamiento(int id) {
+        List<Visita> visita = new ArrayList();
+        String sql = "SELECT * FROM `visita` WHERE idTratamiento=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Visita visit = new Visita();
+                Mascota mascota = new Mascota();
+                Tratamiento tratamiento = new Tratamiento();
+
+                visit.setIdVisita(rs.getInt("idVisita"));
+
+                mascota.setIdMascota(rs.getInt("idMascota"));
+                tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
+
+                visit.setMascota(mascota);
+                visit.setTratamiento(tratamiento);
+
+                visit.setFechaTratamiento(rs.getDate("fechaVisita").toLocalDate());
+                visit.setObservaciones(rs.getString("observaciones"));
+                visit.setPesoActual(rs.getDouble("pesoActual"));
+                visita.add(visit);
+            }
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al querer listar visita" + ex.getMessage());
+        }
+        return visita;
+    }
 
     public void sacarPesoPromedio(Mascota mascota) {
         try {
