@@ -106,6 +106,7 @@ public class Historial extends javax.swing.JPanel {
             }
         });
         jTabla.setGridColor(new java.awt.Color(51, 204, 255));
+        jTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabla);
 
         jBotonSalir.setBackground(new java.awt.Color(255, 102, 204));
