@@ -1,5 +1,6 @@
 package veterinaria.vistas;
 
+import java.awt.Color;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -7,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.MascotaData;
@@ -33,13 +35,16 @@ public class GestionVisita extends javax.swing.JPanel {
 
     public GestionVisita(boolean modo, Empleado empleado) {
         initComponents();
+        this.actualizarApariencia(modo);
         cabecera();
         llenarTratamiento();
         llenarMascota2();
         jCoincidencias.setVisible(false);
         jCoincidencias.setOpaque(true);
         jidCliente.setOpaque(true);
-        jDatos.setOpaque(true);
+
+//        jDatos.setOpaque(false);
+//        jDatos.setForeground(Color.black);
         jimporte.setOpaque(true);
         jcontado.setSelected(true);
         this.modo = modo;
@@ -112,7 +117,6 @@ public class GestionVisita extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jMascota1 = new javax.swing.JComboBox<>();
         jTratamiento = new javax.swing.JComboBox<>();
@@ -136,9 +140,10 @@ public class GestionVisita extends javax.swing.JPanel {
         jidCliente = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jCoincidencias = new javax.swing.JLabel();
-        jDate = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         jTratamiento1 = new javax.swing.JComboBox<>();
+        jDate = new com.toedter.calendar.JDateChooser();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 51, 255));
         setForeground(new java.awt.Color(0, 0, 204));
@@ -169,7 +174,7 @@ public class GestionVisita extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Tratamiento");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 178, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,11 +186,6 @@ public class GestionVisita extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Peso Actual");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 173, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Fecha de visita");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 178, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -347,6 +347,7 @@ public class GestionVisita extends javax.swing.JPanel {
 
         jCoincidencias.setBackground(new java.awt.Color(204, 204, 255));
         jCoincidencias.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jCoincidencias.setForeground(new java.awt.Color(0, 0, 0));
         jCoincidencias.setOpaque(true);
         jCoincidencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -354,10 +355,6 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
         add(jCoincidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 84, 125, 24));
-
-        jDate.setBackground(new java.awt.Color(102, 0, 102));
-        jDate.setForeground(new java.awt.Color(255, 255, 255));
-        add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 168, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -373,14 +370,23 @@ public class GestionVisita extends javax.swing.JPanel {
             }
         });
         add(jTratamiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 374, 190, -1));
+
+        jDate.setBackground(new java.awt.Color(102, 0, 102));
+        jDate.setForeground(java.awt.SystemColor.activeCaptionText);
+        add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Fecha ");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMascota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota2ActionPerformed
         borrarFilas();
-      
+
         if (jMascota2.getSelectedIndex() == -1) {
         } else {
-             jTratamiento1.setSelectedIndex(-1);
+            jTratamiento1.setSelectedIndex(-1);
             mascota = new Mascota();
             mascota = (Mascota) jMascota2.getSelectedItem();
             int id = mascota.getIdMascota();
@@ -510,7 +516,7 @@ public class GestionVisita extends javax.swing.JPanel {
     private void jTratamiento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTratamiento1ActionPerformed
         borrarFilas();
 
-        if ( jTratamiento1.getSelectedIndex()== -1) {
+        if (jTratamiento1.getSelectedIndex() == -1) {
         } else {
             jMascota2.setSelectedIndex(-1);
             tr = new Tratamiento();
@@ -519,7 +525,6 @@ public class GestionVisita extends javax.swing.JPanel {
 
             for (Visita aux : viData.listarVisitaXTratamiento(id)) {
                 Mascota aux2 = maData.buscarMascota(aux.getMascota().getIdMascota());
-                
 
                 modelo.addRow(new Object[]{
                     aux.getIdVisita(),
@@ -575,4 +580,37 @@ public class GestionVisita extends javax.swing.JPanel {
     private javax.swing.JTextField jpeso;
     private javax.swing.JRadioButton jtarjeta;
     // End of variables declaration//GEN-END:variables
+
+    private void actualizarApariencia(boolean modo) {
+        if (modo) {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+                Color color = new Color(52, 55, 59);
+                Color color1 = new Color(102, 102, 102);
+                this.setBackground(color);
+                jdni.setBackground(color);
+                jidCliente.setBackground(color);
+                jMascota1.setBackground(color);
+                jMascota2.setBackground(color);
+                jimporte.setBackground(color);
+                jGuardar.setBackground(color);
+                jVolver.setBackground(color);
+                jBuscar.setBackground(color);
+                jScrollPane1.setBackground(color);
+                jTratamiento.setBackground(color);
+                jTratamiento1.setBackground(color);
+                jObservacion.setBackground(color);
+                jTable1.setBackground(color);
+                jcontado.setBackground(color);
+                jtarjeta.setBackground(color);
+                jDatos.setBackground(color1);
+
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+              
+            }
+        } 
+    }
+
 }

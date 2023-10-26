@@ -1,12 +1,16 @@
 package veterinaria.vistas;
 
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.MascotaData;
@@ -33,6 +37,7 @@ public class Balance extends javax.swing.JPanel {
 
     public Balance(boolean modo, Empleado empleado) {
         initComponents();
+        this.actualizarApariencia(modo);
         cabecera();
         this.modo = modo;
         this.empleado = empleado;
@@ -61,19 +66,19 @@ public class Balance extends javax.swing.JPanel {
         JLabel7 = new javax.swing.JLabel();
         jImporte2 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        JLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jFecha = new javax.swing.JLabel();
+        jVolver = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
         setBackground(new java.awt.Color(255, 200, 50));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 255));
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("BALANCE");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 13, 800, 41));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 290, 41));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -123,7 +128,10 @@ public class Balance extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
-            .addComponent(JLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(JLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,20 +187,24 @@ public class Balance extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(JLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDia2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110)
-                        .addComponent(JLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jImporte2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 25, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2)))
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(JLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jDia2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(110, 110, 110)
+                                .addComponent(JLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jImporte2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(209, 209, 209)
+                                .addComponent(JLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(JLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,28 +231,29 @@ public class Balance extends javax.swing.JPanel {
         });
         add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 61, 267, 30));
 
-        JLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        JLabel8.setText("INGRESE FECHA :");
-        add(JLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 65, 130, 26));
+        jFecha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jFecha.setForeground(new java.awt.Color(0, 0, 0));
+        jFecha.setText("INGRESE FECHA :");
+        add(jFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 65, 130, 26));
 
-        jButton2.setBackground(new java.awt.Color(50, 119, 242));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
-        jButton2.setToolTipText("VOLVER");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jVolver.setBackground(new java.awt.Color(50, 119, 242));
+        jVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jVolver.setForeground(new java.awt.Color(255, 255, 255));
+        jVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
+        jVolver.setToolTipText("VOLVER");
+        jVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jVolverActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 523, 125, 56));
+        add(jVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 523, 125, 56));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVolverActionPerformed
         Menu menu = new Menu(modo, empleado);
         menu.setVisible(true);
         SwingUtilities.getWindowAncestor(this).dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jVolverActionPerformed
 
     private DefaultTableModel modelo = new DefaultTableModel() {
         @Override
@@ -307,7 +320,7 @@ public class Balance extends javax.swing.JPanel {
 
     public void llenarTabla2(LocalDate fecha) {
 
-        int mes = fecha.getMonthValue() ;
+        int mes = fecha.getMonthValue();
         int año = fecha.getYear();
         Cliente aux3 = null;
         jDia2.setText(fecha.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + año);
@@ -349,11 +362,10 @@ public class Balance extends javax.swing.JPanel {
     private javax.swing.JLabel JLabel5;
     private javax.swing.JLabel JLabel6;
     private javax.swing.JLabel JLabel7;
-    private javax.swing.JLabel JLabel8;
-    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jDia;
     private javax.swing.JLabel jDia2;
+    private javax.swing.JLabel jFecha;
     private javax.swing.JLabel jImporte1;
     private javax.swing.JLabel jImporte2;
     private javax.swing.JLabel jLabel1;
@@ -364,5 +376,36 @@ public class Balance extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JButton jVolver;
     // End of variables declaration//GEN-END:variables
+  private void actualizarApariencia(boolean modo) {
+        if (modo) {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+                Color color = new Color(52, 55, 59);
+                Color color1 = new Color(102, 102, 102);
+                this.setBackground(color);
+                jPanel1.setBackground(color1);
+                jPanel2.setBackground(color1);
+                jTable2.setBackground(color);
+                jTable2.setForeground(Color.white);
+                jTable1.setForeground(Color.white);
+                jTable1.setBackground(color);
+                jScrollPane1.setBackground(color);
+                jScrollPane2.setBackground(color);
+                jLabel1.setOpaque(true);
+                jFecha.setOpaque(true);
+                jLabel1.setBackground(color);
+                jFecha.setBackground(color);
+                jLabel1.setForeground(Color.LIGHT_GRAY);
+                jFecha.setForeground(Color.LIGHT_GRAY);
+                jVolver.setBackground(color);
+
+            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+        }
+    }
 }
