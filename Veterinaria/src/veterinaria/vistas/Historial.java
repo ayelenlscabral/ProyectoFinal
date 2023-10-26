@@ -106,11 +106,12 @@ public class Historial extends javax.swing.JPanel {
             }
         });
         jTabla.setGridColor(new java.awt.Color(51, 204, 255));
+        jTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabla);
 
         jBotonSalir.setBackground(new java.awt.Color(255, 102, 204));
         jBotonSalir.setForeground(new java.awt.Color(153, 255, 153));
-        jBotonSalir.setText("SALIR");
+        jBotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/vistas/volver.png"))); // NOI18N
         jBotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonSalirActionPerformed(evt);
@@ -121,9 +122,9 @@ public class Historial extends javax.swing.JPanel {
         jBDesde.setForeground(new java.awt.Color(153, 153, 153));
         jBDesde.setText("FECHA DESDE:");
 
-        jBLimpiar.setBackground(new java.awt.Color(255, 51, 255));
-        jBLimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        jBLimpiar.setText("LIMPIAR TABLA");
+        jBLimpiar.setBackground(new java.awt.Color(255, 102, 255));
+        jBLimpiar.setForeground(new java.awt.Color(153, 255, 102));
+        jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/vistas/limpiar.png"))); // NOI18N
         jBLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
         jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,10 +169,10 @@ public class Historial extends javax.swing.JPanel {
                 .addComponent(jLTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(335, Short.MAX_VALUE)
@@ -210,10 +211,10 @@ public class Historial extends javax.swing.JPanel {
                     .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
