@@ -13,6 +13,7 @@ public class About extends javax.swing.JPanel {
         initComponents();
                 this.modo = modo;
                 this.empleado=empleado;
+                jLabelTitulo.setText("<html><u>PROGRAMADORES</u></html>");
     }
 
     /**
@@ -25,6 +26,18 @@ public class About extends javax.swing.JPanel {
     private void initComponents() {
 
         jVolver = new javax.swing.JButton();
+        jLabelSanLuis = new javax.swing.JLabel();
+        jLabelLaPunta = new javax.swing.JLabel();
+        jLabelperrito = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
         jVolver.setToolTipText("VOLVER");
@@ -33,23 +46,41 @@ public class About extends javax.swing.JPanel {
                 jVolverActionPerformed(evt);
             }
         });
+        add(jVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 487, 198, 79));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(285, 285, 285)
-                .addComponent(jVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(317, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(510, Short.MAX_VALUE)
-                .addComponent(jVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabelSanLuis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/san luis.png"))); // NOI18N
+        add(jLabelSanLuis, new org.netbeans.lib.awtextra.AbsoluteConstraints(637, 367, 150, 97));
+
+        jLabelLaPunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/la punta.png"))); // NOI18N
+        add(jLabelLaPunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 342, 295, 139));
+
+        jLabelperrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/veterinaria.png"))); // NOI18N
+        add(jLabelperrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 38, 418, 302));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cristian Calgaro");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 243, 35));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Alberto Teran");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 163, 243, 35));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Federico Santamaria");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 216, 243, 35));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Maximiliano Sastre");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 269, 243, 35));
+
+        jLabelTitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setText("PROGRAMADORES");
+        add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 38, 243, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVolverActionPerformed
@@ -60,6 +91,14 @@ public class About extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelLaPunta;
+    private javax.swing.JLabel jLabelSanLuis;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelperrito;
     private javax.swing.JButton jVolver;
     // End of variables declaration//GEN-END:variables
 }
