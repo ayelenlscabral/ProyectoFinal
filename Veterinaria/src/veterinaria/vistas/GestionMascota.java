@@ -51,6 +51,7 @@ public class GestionMascota extends javax.swing.JPanel {
         cargarClientes();
         this.modo = modo;
         this.empleado = empleado;
+        jDateFechaNac.getDateEditor().setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -214,6 +215,7 @@ public class GestionMascota extends javax.swing.JPanel {
         jPanel1.add(jBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 80, 40));
 
         jComboBoxCliente.setBackground(new java.awt.Color(57, 150, 100));
+        jComboBoxCliente.setForeground(new java.awt.Color(255, 255, 255));
         jComboBoxCliente.setModel(jComboBoxCliente.getModel());
         jComboBoxCliente.setSelectedItem(jComboBoxCliente);
         jComboBoxCliente.setEditor(null);
@@ -287,7 +289,7 @@ public class GestionMascota extends javax.swing.JPanel {
         jBEliminar.setBackground(new java.awt.Color(232, 62, 62));
         jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/eliminar.png"))); // NOI18N
-        jBEliminar.setText("ELIMINAR");
+        jBEliminar.setToolTipText("ELIMINAR");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
@@ -306,7 +308,8 @@ public class GestionMascota extends javax.swing.JPanel {
 
         jBModificar.setBackground(new java.awt.Color(0, 0, 153));
         jBModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificar.setText("MODIFICAR");
+        jBModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/modificar.png"))); // NOI18N
+        jBModificar.setToolTipText("MODIFICAR");
         jBModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBModificarActionPerformed(evt);
@@ -323,10 +326,10 @@ public class GestionMascota extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -359,14 +362,16 @@ public class GestionMascota extends javax.swing.JPanel {
         });
         add(jTClienteDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, 148, -1));
 
+        jBotonOk.setBackground(new java.awt.Color(57, 150, 100));
         jBotonOk.setFont(new java.awt.Font("Dialog", 1, 8)); // NOI18N
+        jBotonOk.setForeground(new java.awt.Color(255, 255, 255));
         jBotonOk.setText("OK");
         jBotonOk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBotonOkMouseClicked(evt);
             }
         });
-        add(jBotonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, -1, 22));
+        add(jBotonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 80, 22));
     }// </editor-fold>//GEN-END:initComponents
 
 
