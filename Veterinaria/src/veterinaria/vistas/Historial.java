@@ -1,12 +1,16 @@
 package veterinaria.vistas;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.Conexion;
@@ -37,7 +41,7 @@ public class Historial extends javax.swing.JPanel {
         cabecera();
         this.modo = modo;
         this.empleado = empleado;
-
+        actualizarApariencia(modo);
     }
 
     @SuppressWarnings("unchecked")
@@ -221,6 +225,8 @@ public class Historial extends javax.swing.JPanel {
         );
 
         jLTitulo.getAccessibleContext().setAccessibleName("HISTORIAL DE LA VETERINARIA");
+        jDateHasta.getAccessibleContext().setAccessibleParent(jBHasta);
+        jDateDesde.getAccessibleContext().setAccessibleParent(jBDesde);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
@@ -244,13 +250,13 @@ public class Historial extends javax.swing.JPanel {
 
         Date fechaInicio = jDateDesde.getDate();
         Date fechaFin = jDateHasta.getDate();
-        
+
         String sql = "SELECT c.idCliente, c.dni, c.apellido, c.nombre, m.idMascota,m.especie, m.raza, m.pesoActual, v.idVisita, v.fechaVisita, t.idTratamiento, t.tipoTratamiento, t.importe "
                 + "FROM cliente c "
                 + "JOIN mascota m ON c.idCliente = m.idCliente "
                 + "JOIN visita v ON v.idMascota = m.idMascota "
                 + "JOIN tratamiento t ON t.idTratamiento = v.idTratamiento "
-                + "WHERE v.fechaVisita BETWEEN ? AND ? " 
+                + "WHERE v.fechaVisita BETWEEN ? AND ? "
                 + "ORDER BY v.fechaVisita";
 
         PreparedStatement ps;
@@ -260,7 +266,8 @@ public class Historial extends javax.swing.JPanel {
             ps = connection.prepareStatement(sql);
             ps.setDate(1, new java.sql.Date(fechaInicio.getTime()));
             ps.setDate(2, new java.sql.Date(fechaFin.getTime()));
-            
+
+              
             ResultSet rs = ps.executeQuery();
 
             DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
@@ -289,7 +296,9 @@ public class Historial extends javax.swing.JPanel {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error" + ex);
-        }
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }    
     }//GEN-LAST:event_jBFiltrarMouseClicked
 
 
@@ -325,6 +334,39 @@ public class Historial extends javax.swing.JPanel {
 
         return modelo;
 
+    }
+
+    private void actualizarApariencia(boolean modo) {
+        if (modo) {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+                Color color = new Color(52, 55, 59);
+                this.setBackground(color);
+
+                jBDesde.setBackground(color);
+                jBFiltrar.setBackground(color);
+                jBHasta.setBackground(color);
+                jBLimpiar.setBackground(color);
+                jBotonSalir.setBackground(color);
+                jDateDesde.setBackground(color);
+                jDateHasta.setBackground(color);
+                jLTitulo.setBackground(color);
+                jPanel1.setBackground(color);
+                jScrollPane1.setBackground(color);
+                jTabla.setBackground(color);
+
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
+                javax.swing.SwingUtilities.updateComponentTreeUI(this);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }
