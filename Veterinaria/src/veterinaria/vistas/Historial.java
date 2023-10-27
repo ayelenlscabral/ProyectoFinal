@@ -63,13 +63,17 @@ public class Historial extends javax.swing.JPanel {
         setBackground(new java.awt.Color(209, 17, 65));
         setForeground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 55, -1, -1));
 
         jLTitulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTitulo.setText("       HISTORIAL DE LA VETERINARIA");
+        add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 20, 931, -1));
+        jLTitulo.getAccessibleContext().setAccessibleName("HISTORIAL DE LA VETERINARIA");
 
         jTabla.setBackground(new java.awt.Color(255, 255, 255));
         jTabla.setForeground(new java.awt.Color(51, 153, 255));
@@ -113,6 +117,8 @@ public class Historial extends javax.swing.JPanel {
         jTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabla);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 322, 770, 240));
+
         jBotonSalir.setBackground(new java.awt.Color(255, 255, 255));
         jBotonSalir.setForeground(new java.awt.Color(255, 102, 255));
         jBotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
@@ -121,10 +127,12 @@ public class Historial extends javax.swing.JPanel {
                 jBotonSalirActionPerformed(evt);
             }
         });
+        add(jBotonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 98, -1));
 
         jBDesde.setBackground(new java.awt.Color(255, 255, 204));
         jBDesde.setForeground(new java.awt.Color(255, 255, 255));
         jBDesde.setText("FECHA DESDE:");
+        add(jBDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 88, 26));
 
         jBLimpiar.setBackground(new java.awt.Color(255, 255, 255));
         jBLimpiar.setForeground(new java.awt.Color(209, 17, 65));
@@ -135,12 +143,16 @@ public class Historial extends javax.swing.JPanel {
                 jBLimpiarActionPerformed(evt);
             }
         });
+        add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 103, 56));
 
         jDateHasta.setBackground(new java.awt.Color(255, 204, 153));
         jDateHasta.setForeground(new java.awt.Color(0, 204, 51));
+        add(jDateHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 163, -1));
 
         jDateDesde.setBackground(new java.awt.Color(255, 255, 153));
         jDateDesde.setForeground(new java.awt.Color(0, 0, 255));
+        add(jDateDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 154, -1));
+        jDateDesde.getAccessibleContext().setAccessibleParent(jBDesde);
 
         jBFiltrar.setBackground(new java.awt.Color(209, 17, 65));
         jBFiltrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,82 +163,12 @@ public class Historial extends javax.swing.JPanel {
                 jBFiltrarMouseClicked(evt);
             }
         });
+        add(jBFiltrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 120, 29));
 
         jBHasta.setBackground(new java.awt.Color(255, 255, 204));
         jBHasta.setForeground(new java.awt.Color(255, 255, 255));
         jBHasta.setText("FECHA HASTA:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(335, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(233, 233, 233)
-                        .addComponent(jBHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(240, 240, 240))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152)
-                        .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(196, 196, 196))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(373, 373, 373))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLTitulo)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jBHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jBFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
-        );
-
-        jLTitulo.getAccessibleContext().setAccessibleName("HISTORIAL DE LA VETERINARIA");
-        jDateHasta.getAccessibleContext().setAccessibleParent(jBHasta);
-        jDateDesde.getAccessibleContext().setAccessibleParent(jBDesde);
+        add(jBHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 88, 26));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonSalirActionPerformed
@@ -267,7 +209,14 @@ public class Historial extends javax.swing.JPanel {
             ps.setDate(1, new java.sql.Date(fechaInicio.getTime()));
             ps.setDate(2, new java.sql.Date(fechaFin.getTime()));
 
-              
+            if(fechaFin.compareTo(fechaInicio) <=0){
+            
+                JOptionPane.showMessageDialog(this, "La fecha inicial debe ser menor a la fecha final");
+            
+            }
+            
+            
+            
             ResultSet rs = ps.executeQuery();
 
             DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
