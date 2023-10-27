@@ -45,7 +45,7 @@ public class TurnoData {
 
     }
 
-    public void eliminarVisita(Turno turno) {
+    public void eliminarTurno(Turno turno) {
         String sql = " DELETE FROM `turno` WHERE idTurno = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);

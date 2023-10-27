@@ -355,8 +355,11 @@ public class GestionCliente extends javax.swing.JPanel {
                                 if (apellido.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
                                     if (nombre.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
                                         if (personaAlt.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
-                                            cliente.guardarCliente(cli);
-
+                                            if (textDni.length() <= 9) {
+                                                cliente.guardarCliente(cli);
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, " Maxima cantidad de numeros superada en dni ");
+                                            }
                                         } else {
                                             JOptionPane.showMessageDialog(null, " Solo letras en nombre de persona alternativa ");
 
@@ -408,8 +411,11 @@ public class GestionCliente extends javax.swing.JPanel {
                                     if (apellido.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
                                         if (nombre.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
                                             if (personaAlt.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
-                                                cliente.modificarCliente(cli);
-
+                                                if (textDni.length() <= 9) {
+                                                    cliente.modificarCliente(cli);
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, " Maxima cantidad de numeros superada en dni ");
+                                                }
                                             } else {
                                                 JOptionPane.showMessageDialog(null, " Solo letras en nombre de persona alternativa ");
 
