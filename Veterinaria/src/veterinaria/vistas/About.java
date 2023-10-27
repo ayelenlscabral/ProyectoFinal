@@ -49,7 +49,7 @@ public class About extends javax.swing.JPanel {
         add(jVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 487, 198, 79));
 
         jLabelSanLuis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/san luis.png"))); // NOI18N
-        add(jLabelSanLuis, new org.netbeans.lib.awtextra.AbsoluteConstraints(637, 367, 150, 97));
+        add(jLabelSanLuis, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 150, 97));
 
         jLabelLaPunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/la punta.png"))); // NOI18N
         add(jLabelLaPunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 342, 295, 139));

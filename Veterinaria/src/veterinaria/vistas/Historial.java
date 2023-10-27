@@ -127,7 +127,7 @@ public class Historial extends javax.swing.JPanel {
                 jBotonSalirActionPerformed(evt);
             }
         });
-        add(jBotonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 98, -1));
+        add(jBotonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, 110, -1));
 
         jBDesde.setBackground(new java.awt.Color(255, 255, 204));
         jBDesde.setForeground(new java.awt.Color(255, 255, 255));
@@ -143,7 +143,7 @@ public class Historial extends javax.swing.JPanel {
                 jBLimpiarActionPerformed(evt);
             }
         });
-        add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 103, 56));
+        add(jBLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 110, 56));
 
         jDateHasta.setBackground(new java.awt.Color(255, 204, 153));
         jDateHasta.setForeground(new java.awt.Color(0, 204, 51));
@@ -246,7 +246,7 @@ public class Historial extends javax.swing.JPanel {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error" + ex);
         } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida");
         }    
     }//GEN-LAST:event_jBFiltrarMouseClicked
 
