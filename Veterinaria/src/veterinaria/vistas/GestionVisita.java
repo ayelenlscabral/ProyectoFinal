@@ -1,7 +1,6 @@
 package veterinaria.vistas;
 
 import java.awt.Color;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.logging.Level;
@@ -42,9 +41,7 @@ public class GestionVisita extends javax.swing.JPanel {
         jCoincidencias.setVisible(false);
         jCoincidencias.setOpaque(true);
         jidCliente.setOpaque(true);
-
-//        jDatos.setOpaque(false);
-//        jDatos.setForeground(Color.black);
+       jDate.getDateEditor().setEnabled(false);
         jimporte.setOpaque(true);
         jcontado.setSelected(true);
         this.modo = modo;
@@ -144,6 +141,7 @@ public class GestionVisita extends javax.swing.JPanel {
         jTratamiento1 = new javax.swing.JComboBox<>();
         jDate = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 51, 255));
         setForeground(new java.awt.Color(0, 0, 204));
@@ -153,6 +151,7 @@ public class GestionVisita extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 255));
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("REGISTRAR VISITA");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 0, -1, 41));
 
@@ -164,22 +163,22 @@ public class GestionVisita extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Mascota:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 75, -1, 14));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Datos Mascota:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 100, 30));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Tratamiento");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Importe:    $");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 228, 68, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 228, 80, 20));
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -190,7 +189,7 @@ public class GestionVisita extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Observacion:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 280, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 280, -1, 20));
 
         jMascota1.setBackground(new java.awt.Color(102, 0, 102));
         jMascota1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -200,7 +199,7 @@ public class GestionVisita extends javax.swing.JPanel {
                 jMascota1ActionPerformed(evt);
             }
         });
-        add(jMascota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 64, 200, -1));
+        add(jMascota1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 200, -1));
 
         jTratamiento.setBackground(new java.awt.Color(102, 0, 102));
         jTratamiento.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -210,46 +209,55 @@ public class GestionVisita extends javax.swing.JPanel {
                 jTratamientoActionPerformed(evt);
             }
         });
-        add(jTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 168, 190, -1));
+        add(jTratamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 230, -1));
 
+        jObservacion.setBackground(new java.awt.Color(102, 0, 102));
         jObservacion.setColumns(20);
+        jObservacion.setFont(new java.awt.Font("Monospaced", 1, 13)); // NOI18N
+        jObservacion.setForeground(new java.awt.Color(255, 255, 255));
         jObservacion.setRows(5);
         jScrollPane1.setViewportView(jObservacion);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 445, 24));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, 520, 50));
 
         jcontado.setBackground(new java.awt.Color(102, 0, 102));
         jcontado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jcontado.setForeground(new java.awt.Color(255, 255, 255));
         jcontado.setText("Contado");
+        jcontado.setOpaque(false);
         jcontado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcontadoActionPerformed(evt);
             }
         });
-        add(jcontado, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 227, -1, -1));
+        add(jcontado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, 20));
 
         jtarjeta.setBackground(new java.awt.Color(102, 0, 102));
         jtarjeta.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jtarjeta.setForeground(new java.awt.Color(255, 255, 255));
         jtarjeta.setText("Tarjeta");
+        jtarjeta.setOpaque(false);
         jtarjeta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtarjetaActionPerformed(evt);
             }
         });
-        add(jtarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 227, -1, -1));
+        add(jtarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, -1, 20));
 
-        jimporte.setBackground(new java.awt.Color(255, 255, 255));
+        jimporte.setBackground(new java.awt.Color(102, 0, 102));
         jimporte.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        add(jimporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 227, 49, 16));
+        jimporte.setForeground(new java.awt.Color(255, 255, 255));
+        jimporte.setOpaque(true);
+        add(jimporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 227, 90, 20));
 
-        jDatos.setBackground(new java.awt.Color(153, 0, 255));
+        jDatos.setBackground(new java.awt.Color(102, 0, 102));
         jDatos.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         jDatos.setForeground(new java.awt.Color(255, 255, 255));
         jDatos.setOpaque(true);
-        add(jDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 670, 30));
+        add(jDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 660, 30));
 
+        jpeso.setBackground(new java.awt.Color(102, 0, 102));
+        jpeso.setForeground(new java.awt.Color(255, 255, 255));
         jpeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpesoActionPerformed(evt);
@@ -262,7 +270,7 @@ public class GestionVisita extends javax.swing.JPanel {
         jLabel12.setText("kg");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 168, -1, 29));
 
-        jGuardar.setBackground(new java.awt.Color(102, 0, 102));
+        jGuardar.setBackground(new java.awt.Color(91, 220, 107));
         jGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/guardar.png"))); // NOI18N
         jGuardar.setToolTipText("GUARDAR");
@@ -273,7 +281,7 @@ public class GestionVisita extends javax.swing.JPanel {
         });
         add(jGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 228, 120, 90));
 
-        jVolver.setBackground(new java.awt.Color(102, 0, 102));
+        jVolver.setBackground(new java.awt.Color(50, 119, 242));
         jVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jVolver.setForeground(new java.awt.Color(255, 255, 255));
         jVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
@@ -283,7 +291,7 @@ public class GestionVisita extends javax.swing.JPanel {
                 jVolverActionPerformed(evt);
             }
         });
-        add(jVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 538, 125, -1));
+        add(jVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 160, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -300,6 +308,9 @@ public class GestionVisita extends javax.swing.JPanel {
         });
         add(jMascota2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 374, 196, -1));
 
+        jTable1.setBackground(new java.awt.Color(102, 0, 102));
+        jTable1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -317,44 +328,47 @@ public class GestionVisita extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 417, 780, 115));
         add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 334, 799, 12));
 
+        jdni.setBackground(new java.awt.Color(102, 0, 102));
+        jdni.setForeground(new java.awt.Color(255, 255, 255));
         jdni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jdniKeyReleased(evt);
             }
         });
-        add(jdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 63, 125, -1));
+        add(jdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 63, 90, -1));
 
         jBuscar.setBackground(new java.awt.Color(102, 0, 102));
         jBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        jBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\alberto\\Documents\\NetBeansProjects\\Repositorio g1\\ProyectoFinal\\Veterinaria\\src\\veterinaria\\Recursos\\buscar.png")); // NOI18N
+        jBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/buscar.png"))); // NOI18N
+        jBuscar.setToolTipText("BUSCAR");
         jBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBuscarActionPerformed(evt);
             }
         });
-        add(jBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 58, 47, 40));
+        add(jBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 60, 50));
 
         jidCliente.setBackground(new java.awt.Color(102, 0, 102));
         jidCliente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jidCliente.setForeground(new java.awt.Color(255, 255, 255));
         jidCliente.setOpaque(true);
-        add(jidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 69, 70, 20));
+        add(jidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 70, 20));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Codigo:");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 67, -1, 22));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 69, -1, 20));
 
-        jCoincidencias.setBackground(new java.awt.Color(204, 204, 255));
+        jCoincidencias.setBackground(new java.awt.Color(102, 0, 102));
         jCoincidencias.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jCoincidencias.setForeground(new java.awt.Color(0, 0, 0));
+        jCoincidencias.setForeground(new java.awt.Color(255, 255, 255));
         jCoincidencias.setOpaque(true);
         jCoincidencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCoincidenciasMouseClicked(evt);
             }
         });
-        add(jCoincidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(159, 84, 125, 24));
+        add(jCoincidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 90, 20));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -369,16 +383,21 @@ public class GestionVisita extends javax.swing.JPanel {
                 jTratamiento1ActionPerformed(evt);
             }
         });
-        add(jTratamiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 374, 190, -1));
+        add(jTratamiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 374, 220, -1));
 
         jDate.setBackground(new java.awt.Color(102, 0, 102));
-        jDate.setForeground(java.awt.SystemColor.activeCaptionText);
-        add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
+        jDate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Fecha ");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, 20));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Forma de pago :");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMascota2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMascota2ActionPerformed
@@ -552,6 +571,7 @@ public class GestionVisita extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -590,7 +610,7 @@ public class GestionVisita extends javax.swing.JPanel {
                 Color color1 = new Color(102, 102, 102);
                 this.setBackground(color);
                 jdni.setBackground(color);
-                jidCliente.setBackground(color);
+                jidCliente.setBackground(color1);
                 jMascota1.setBackground(color);
                 jMascota2.setBackground(color);
                 jimporte.setBackground(color);
@@ -605,7 +625,9 @@ public class GestionVisita extends javax.swing.JPanel {
                 jcontado.setBackground(color);
                 jtarjeta.setBackground(color);
                 jDatos.setBackground(color1);
-
+                jpeso.setBackground(color);
+                jDate.setBackground(color);
+                jCoincidencias.setBackground(color1);
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
               
