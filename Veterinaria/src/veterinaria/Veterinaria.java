@@ -1,14 +1,10 @@
 package veterinaria;
 
-import veterinaria.AccesoADatos.ClienteData;
-import veterinaria.Entidades.Cliente;
-import veterinaria.vistas.Menu;
-
 public class Veterinaria {
 
     public static void main(String[] args) {
-        Menu nuevo = new Menu();
-        nuevo.setVisible(true);
+//        Menu nuevo = new Menu();
+//        nuevo.setVisible(true);
 //        ClienteData clienteData = new ClienteData();
 //        Cliente cliente2;
 //        Cliente cliente1 = new Cliente(10,25145267, "Bocalon", "Ernesto", "15 y 93", 2214811399L, "Perez Bruno Mariana", true);

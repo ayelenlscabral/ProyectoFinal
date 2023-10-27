@@ -56,14 +56,14 @@ public class Historial extends javax.swing.JPanel {
         jBFiltrar = new javax.swing.JButton();
         jBHasta = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 204));
+        setBackground(new java.awt.Color(209, 17, 65));
         setForeground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 700));
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         jLTitulo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLTitulo.setForeground(new java.awt.Color(255, 0, 255));
+        jLTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLTitulo.setText("       HISTORIAL DE LA VETERINARIA");
 
@@ -109,9 +109,9 @@ public class Historial extends javax.swing.JPanel {
         jTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabla);
 
-        jBotonSalir.setBackground(new java.awt.Color(255, 102, 204));
-        jBotonSalir.setForeground(new java.awt.Color(153, 255, 153));
-        jBotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/vistas/volver.png"))); // NOI18N
+        jBotonSalir.setBackground(new java.awt.Color(255, 255, 255));
+        jBotonSalir.setForeground(new java.awt.Color(255, 102, 255));
+        jBotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
         jBotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBotonSalirActionPerformed(evt);
@@ -119,12 +119,12 @@ public class Historial extends javax.swing.JPanel {
         });
 
         jBDesde.setBackground(new java.awt.Color(255, 255, 204));
-        jBDesde.setForeground(new java.awt.Color(153, 153, 153));
+        jBDesde.setForeground(new java.awt.Color(255, 255, 255));
         jBDesde.setText("FECHA DESDE:");
 
-        jBLimpiar.setBackground(new java.awt.Color(255, 102, 255));
-        jBLimpiar.setForeground(new java.awt.Color(153, 255, 102));
-        jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/vistas/limpiar.png"))); // NOI18N
+        jBLimpiar.setBackground(new java.awt.Color(255, 255, 255));
+        jBLimpiar.setForeground(new java.awt.Color(209, 17, 65));
+        jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/limpiar.png"))); // NOI18N
         jBLimpiar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
         jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +138,7 @@ public class Historial extends javax.swing.JPanel {
         jDateDesde.setBackground(new java.awt.Color(255, 255, 153));
         jDateDesde.setForeground(new java.awt.Color(0, 0, 255));
 
-        jBFiltrar.setBackground(new java.awt.Color(255, 51, 255));
+        jBFiltrar.setBackground(new java.awt.Color(209, 17, 65));
         jBFiltrar.setForeground(new java.awt.Color(255, 255, 255));
         jBFiltrar.setText("FILTRAR");
         jBFiltrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255), new java.awt.Color(102, 255, 255)));
@@ -149,7 +149,7 @@ public class Historial extends javax.swing.JPanel {
         });
 
         jBHasta.setBackground(new java.awt.Color(255, 255, 204));
-        jBHasta.setForeground(new java.awt.Color(153, 153, 153));
+        jBHasta.setForeground(new java.awt.Color(255, 255, 255));
         jBHasta.setText("FECHA HASTA:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
