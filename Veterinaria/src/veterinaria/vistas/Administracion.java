@@ -143,7 +143,7 @@ public class Administracion extends javax.swing.JPanel {
         jPanelCrear.add(jMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, 30));
 
         jContraseña.setBackground(new java.awt.Color(255, 166, 35));
-        jContraseña.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jContraseña.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jPanelCrear.add(jContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 240, 40));
 
         jLContraseña.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -231,7 +231,7 @@ public class Administracion extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 200, 70));
 
         jFiltro.setBackground(new java.awt.Color(255, 166, 35));
-        jFiltro.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jFiltro.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jFiltroKeyReleased(evt);
@@ -244,7 +244,7 @@ public class Administracion extends javax.swing.JPanel {
         add(jLUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 150, 50));
 
         jUsuario.setBackground(new java.awt.Color(255, 166, 35));
-        jUsuario.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jUsuarioActionPerformed(evt);

@@ -79,7 +79,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
         jEliminarCate = new javax.swing.JButton();
         jLimpiar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(51, 255, 51));
         setMinimumSize(new java.awt.Dimension(100, 100));
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 700));
@@ -272,7 +271,7 @@ public class GestionTratamiento extends javax.swing.JPanel {
         });
         jPanel1.add(jLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 516, 208, 53));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 578));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
