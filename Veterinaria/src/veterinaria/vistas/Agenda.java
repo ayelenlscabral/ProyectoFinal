@@ -2,7 +2,6 @@ package veterinaria.vistas;
 
 //Fede
 import java.awt.Color;
-import java.awt.event.ItemListener;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate; 

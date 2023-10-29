@@ -266,7 +266,7 @@ public class GestionCliente extends javax.swing.JPanel {
             int dni = Integer.parseInt(jtDni2.getText());
             Cliente cliente2 = cliente.buscarCliente(dni);
 
-            if (cliente != null) {
+            if (!laValidacionEnBuscar()) {
                 jtIdCliente.setText(Integer.toString(cliente2.getIdCliente()));
                 jtDni.setText(Integer.toString(cliente2.getDni()));
                 jtDni2.setText(Integer.toString(cliente2.getDni()));
@@ -277,6 +277,8 @@ public class GestionCliente extends javax.swing.JPanel {
                 jrEstado.setSelected(cliente2.isEstado());
                 jtPersonaAlt.setText(cliente2.getPersonaAlternativa());
 
+            } else {
+                JOptionPane.showMessageDialog(null, " No existe el Cliente en la Base de Datos");
             }
 
         } catch (NumberFormatException nf) {
@@ -295,6 +297,19 @@ public class GestionCliente extends javax.swing.JPanel {
 
         for (Cliente cliente : cliente.listarClientes()) {
             if (dni == cliente.getDni()) {
+                validar = false;
+            }
+        }
+        return validar;
+    }
+
+    private boolean laValidacionEnBuscar() {
+
+        boolean validar = true;
+        int dni2 = Integer.parseInt(jtDni2.getText());
+
+        for (Cliente cliente : cliente.listarClientes2()) {
+            if (dni2 == cliente.getDni()) {
                 validar = false;
             }
         }
@@ -330,7 +345,6 @@ public class GestionCliente extends javax.swing.JPanel {
             String textTel = (jtTel.getText());
             String textPersonaAlt = (jtPersonaAlt.getText());
 
-
             if (!textDni.isEmpty()) {
                 if (laValidacionEnPersona()) {
                     if (!textApellido.isEmpty() && !textNombre.isEmpty()) {
@@ -357,6 +371,17 @@ public class GestionCliente extends javax.swing.JPanel {
                                         if (personaAlt.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
                                             if (textDni.length() <= 9) {
                                                 cliente.guardarCliente(cli);
+
+                                                jtIdCliente.setText("");
+                                                jtDni.setText("");
+                                                jtDni2.setText("");
+                                                jtApellido.setText("");
+                                                jtNombre.setText("");
+                                                jtDireccion.setText("");
+                                                jtTel.setText("");
+                                                jrEstado.setSelected(false);
+                                                jtPersonaAlt.setText("");
+
                                             } else {
                                                 JOptionPane.showMessageDialog(null, " Maxima cantidad de numeros superada en dni ");
                                             }
@@ -413,6 +438,17 @@ public class GestionCliente extends javax.swing.JPanel {
                                             if (personaAlt.matches("^[a-zA-Z][a-zA-Z\\s]*$")) {
                                                 if (textDni.length() <= 9) {
                                                     cliente.modificarCliente(cli);
+
+                                                    jtIdCliente.setText("");
+                                                    jtDni.setText("");
+                                                    jtDni2.setText("");
+                                                    jtApellido.setText("");
+                                                    jtNombre.setText("");
+                                                    jtDireccion.setText("");
+                                                    jtTel.setText("");
+                                                    jrEstado.setSelected(false);
+                                                    jtPersonaAlt.setText("");
+
                                                 } else {
                                                     JOptionPane.showMessageDialog(null, " Maxima cantidad de numeros superada en dni ");
                                                 }

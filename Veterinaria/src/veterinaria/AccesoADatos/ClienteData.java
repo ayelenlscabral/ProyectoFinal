@@ -131,4 +131,31 @@ public class ClienteData {
     return cliente;
     }
     
+       public ArrayList<Cliente> listarClientes2(){
+    ArrayList <Cliente> lista = new ArrayList();
+    
+            try {
+            String sql = "SELECT * FROM cliente";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(rs.getInt("idCliente"));
+                cliente.setDni(rs.getInt("dni"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setTelefono(rs.getLong("telefono"));
+                cliente.setPersonaAlternativa(rs.getString("personaAlternativa"));
+                cliente.setEstado(rs.getBoolean("estado"));
+                lista.add(cliente);
+            }
+            ps.close();
+         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente" + ex.getMessage());
+         }
+    return lista;
+    }
+    
+    
 }

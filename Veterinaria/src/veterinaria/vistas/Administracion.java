@@ -8,7 +8,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import veterinaria.AccesoADatos.ClienteData;
 import veterinaria.AccesoADatos.EmpleadoData;
 import veterinaria.Entidades.Empleado;
 

@@ -41,6 +41,8 @@ public class Balance extends javax.swing.JPanel {
         cabecera();
         this.modo = modo;
         this.empleado = empleado;
+        jDateChooser1.getDateEditor().setEnabled(false);
+        
     }
 
     @SuppressWarnings("unchecked")

@@ -126,9 +126,6 @@ public class MascotaData {
                 cliente.setIdCliente(rs.getInt("idCliente"));
                 mascota.setIdCliente(cliente);
 
-            } else {
-
-                JOptionPane.showMessageDialog(null, "no existe la mascota");
             }
 
         } catch (SQLException ex) {
@@ -317,7 +314,7 @@ public class MascotaData {
             ps.close();
             rs.close();
         } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Excepcion de SQL", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Excepcion de SQL", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return lista;
     }
