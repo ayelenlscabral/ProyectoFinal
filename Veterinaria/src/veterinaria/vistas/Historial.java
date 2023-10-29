@@ -1,10 +1,6 @@
 package veterinaria.vistas;
 
 import java.awt.Color;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +9,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import veterinaria.AccesoADatos.ClienteData;
-import veterinaria.AccesoADatos.Conexion;
 import veterinaria.AccesoADatos.MascotaData;
 import veterinaria.AccesoADatos.VisitaData;
 import veterinaria.Entidades.Cliente;
@@ -22,6 +17,7 @@ import veterinaria.Entidades.Tratamiento;
 import veterinaria.Entidades.Visita;
 import veterinaria.AccesoADatos.TratamientoData;
 import veterinaria.Entidades.Empleado;
+import veterinaria.Entidades.Historial1;
 
 public class Historial extends javax.swing.JPanel {
 
@@ -117,7 +113,7 @@ public class Historial extends javax.swing.JPanel {
         jTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabla);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 322, 770, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 322, 780, 240));
 
         jBotonSalir.setBackground(new java.awt.Color(255, 255, 255));
         jBotonSalir.setForeground(new java.awt.Color(255, 102, 255));
@@ -188,66 +184,10 @@ public class Historial extends javax.swing.JPanel {
 
     private void jBFiltrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBFiltrarMouseClicked
 
-        Connection connection = Conexion.getConexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        cargarTabla();
+        
 
-        Date fechaInicio = jDateDesde.getDate();
-        Date fechaFin = jDateHasta.getDate();
-
-        String sql = "SELECT c.idCliente, c.dni, c.apellido, c.nombre, m.idMascota,m.especie, m.raza, m.pesoActual, v.idVisita, v.fechaVisita, t.idTratamiento, t.tipoTratamiento, t.importe "
-                + "FROM cliente c "
-                + "JOIN mascota m ON c.idCliente = m.idCliente "
-                + "JOIN visita v ON v.idMascota = m.idMascota "
-                + "JOIN tratamiento t ON t.idTratamiento = v.idTratamiento "
-                + "WHERE v.fechaVisita BETWEEN ? AND ? "
-                + "ORDER BY v.fechaVisita";
-
-        PreparedStatement ps;
-
-        try {
-
-            ps = connection.prepareStatement(sql);
-            ps.setDate(1, new java.sql.Date(fechaInicio.getTime()));
-            ps.setDate(2, new java.sql.Date(fechaFin.getTime()));
-
-            if(fechaFin.compareTo(fechaInicio) <=0){
-            
-                JOptionPane.showMessageDialog(this, "La fecha inicial debe ser menor a la fecha final");
-            
-            }
-            
-            
-            
-            ResultSet rs = ps.executeQuery();
-
-            DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
-
-            modelo.setRowCount(0);
-
-            while (rs.next()) {
-                Object[] fila = {
-                    rs.getInt("idCliente"),
-                    rs.getString("dni"),
-                    rs.getString("apellido"),
-                    rs.getString("nombre"),
-                    rs.getInt("idMascota"),
-                    rs.getString("especie"),
-                    rs.getString("raza"),
-                    rs.getDouble("pesoActual"),
-                    rs.getInt("idVisita"),
-                    rs.getDate("fechaVisita"),
-                    rs.getInt("idTratamiento"),
-                    rs.getString("tipoTratamiento"),
-                    rs.getDouble("importe"),};
-                modelo.addRow(fila);
-            }
-            rs.close();
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error" + ex);
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar una fecha valida");
-        }    
     }//GEN-LAST:event_jBFiltrarMouseClicked
 
 
@@ -318,4 +258,48 @@ public class Historial extends javax.swing.JPanel {
         }
     }
 
+    private void cargarTabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTabla.getModel();
+        
+        modelo.setRowCount(0);
+        
+        Date fechaInicio = jDateDesde.getDate();
+        System.out.println("fecha inicio " + fechaInicio);
+        Date fechaFin = jDateHasta.getDate();
+        
+        java.sql.Date inicio = new java.sql.Date(fechaInicio.getTime());
+        System.out.println(" inicio: " + inicio);
+        java.sql.Date fin = new java.sql.Date(fechaFin.getTime());
+        
+        if (fechaFin.compareTo(fechaInicio) <= 0) {
+
+                JOptionPane.showMessageDialog(null, "La fecha inicial debe ser menor a la fecha final");
+
+            }
+        
+        for (Historial1 object : mascotaData.historial(inicio, fin)) {
+            Object[] fila = {
+                object.getCliente().getIdCliente(),
+                object.getCliente().getDni(),
+                object.getCliente().getApellido(),
+                object.getCliente().getNombre(),
+                object.getMascota().getIdMascota(),
+                object.getMascota().getRaza(),
+                object.getMascota().getEspecie(),
+                object.getMascota().getPesoActual(),
+                object.getVisita().getIdVisita(),
+                object.getVisita().getFechaTratamiento(),
+                object.getTratamiento().getIdTratamiento(),
+                object.getTratamiento().getTipoTratamiento(),
+                object.getTratamiento().getImporte(),};
+                modelo.addRow(fila);
+
+        }
+
+    }
+    
+    
+    
+    
 }

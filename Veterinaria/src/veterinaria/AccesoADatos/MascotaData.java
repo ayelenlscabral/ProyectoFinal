@@ -8,8 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import veterinaria.Entidades.Cliente;
-import veterinaria.Entidades.Mascota;
+import veterinaria.Entidades.*;
 
 public class MascotaData {
 
@@ -263,33 +262,64 @@ public class MascotaData {
 
     }
 
-    public List<Mascota> listarMascotasParaHistorial() {
+    public List<Historial1> historial(Date fechaInicio, Date fechaFin) {
 
-        List<Mascota> mascotaHistorial = new ArrayList<>();
+        ArrayList<Historial1> lista = new ArrayList<>();
 
-        String sql = "SELECT idMascota, alias, raza, pesoActual, pesoPromedio FROM mascota";
+        try {
 
-        PreparedStatement ps;
-        try { ps = con.prepareStatement(sql);
+            String sql = "SELECT c.idCliente, c.dni, c.apellido, c.nombre, m.idMascota,m.especie, m.raza, m.pesoActual, v.idVisita, v.fechaVisita, t.idTratamiento, t.tipoTratamiento, t.importe "
+                    + "FROM cliente c "
+                    + "JOIN mascota m ON c.idCliente = m.idCliente "
+                    + "JOIN visita v ON v.idMascota = m.idMascota "
+                    + "JOIN tratamiento t ON t.idTratamiento = v.idTratamiento "
+                    + "WHERE v.fechaVisita BETWEEN ? AND ? "
+                    + "ORDER BY v.fechaVisita";
+
+            PreparedStatement ps;
+
+            ps = con.prepareStatement(sql);
+
+            ps.setDate(1, fechaInicio);
+            ps.setDate(2, fechaFin);
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                Historial1 historial = new Historial1();
 
                 Mascota mas = new Mascota();
                 mas.setIdMascota(rs.getInt("idMascota"));
-                mas.setAlias(rs.getString("alias"));
                 mas.setRaza(rs.getString("raza"));
+                mas.setEspecie(rs.getString("especie"));
                 mas.setPesoActual(rs.getDouble("pesoActual"));
-                mas.setPesoPromedio(rs.getDouble("pesoPromedio"));
-                mascotaHistorial.add(mas);
+                Cliente cli = new Cliente();
+                cli.setIdCliente(rs.getInt("idCliente"));
+                cli.setDni(rs.getInt("dni"));
+                cli.setApellido(rs.getString("apellido"));
+                cli.setNombre(rs.getString("nombre"));
+                Visita vis = new Visita();
+                vis.setIdVisita(rs.getInt("idVisita"));
+                vis.setFechaTratamiento(rs.getDate("fechaVisita").toLocalDate());
+                Tratamiento tra = new Tratamiento();
+                tra.setIdTratamiento(rs.getInt("idTratamiento"));
+                tra.setTipoTratamiento(rs.getString("tipoTratamiento"));
+                tra.setImporte(rs.getDouble("importe"));
+
+                historial.setCliente(cli);
+                historial.setMascota(mas);
+                historial.setTratamiento(tra);
+                historial.setVisita(vis);
+
+                lista.add(historial);
             }
 
             ps.close();
-
+            rs.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla mascota");
+                JOptionPane.showMessageDialog(null, "Excepcion de SQL", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        return mascotaHistorial;
+        return lista;
     }
+
 }
