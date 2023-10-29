@@ -358,7 +358,6 @@ public class GestionTratamiento extends javax.swing.JPanel {
         LimpiarTabla();
         cargarTabla();
         jTipo.setSelectedIndex(-1);
-        jFiltroTipo.setSelectedIndex(-1);
         jDescripcion.setText("");
         jImporte.setText("");
         jEstado.setSelected(false);
