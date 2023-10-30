@@ -41,7 +41,7 @@ public class GestionVisita extends javax.swing.JPanel {
         jCoincidencias.setVisible(false);
         jCoincidencias.setOpaque(true);
         jidCliente.setOpaque(true);
-       jDate.getDateEditor().setEnabled(false);
+        jDate.getDateEditor().setEnabled(false);
         jimporte.setOpaque(true);
         jcontado.setSelected(true);
         this.modo = modo;
@@ -433,6 +433,11 @@ public class GestionVisita extends javax.swing.JPanel {
     }//GEN-LAST:event_jVolverActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
+
+        if (jTratamiento.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un tratamiento.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         try {
             double peso = Double.parseDouble(jpeso.getText());
             mascota = (Mascota) jMascota1.getSelectedItem();
@@ -630,9 +635,9 @@ public class GestionVisita extends javax.swing.JPanel {
                 jCoincidencias.setBackground(color1);
             } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-              
+
             }
-        } 
+        }
     }
 
 }
