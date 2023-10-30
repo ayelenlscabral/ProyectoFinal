@@ -1,6 +1,5 @@
 package veterinaria.Entidades;
 
-
 public class Cliente {
 
     private int idCliente;
@@ -105,11 +104,5 @@ public class Cliente {
         return idCliente + " " + dni + " " + apellido + " " + nombre + " " 
             + direccion + " " + telefono + " " + personaAlternativa + " " + estado;
     }
-
-    public void setTelefono(String tel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 
 }
