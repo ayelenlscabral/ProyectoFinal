@@ -324,12 +324,21 @@ public class Agenda extends javax.swing.JPanel {
     }//GEN-LAST:event_jGuardarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-
+        boolean comprobador = false;
         try {
-
             int Dni = Integer.parseInt(jtDni.getText());
-            this.cli = cliente.buscarCliente(Dni);
-            jlMostrarC.setText(cli.toString());
+            for (Cliente cliente : cliente.listarClientes()) {
+                if (cliente.getDni() == Dni) {
+                    comprobador = true;
+                }
+            }
+            if (comprobador) {
+                this.cli = cliente.buscarCliente(Dni);
+                jlMostrarC.setText(cli.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, " No existe un cliente con ese dni ");
+
+            }
 
         } catch (NumberFormatException nf) {
 
@@ -509,31 +518,24 @@ private int comprobarTurno(LocalDate fecha, Time hora, Cliente cliente, Tratamie
     }
 
     public void iniciarProgramacion() {
-        // Crear un temporizador de Swing que ejecuta una tarea cada 60 segundos
-        Timer timer = new Timer(30000, new ActionListener() {
+        Timer timer = new Timer(60000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("empieza");
                 //Fecha actual;
                 LocalDate fechaActual = LocalDate.now();
-                System.out.println("fechaActual " + fechaActual);
                 //Hora actual;
                 LocalTime horaActual = LocalTime.now();
-                System.out.println("hora actual: " +horaActual);
-                
                 for (Turno turno : ElTurno.listarTurno()) {
                     LocalTime horarioTurno = turno.getHorario().toLocalTime();
                     LocalDate fechaTurno = turno.getFecha();
-                    
+
                     if (fechaActual.isAfter(fechaTurno) || (fechaActual.isEqual(fechaTurno) && horaActual.isAfter(horarioTurno))) {
-                       System.out.println("fecha borrada: " + fechaTurno);
-                            System.out.println("hora borrada : " + horarioTurno);
-                            ElTurno.eliminarTurnoAutomaticamente(turno);
-                            limpiarTabla();
-                            cargarTabla();  
+
+                        ElTurno.eliminarTurnoAutomaticamente(turno);
+                        limpiarTabla();
+                        cargarTabla();
                     }
                 }
-                System.out.println("reinicio");
                 cargarCombos();
                 limpiarTabla();
                 cargarTabla();

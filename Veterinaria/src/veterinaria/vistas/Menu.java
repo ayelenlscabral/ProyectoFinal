@@ -386,11 +386,11 @@ public class Menu extends javax.swing.JFrame {
 
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    Empleado nuevo = new Empleado("Anonimo", "Contraseña", "Masculino", 1);
-                    new Menu(false, nuevo).setVisible(true);
+//                    Empleado nuevo = new Empleado("Anonimo", "Contraseña", "Masculino", 1);
+//                    new Menu(false, nuevo).setVisible(true);
                     //DECOMENTAR AL FINAL PARA QUE FUNCIONE EL LOGIN
-//                Login login = new Login();
-//               login.setVisible(true);
+                Login login = new Login();
+               login.setVisible(true);
                 }
             });
 
