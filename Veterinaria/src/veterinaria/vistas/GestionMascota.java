@@ -650,7 +650,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 jTColordePelo.setText("");
                 jTPesoActual.setText("");
                 jRadioBEstado.setSelected(false);
-                jComboBoxCliente.setSelectedIndex(0);
+                jComboBoxCliente.setSelectedIndex(-1);
                 mascotaActual = null;
 
             } else {
@@ -958,7 +958,6 @@ public class GestionMascota extends javax.swing.JPanel {
 
         LocalDate fechaNacimiento = mascotaActual.getFechaNac();
         Date fechaNacimientoDate = Date.from(fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
         for (Mascota mascota : mascotaData.listarMascotas()) {
             if (mascota.getAlias().equalsIgnoreCase(jTAlias.getText())) {
                 if (mascota.getColorPelo().equalsIgnoreCase(jTColordePelo.getText())) {
