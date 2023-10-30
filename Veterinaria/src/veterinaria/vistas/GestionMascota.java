@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -86,7 +89,7 @@ public class GestionMascota extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabla = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jBNuevo = new javax.swing.JButton();
+        jBLimpiar = new javax.swing.JButton();
         jBGuardar = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
@@ -266,13 +269,13 @@ public class GestionMascota extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jBNuevo.setBackground(new java.awt.Color(255, 255, 102));
-        jBNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/limpiar.png"))); // NOI18N
-        jBNuevo.setToolTipText("LIMPIAR");
-        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+        jBLimpiar.setBackground(new java.awt.Color(255, 255, 102));
+        jBLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        jBLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/limpiar.png"))); // NOI18N
+        jBLimpiar.setToolTipText("LIMPIAR");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBNuevoActionPerformed(evt);
+                jBLimpiarActionPerformed(evt);
             }
         });
 
@@ -322,7 +325,7 @@ public class GestionMascota extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
@@ -337,7 +340,7 @@ public class GestionMascota extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jBNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBLimpiar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBEliminar)
@@ -419,9 +422,8 @@ public class GestionMascota extends javax.swing.JPanel {
     }//GEN-LAST:event_jTClienteDNIActionPerformed
 
 
-    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        mascotaActual = new Mascota();
-
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        jComboBoxCliente.setSelectedIndex(-1);
         jTidMascota.setText("");
         jTAlias.setText("");
         jTEspecie.setText("");
@@ -431,7 +433,10 @@ public class GestionMascota extends javax.swing.JPanel {
         jRadioBEstado.setSelected(false);
         jDateFechaNac.setDate(null);
         buttonGroup1.clearSelection();
-    }//GEN-LAST:event_jBNuevoActionPerformed
+        jTClienteDNI.setText("");
+        limpiarTabla();
+       
+    }//GEN-LAST:event_jBLimpiarActionPerformed
 
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -495,9 +500,12 @@ public class GestionMascota extends javax.swing.JPanel {
 
                                             mascotaActual.setEstado(jRadioBEstado.isSelected());
 
-                                            mascotaData.agregarMascota(mascotaActual);
-
-                                            JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");
+                                            if (!validacion()) {
+                                                mascotaData.agregarMascota(mascotaActual);
+                                                JOptionPane.showMessageDialog(this, "Mascota guardada con éxito");
+                                            } else {
+                                                JOptionPane.showMessageDialog(this, "La mascota ya existe");
+                                            }
 
                                         } else {
                                             JOptionPane.showMessageDialog(this, "El campo 'Peso Actual' tiene un limite de 300 Kg.");
@@ -623,9 +631,6 @@ public class GestionMascota extends javax.swing.JPanel {
 
         }
 
-        limpiarTabla();
-        cargarTabla();
-
     }//GEN-LAST:event_jBModificarActionPerformed
 
 
@@ -737,7 +742,7 @@ public class GestionMascota extends javax.swing.JPanel {
 
             String sex = String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 2));
 
-            if (sex.equalsIgnoreCase("hembra")) {
+            if (sex.equalsIgnoreCase("Hembra")) {
                 jCheckBoxH.setSelected(true);
                 jCheckBoxM.setSelected(false);
             } else if (sex.equalsIgnoreCase("Macho")) {
@@ -765,7 +770,6 @@ public class GestionMascota extends javax.swing.JPanel {
             jTPesoActual.setText(String.valueOf(modelo.getValueAt(jTabla.getSelectedRow(), 8)));
 
             boolean est = (boolean) modelo.getValueAt(jTabla.getSelectedRow(), 9);
-            System.out.println(est);
             jRadioBEstado.setSelected(est);
 
             Cliente clienteSeleccionado = mascotaActual.getIdCliente();
@@ -817,8 +821,8 @@ public class GestionMascota extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBModificar;
-    private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jBSalir;
     private javax.swing.JButton jBotonOk;
     private javax.swing.JButton jBuscar;
@@ -929,7 +933,7 @@ public class GestionMascota extends javax.swing.JPanel {
                 jTabla.setBackground(color);
                 jTClienteDNI.setBackground(color);
                 jBotonOk.setBackground(color);
-                jBNuevo.setBackground(color);
+                jBLimpiar.setBackground(color);
                 jBGuardar.setBackground(color);
                 jBModificar.setBackground(color);
                 jBEliminar.setBackground(color);
@@ -949,4 +953,32 @@ public class GestionMascota extends javax.swing.JPanel {
         }
     }
 
+    private boolean validacion() {
+        double pesoActual = Double.parseDouble(jTPesoActual.getText());
+
+        LocalDate fechaNacimiento = mascotaActual.getFechaNac();
+        Date fechaNacimientoDate = Date.from(fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        for (Mascota mascota : mascotaData.listarMascotas()) {
+            if (mascota.getAlias().equalsIgnoreCase(jTAlias.getText())) {
+                if (mascota.getColorPelo().equalsIgnoreCase(jTColordePelo.getText())) {
+                    if (mascota.getEspecie().equalsIgnoreCase(jTEspecie.getText())) {
+                        if (mascota.getRaza().equalsIgnoreCase(jTRaza.getText())) {
+                            if (mascota.getPesoActual() == pesoActual) {
+                                if (mascota.getFechaNac().isEqual(fechaNacimiento)) {
+                                    if (mascota.isEstado() == jRadioBEstado.isSelected()) {
+                                        return true;                                        
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+        }
+        return false;
+    }
 }
