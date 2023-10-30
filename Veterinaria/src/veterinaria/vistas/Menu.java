@@ -16,7 +16,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import veterinaria.Entidades.Empleado;
 
 public class Menu extends javax.swing.JFrame {
-
     ImageIcon hombre = new ImageIcon((getClass().getResource("/veterinaria/Recursos/hombre.png")));
     ImageIcon mujer = new ImageIcon((getClass().getResource("/veterinaria/Recursos/mujer.png")));
     ImageIcon administrador = new ImageIcon((getClass().getResource("/veterinaria/Recursos/administrador.png")));
@@ -32,6 +31,7 @@ public class Menu extends javax.swing.JFrame {
         this.empleado = empleado;
         getUsuario(empleado);
         actualizarApariencia(modo);
+        setIconImage(new ImageIcon(getClass().getResource("/veterinaria/Recursos/icono.png")).getImage());
     }
 
     @SuppressWarnings("unchecked")
@@ -60,7 +60,7 @@ public class Menu extends javax.swing.JFrame {
         jPanelAlternativo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("VETERINARIA LAYOUT");
+        setTitle("Gestion Veterinaria 4.0");
         setBackground(new java.awt.Color(51, 255, 51));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));

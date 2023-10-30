@@ -2,6 +2,8 @@ package veterinaria.vistas;
 
 //Fede
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -17,10 +19,13 @@ import veterinaria.Entidades.Empleado;
 import veterinaria.Entidades.Tratamiento;
 import veterinaria.Entidades.Turno;
 import java.text.ParseException;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 public class Agenda extends javax.swing.JPanel {
@@ -98,6 +103,7 @@ public class Agenda extends javax.swing.JPanel {
         this.empleado = empleado;
         cabecera();
         cargarTabla();
+        iniciarProgramacion();
     }
 
     @SuppressWarnings("unchecked")
@@ -124,11 +130,15 @@ public class Agenda extends javax.swing.JPanel {
         jcTrata = new javax.swing.JComboBox<>();
         jbBuscar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jModificar = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jcCalendario.setVerifyInputWhenFocusTarget(false);
+        jcCalendario.setWeekOfYearVisible(false);
         jPanel1.add(jcCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 69, 340, 300));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -182,7 +192,7 @@ public class Agenda extends javax.swing.JPanel {
                 jGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(jGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, 130, 50));
+        jPanel1.add(jGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, 130, 50));
 
         jVolver.setBackground(new java.awt.Color(50, 119, 242));
         jVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/volver.png"))); // NOI18N
@@ -202,7 +212,7 @@ public class Agenda extends javax.swing.JPanel {
                 jEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 510, 130, 50));
+        jPanel1.add(jEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, 130, 50));
 
         jLimpiar.setBackground(new java.awt.Color(255, 255, 102));
         jLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/limpiar.png"))); // NOI18N
@@ -212,7 +222,7 @@ public class Agenda extends javax.swing.JPanel {
                 jLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 130, 50));
+        jPanel1.add(jLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 130, 50));
 
         jcHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00" }));
         jPanel1.add(jcHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 200, 35));
@@ -240,7 +250,17 @@ public class Agenda extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 4, 170, 40));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 894, -1));
+        jModificar.setBackground(new java.awt.Color(0, 0, 153));
+        jModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/veterinaria/Recursos/modificar.png"))); // NOI18N
+        jModificar.setToolTipText("MODIFICAR");
+        jModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 130, 50));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVolverActionPerformed
@@ -256,10 +276,12 @@ public class Agenda extends javax.swing.JPanel {
         jcTrata.setSelectedIndex(-1);
         Calendar fechaActual = Calendar.getInstance();
         jcCalendario.setDate(fechaActual.getTime());
+        cargarCombos();
+        cargarTabla();
     }//GEN-LAST:event_jLimpiarActionPerformed
 
     private void jGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarActionPerformed
-        Turno turnoSeleccionado = null;
+
         try {
             Tratamiento tratamiento = new Tratamiento();
             tratamiento = (Tratamiento) jcTrata.getSelectedItem();
@@ -275,18 +297,21 @@ public class Agenda extends javax.swing.JPanel {
             turno.setHorario(hora);
 
             int id = comprobarTurno(fecha, hora, cli, tratamiento);
-            for (Turno turno : ElTurno.listarTurno()) {
-                if (turno.getIdTurno() == id) {
-                    turnoSeleccionado = turno;
-                }
-            }
-            if (turnoSeleccionado==null) {
+
+            if (id == -1) {
                 ElTurno.guardarTurno(turno);
+
+                jtDni.setText("");
+                jlMostrarC.setText("");
+                jcHorario.setSelectedIndex(-1);
+                jcTrata.setSelectedIndex(-1);
+                Calendar fechaActual = Calendar.getInstance();
+                jcCalendario.setDate(fechaActual.getTime());
                 limpiarTabla();
                 cargarTabla();
                 cargarCombos();
             } else {
-                ElTurno.modificarTurno(turno);
+                JOptionPane.showMessageDialog(null, " Ya se encuentra registrado un turno con esa fecha / hora");
             }
 
         } catch (ParseException e) {
@@ -315,12 +340,22 @@ public class Agenda extends javax.swing.JPanel {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEliminarActionPerformed
-        int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jtTabla.getSelectedRow(), 0)));
-        turno.setIdTurno(id);
-        ElTurno.eliminarTurno(turno);
-
-        limpiarTabla();
-        cargarTabla();
+        try {
+            int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jtTabla.getSelectedRow(), 0)));
+            turno.setIdTurno(id);
+            ElTurno.eliminarTurno(turno);
+            jtDni.setText("");
+            jlMostrarC.setText("");
+            jcHorario.setSelectedIndex(-1);
+            jcTrata.setSelectedIndex(-1);
+            Calendar fechaActual = Calendar.getInstance();
+            jcCalendario.setDate(fechaActual.getTime());
+            limpiarTabla();
+            cargarTabla();
+            cargarCombos();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, " Selecciona en la tabla el turno a eliminar ");
+        }
     }//GEN-LAST:event_jEliminarActionPerformed
 
     private void jtTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMouseClicked
@@ -355,6 +390,42 @@ public class Agenda extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jtTablaMouseClicked
 
+    private void jModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModificarActionPerformed
+
+        try {
+            if (!(String.valueOf(modelo.getValueAt(jtTabla.getSelectedRow(), 0))).isEmpty()) {
+                Tratamiento tratamiento = new Tratamiento();
+                tratamiento = (Tratamiento) jcTrata.getSelectedItem();
+                turno.setIdTratamiento(tratamiento);
+                turno.setIdCliente(cli);
+                jcCalendario.getDate();
+                LocalDate fecha = (jcCalendario.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                turno.setFecha(fecha);
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                String Hora = (String) jcHorario.getSelectedItem();
+                Date date = sdf.parse(Hora);
+                Time hora = new Time(date.getTime());
+                turno.setHorario(hora);
+                int id = Integer.parseInt(String.valueOf(modelo.getValueAt(jtTabla.getSelectedRow(), 0)));
+                turno.setIdTurno(id);
+
+                ElTurno.modificarTurno(turno);
+                limpiarTabla();
+                cargarTabla();
+                cargarCombos();
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, " Seleccione el turno en la tabla a modificar");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (NullPointerException np) {
+            JOptionPane.showMessageDialog(null, " Falta completar algun campo ");
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(null, " Verificar solo poner numeros y letras en los campos que corresponda ");
+        }
+    }//GEN-LAST:event_jModificarActionPerformed
+
     private void actualizarApariencia(boolean modo) {
         if (modo) {
             try {
@@ -363,10 +434,10 @@ public class Agenda extends javax.swing.JPanel {
                 Color color = new Color(52, 55, 59);
 
                 jtDni.setBackground(color);
-
+                jbBuscar.setBackground(color);
                 jtTabla.setBackground(color);
                 jcCalendario.setBackground(color);
-
+                jModificar.setBackground(color);
                 jGuardar.setBackground(color);
                 jEliminar.setBackground(color);
                 jLimpiar.setBackground(color);
@@ -414,6 +485,7 @@ public class Agenda extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jLimpiar;
+    private javax.swing.JButton jModificar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -428,10 +500,48 @@ public class Agenda extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 private int comprobarTurno(LocalDate fecha, Time hora, Cliente cliente, Tratamiento tratamiento) {
         for (Turno turno : ElTurno.listarTurno()) {
-            if (turno.getFecha().equals(fecha) && turno.getHorario().equals(hora) && turno.getIdCliente().equals(cliente) && turno.getIdTratamiento().equals(tratamiento)) {
+            if (turno.getFecha().equals(fecha) && turno.getHorario().equals(hora)
+                    && turno.getIdCliente().getIdCliente() == cliente.getIdCliente()) {
                 return turno.getIdTurno();
             }
         }
         return -1;
+    }
+
+    public void iniciarProgramacion() {
+        // Crear un temporizador de Swing que ejecuta una tarea cada 60 segundos
+        Timer timer = new Timer(30000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("empieza");
+                //Fecha actual;
+                LocalDate fechaActual = LocalDate.now();
+                System.out.println("fechaActual " + fechaActual);
+                //Hora actual;
+                LocalTime horaActual = LocalTime.now();
+                System.out.println("hora actual: " +horaActual);
+                
+                for (Turno turno : ElTurno.listarTurno()) {
+                    LocalTime horarioTurno = turno.getHorario().toLocalTime();
+                    LocalDate fechaTurno = turno.getFecha();
+                    
+                    if (fechaActual.isAfter(fechaTurno) || (fechaActual.isEqual(fechaTurno) && horaActual.isAfter(horarioTurno))) {
+                       System.out.println("fecha borrada: " + fechaTurno);
+                            System.out.println("hora borrada : " + horarioTurno);
+                            ElTurno.eliminarTurnoAutomaticamente(turno);
+                            limpiarTabla();
+                            cargarTabla();  
+                    }
+                }
+                System.out.println("reinicio");
+                cargarCombos();
+                limpiarTabla();
+                cargarTabla();
+            }
+
+        });
+
+        // Iniciar el temporizador
+        timer.start();
     }
 }
