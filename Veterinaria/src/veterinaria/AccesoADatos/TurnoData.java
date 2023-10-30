@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -61,14 +60,15 @@ public class TurnoData {
     }
 
     public void modificarTurno(Turno turno) {
-        String sql = " UPDATE turno SET idCliente = ?,idTratamiento = ?,fecha = ?,hora = ? WHERE idTurno = ? ";
+        String sql = "UPDATE turno SET idCliente = ? ,idTratamiento =  ? ,fecha =  ? ,hora =  ?  WHERE idTurno =  ? ";
         try {
-            PreparedStatement ps = null;
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, turno.getIdCliente().getIdCliente());
             ps.setInt(2, turno.getIdTratamiento().getIdTratamiento());
             ps.setDate(3, Date.valueOf(turno.getFecha()));
-            ps.setDate(4, Date.valueOf(turno.getHorario().toString()));
+            ps.setTime(4, Time.valueOf(turno.getHorario().toString()));
             ps.setInt(5, turno.getIdTurno());
+
             int bienAhi = ps.executeUpdate();
             if (bienAhi == 1) {
                 JOptionPane.showMessageDialog(null, " Turno modificado con exito");
@@ -104,6 +104,20 @@ public class TurnoData {
             JOptionPane.showMessageDialog(null, "Error al querer listar los turnos" + ex.getMessage());
         }
         return turnos;
+    }
+    
+    public void eliminarTurnoAutomaticamente(Turno turno) {
+        String sql = " DELETE FROM `turno` WHERE idTurno = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, turno.getIdTurno());
+            int borrado = ps.executeUpdate();
+            if (borrado == 1) {
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla de turnos");
+        }
     }
 }
     
