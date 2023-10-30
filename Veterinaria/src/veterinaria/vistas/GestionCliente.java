@@ -295,7 +295,7 @@ public class GestionCliente extends javax.swing.JPanel {
         boolean validar = true;
         int dni = Integer.parseInt(jtDni.getText());
 
-        for (Cliente cliente : cliente.listarClientes()) {
+        for (Cliente cliente : cliente.listarClientes2()) {
             if (dni == cliente.getDni()) {
                 validar = false;
             }
