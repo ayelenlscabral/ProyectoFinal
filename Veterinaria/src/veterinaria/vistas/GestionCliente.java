@@ -322,7 +322,7 @@ public class GestionCliente extends javax.swing.JPanel {
         int dni = Integer.parseInt(textDni);
         int id = 0;
 
-        for (Cliente nomb : cliente.listarClientes()) {
+        for (Cliente nomb : cliente.listarClientes2()) {
 
             if (nomb.getDni() == dni) {
 

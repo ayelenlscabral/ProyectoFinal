@@ -58,7 +58,10 @@ public class GestionVisita extends javax.swing.JPanel {
         if (!jidCliente.getText().isEmpty()) {
             int n = Integer.parseInt(jidCliente.getText());
             for (Mascota listar : maData.listarMascotasXCliente(n)) {
-                jMascota1.addItem(listar);
+                if (listar.isEstado()==true) {
+                    jMascota1.addItem(listar);
+                }
+                
             }
         }
         jMascota1.setSelectedIndex(-1);
