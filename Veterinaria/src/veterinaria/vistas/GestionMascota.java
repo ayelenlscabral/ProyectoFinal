@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -435,7 +434,7 @@ public class GestionMascota extends javax.swing.JPanel {
         buttonGroup1.clearSelection();
         jTClienteDNI.setText("");
         limpiarTabla();
-       
+
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
 
@@ -557,9 +556,9 @@ public class GestionMascota extends javax.swing.JPanel {
                 LocalDate fechaNac = jDateFechaNac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 String sexo = "";
                 if (jCheckBoxH.isSelected()) {
-                    sexo = "hembra";
+                    sexo = "Hembra";
                 } else if (jCheckBoxM.isSelected()) {
-                    sexo = "macho";
+                    sexo = "Macho";
                 }
                 boolean estado = jRadioBEstado.isSelected();
 
@@ -705,6 +704,19 @@ public class GestionMascota extends javax.swing.JPanel {
                     }
 
                     Cliente cliente = mascotaActual.getIdCliente();
+                    for (Cliente cliente2 : CliData.listarClientes2()) {
+                        if (cliente.getIdCliente() == cliente2.getIdCliente()) {
+                            cliente = cliente2;
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < jComboBoxCliente.getItemCount(); i++) {
+                        Cliente cliente3 = jComboBoxCliente.getItemAt(i);
+                        if (cliente.getIdCliente() == cliente3.getIdCliente()) {
+                            jComboBoxCliente.setSelectedIndex(i);
+                            break;
+                        }
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Mascota no encontrada");
@@ -954,30 +966,33 @@ public class GestionMascota extends javax.swing.JPanel {
     }
 
     private boolean validacion() {
-        double pesoActual = Double.parseDouble(jTPesoActual.getText());
-
-        LocalDate fechaNacimiento = mascotaActual.getFechaNac();
-        Date fechaNacimientoDate = Date.from(fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        for (Mascota mascota : mascotaData.listarMascotas()) {
-            if (mascota.getAlias().equalsIgnoreCase(jTAlias.getText())) {
-                if (mascota.getColorPelo().equalsIgnoreCase(jTColordePelo.getText())) {
-                    if (mascota.getEspecie().equalsIgnoreCase(jTEspecie.getText())) {
-                        if (mascota.getRaza().equalsIgnoreCase(jTRaza.getText())) {
-                            if (mascota.getPesoActual() == pesoActual) {
-                                if (mascota.getFechaNac().isEqual(fechaNacimiento)) {
-                                    if (mascota.isEstado() == jRadioBEstado.isSelected()) {
-                                        return true;                                        
+            double pesoActual = Double.parseDouble(jTPesoActual.getText());
+            String sexo = null;
+            if (jCheckBoxM.isSelected()) {
+                sexo = "Macho";
+            } else if (jCheckBoxH.isSelected()) {
+                sexo = "Hembra";
+            }
+            System.out.println("valor de sexo: " + sexo);
+            LocalDate fechaNacimiento = mascotaActual.getFechaNac();
+            for (Mascota mascota : mascotaData.listarMascotas()) {
+                if (mascota.getAlias().equalsIgnoreCase(jTAlias.getText())) {
+                    if (mascota.getColorPelo().equalsIgnoreCase(jTColordePelo.getText())) {
+                        if (mascota.getEspecie().equalsIgnoreCase(jTEspecie.getText())) {
+                            if (mascota.getRaza().equalsIgnoreCase(jTRaza.getText())) {
+                                if (mascota.getPesoActual() == pesoActual) {
+                                    if (mascota.getFechaNac().isEqual(fechaNacimiento)) {
+                                        if (mascota.isEstado() == jRadioBEstado.isSelected()) {
+                                            if (mascota.getSexo().equalsIgnoreCase(sexo)) {
+                                                return true;
+                                            }
+                                        }
                                     }
                                 }
                             }
-
                         }
-
                     }
-
                 }
             }
-        }
         return false;
     }
-}
